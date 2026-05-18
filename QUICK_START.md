@@ -24,7 +24,8 @@ brew install --cask dotnet-sdk
 ### Paso 2: Clonar y Navegar
 
 ```bash
-cd "/Users/luixany/Documentos/WEB B2BitMaster"
+git clone https://github.com/shannyvv-prog/WEB-B2BitMaster.git
+cd WEB-B2BitMaster
 ```
 
 ### Paso 3: Ejecutar Frontend (Terminal 1)
@@ -48,6 +49,8 @@ dotnet run
 # 🎉 API en http://localhost:5000
 # 📚 Swagger UI en http://localhost:5000/swagger
 ```
+
+> Nota: En macOS el backend requiere SQL Server. La configuración por defecto usa `Server=(localdb)\\mssqllocaldb;...`, que solo funciona en Windows. Si estás en macOS, usa un contenedor Docker de SQL Server o un servidor SQL accesible y actualiza `b2bit-backend/appsettings.json` con la cadena de conexión correcta.
 
 ## ✅ Verificar que Todo Funciona
 
@@ -114,7 +117,7 @@ sudo apt-get install -y nodejs  # Linux
 ng serve --port 4300
 ```
 
-### Puerto 5000 ya en use
+### Puerto 5000 ya en uso
 ```bash
 # Configurar diferente puerto en Program.cs
 app.Run("http://localhost:5001");
