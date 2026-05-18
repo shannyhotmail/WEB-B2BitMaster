@@ -1,0 +1,18 @@
+import { Routes } from '@angular/router';
+import { HomeComponent } from './components/pages/home/home.component';
+import { IntelligenceComponent } from './components/pages/intelligence/intelligence.component';
+import { StrategyComponent } from './components/pages/strategy/strategy.component';
+import { ContactoComponent } from './components/pages/contacto/contacto.component';
+
+/**
+ * Configuración de rutas de la aplicación.
+ * Define las páginas accesibles y sus componentes asociados.
+ */
+export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'intelligence', component: IntelligenceComponent },
+  { path: 'strategy', component: StrategyComponent },
+  { path: 'contacto', component: ContactoComponent },
+  { path: '**', redirectTo: '' }
+];

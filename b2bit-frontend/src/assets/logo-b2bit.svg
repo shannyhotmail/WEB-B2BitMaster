@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 100" width="340" height="100">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#03334c" />
+      <stop offset="100%" stop-color="#0b5375" />
+    </linearGradient>
+  </defs>
+  <rect width="340" height="100" fill="transparent" />
+  <text x="8" y="72" font-family="Segoe UI, Arial, sans-serif" font-size="68" font-weight="800" letter-spacing="-2" fill="url(#logoGradient)">b2bit</text>
+  <path d="M 58 80 L 90 42 L 114 66 L 152 28 L 192 54 L 236 12" fill="none" stroke="#ff3131" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 230 8 L 250 8 L 246 0 Z" fill="#ff3131" />
+</svg>
