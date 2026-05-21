@@ -12,24 +12,16 @@ import { CommonModule } from '@angular/common';
   template: `
     <footer class="footer">
       <div class="footer-content">
-        <div class="footer-section">
+        <div class="footer-section footer-left">
           <h4>b2bit Solutions</h4>
-          <p>Tech Adopción Intelligence y Strategy</p>
+          <p>Tech Adopción Intelligence</p>
+          <p>Tech Adopción Strategy</p>
         </div>
 
-        <div class="footer-section">
+        <div class="footer-section footer-right">
           <h4>Contacto</h4>
           <p>Email: <a href="mailto:info&#64;b2bit.com">info&#64;b2bit.com</a></p>
           <p>Teléfono: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
-        </div>
-
-        <div class="footer-section">
-          <h4>Síguenos</h4>
-          <p>
-            <a href="#" target="_blank" rel="noopener">LinkedIn</a> |
-            <a href="#" target="_blank" rel="noopener">Twitter</a> |
-            <a href="#" target="_blank" rel="noopener">Facebook</a>
-          </p>
         </div>
       </div>
 

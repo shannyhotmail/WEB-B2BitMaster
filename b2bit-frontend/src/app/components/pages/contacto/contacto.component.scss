@@ -27,6 +27,13 @@
   }
 }
 
+.page-intro {
+  margin-bottom: 40px;
+  color: #013d5a;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
 .contact-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -69,14 +76,22 @@
 }
 
 .form-input,
-.form-textarea {
+.form-textarea,
+select.form-input {
   width: 100%;
   padding: 12px;
   border: 2px solid #e0e0e0;
   border-radius: 6px;
   font-size: 14px;
   font-family: inherit;
+  background-color: #ffffff;
+  color: #013d5a;
   transition: all 0.3s ease;
+
+  option {
+    background: #ffffff;
+    color: #013d5a;
+  }
 
   &:focus {
     outline: none;

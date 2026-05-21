@@ -38,7 +38,7 @@
 }
 
 .logo-img {
-  height: 60px;
+  height: 69px; /* 15% larger than 60px */
   width: auto;
   object-fit: contain;
 }
@@ -70,7 +70,7 @@
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 12px;
   cursor: pointer;
 
   &:hover {
@@ -87,6 +87,22 @@
       transform: rotate(180deg);
     }
   }
+}
+
+.services-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1.1;
+}
+
+.service-name {
+  font-size: 12px;
+  color: #f1a805;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .submenu {
@@ -149,7 +165,7 @@
   }
 
   .logo-img {
-    height: 50px;
+    height: 58px; /* 15% larger than 50px */
   }
 
   .menu-link {
@@ -181,7 +197,7 @@
   }
 
   .logo-img {
-    height: 40px;
+    height: 46px; /* 15% larger than 40px */
   }
 
   .menu-link {

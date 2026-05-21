@@ -69,6 +69,14 @@ import { CommonModule } from '@angular/common';
               >
                 <div class="flip-card-inner">
                   <div class="flip-card-face flip-card-front">
+                    <img
+                      *ngIf="card.icon"
+                      class="card-icon"
+                      [class.card-icon--large]="card.size === 'large'"
+                      [class.card-icon--small]="card.size === 'small'"
+                      [src]="card.icon"
+                      [alt]="card.title"
+                    />
                     <span class="card-title">{{ card.title }}</span>
                     <button class="btn-view-more">VER MÁS</button>
                   </div>
@@ -104,6 +112,7 @@ import { CommonModule } from '@angular/common';
               >
                 <div class="flip-card-inner">
                   <div class="flip-card-face flip-card-front">
+                    <img *ngIf="card.icon" class="card-icon" [src]="card.icon" [alt]="card.title" />
                     <span class="card-title">{{ card.title }}</span>
                     <button class="btn-view-more">VER MÁS</button>
                   </div>
@@ -164,6 +173,7 @@ import { CommonModule } from '@angular/common';
               >
                 <div class="flip-card-inner">
                   <div class="flip-card-face flip-card-front">
+                    <img *ngIf="card.icon" class="card-icon" [src]="card.icon" [alt]="card.title" />
                     <span class="card-title">{{ card.title }}</span>
                     <button class="btn-view-more">VER MÁS</button>
                   </div>
@@ -179,7 +189,10 @@ import { CommonModule } from '@angular/common';
 
       <section class="cta-section">
         <h2>¿Quiere dejar de "sobrevivir" a mi software y empezar a liderar con él?</h2>
-        <button class="btn-primary" (click)="navigateToContact()">Solicitar Diagnóstico Estratégico</button>
+        <div class="button-group">
+          <button class="btn-primary" (click)="navigateToContact()">Solicitar Diagnóstico Estratégico</button>
+          <button class="btn-secondary-download" (click)="downloadCatalog()">Descargue el catálogo de este servicio</button>
+        </div>
       </section>
     </div>
   `,
@@ -188,17 +201,22 @@ import { CommonModule } from '@angular/common';
 export class StrategyComponent implements AfterViewInit {
   chaosCards = [
     {
-      title: 'Subutilización Crónica (Activo Latente)',
+      title: 'Subutilización Crónica',
+      icon: 'assets/Icono Subuti.png',
+      size: 'large',
       back:
         'La empresa paga por el 100% de una herramienta (Salesforce, Jira, SAP, etc.) pero su personal solo utiliza el 20% por desconocimiento. Esto convierte una inversión estratégica en un coste hundido.'
     },
     {
       title: 'Silos de Información y Estrés Laboral',
+      icon: 'assets/Icono estres.png',
+      size: 'small',
       back:
         'La falta de dominio técnico genera procesos manuales "paralelos" (Excel externos, cadenas de emails), aumentando la carga de trabajo, el error humano y el estrés de los empleados.'
     },
     {
       title: 'Dependencia Ciega del Proveedor',
+      icon: 'assets/Icono ojo ciego.png',
       back:
         'Al no entender las capacidades reales de su software, el cliente no sabe qué pedirle a su Partner IT, aceptando presupuestos por soluciones que quizás ya tiene contratadas pero no sabe configurar.'
     }
@@ -207,34 +225,40 @@ export class StrategyComponent implements AfterViewInit {
   tasCards = [
     {
       title: 'Ingeniería Pedagógica "Learning by Doing"',
+      icon: 'assets/Icono CerebroDigital.png',
       back:
         'Diseñamos rutas de aprendizaje basadas 100% en sus procesos de negocio. Los empleados no aprenden "software", aprenden a resolver sus problemas diarios con la herramienta.'
     },
     {
       title: 'Activos Digitales Permanentes',
+      icon: 'assets/Icono BibliDig.png',
       back:
         'Creamos una biblioteca de micro-learning a medida. Píldoras de vídeo de menos de 2 minutos que resuelven dudas en el acto, aceleran el onboarding de nuevos empleados en un 60% y liberan a su departamento de IT de tickets repetitivos.'
     },
     {
-      title: 'Informe Estratégico “El Blueprint de Futuro”',
+      title: 'Informe o "Blueprint" Estratégico',
+      icon: 'assets/Icono Diana.png',
       back:
-        'Tras nuestra intervención, recibirán un mapa de ruta estratégica, para optimizar lo que tienen y marcar la ruta hacia lo que quieren tener. Recibirá un informe con las oportunidades de mejora, optimización de procesos y guía de buenas prácticas personalizada para su equipo y, por otro lado, un informe funcional-técnico de nuevos requerimientos, enmarcado dentro objetivos y factibilidad, que podrá presentar a su proveedor de software.'
+        'Tras nuestra intervención, recibirán un mapa de ruta estratégica, para optimizar lo que tienen y marcar la ruta hacia lo que quieren tener: oportunidades de mejora, optimización de procesos, guía de buenas prácticas personalizada para su equipo y, por otro lado, un informe funcional-técnico de nuevos requerimientos, enmarcado dentro objetivos y factibilidad, que podrá presentar a su proveedor de software.'
     }
   ];
 
   missionCards = [
     {
       title: 'Neutralidad frente al Proveedor',
+      icon: 'assets/Icono Externo.png',
       back:
         'Nosotros no queremos venderle más licencias. Queremos que use bien las que ya tiene. Esta independencia nos permite decirle la verdad sobre qué procesos sobran y cuáles deben automatizarse, ahorrándole miles de euros en consultoría innecesaria.'
     },
     {
-      title: 'Eliminación del "Costo de Oportunidad"',
+      title: 'Aprovechamiento del "Costo de oportunidad"',
+      icon: 'assets/Icono Horashombre.png',
       back:
-        'Mientras su equipo pierde 30 minutos al día buscando cómo hacer una tarea, usted pierde meses de crecimiento al año. Nuestra biblioteca de micro-learning corta esa hemorragia de tiempo de inmediato.'
+        'Mientras su equipo pierde 30 minutos al día buscando cómo hacer una tarea, usted pierde meses de crecimiento al año. nuestra herramienta de microlearning optimizará el uso de las horas hombre en su empresa'
     },
     {
       title: 'Soberanía Tecnológica',
+      icon: 'assets/Icono soberaniaIT.png',
       back:
         'Sin nuestro Blueprint de Futuro, usted es "rehén" de lo que su proveedor le diga. Con nosotros, usted recupera el criterio técnico para exigir resultados, optimizar contratos y liderar su propia transformación digital.'
     }
@@ -317,5 +341,15 @@ export class StrategyComponent implements AfterViewInit {
 
   navigateToContact(): void {
     window.location.href = '/contacto';
+  }
+
+  downloadCatalog(): void {
+    const link = document.createElement('a');
+    const brochurePath = '/assets/Brochure Usuario Software-Cliente final.pdf';
+    link.href = encodeURI(brochurePath);
+    link.download = 'Brochure Usuario Software-Cliente final.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 }

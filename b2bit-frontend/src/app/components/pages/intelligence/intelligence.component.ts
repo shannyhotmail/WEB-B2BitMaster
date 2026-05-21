@@ -68,7 +68,7 @@ import { CommonModule } from '@angular/common';
               el interior de las operaciones y extraemos la información que tu equipo comercial no puede ver.
               <span class="highlight-blue">¿QUÉ TE OFRECEMOS?</span>
             </p>
-            <div class="flip-grid">
+                    <div class="flip-grid">
               <div
                 class="flip-card"
                 *ngFor="let card of offerCards; index as i"
@@ -77,6 +77,7 @@ import { CommonModule } from '@angular/common';
               >
                 <div class="flip-card-inner">
                   <div class="flip-card-face flip-card-front">
+                    <img class="card-icon" [src]="card.icon" [alt]="card.title" />
                     <span class="card-title">{{ card.title }}</span>
                     <button class="btn-view-more">VER MÁS</button>
                   </div>
@@ -145,6 +146,7 @@ import { CommonModule } from '@angular/common';
               >
                 <div class="flip-card-inner">
                   <div class="flip-card-face flip-card-front">
+                    <img class="card-icon" [src]="card.icon" [alt]="card.title" />
                     <span class="card-title">{{ card.title }}</span>
                     <button class="btn-view-more">VER MÁS</button>
                   </div>
@@ -160,7 +162,10 @@ import { CommonModule } from '@angular/common';
 
       <section class="cta-section">
         <h2>Delega este servicio post venta en nosotros y conviértete en el socio estratégico de tus clientes</h2>
-        <button class="btn-primary" (click)="navigateToContact()">Quiero blindar y expandir mis cuentas</button>
+        <div class="button-group">
+          <button class="btn-primary" (click)="navigateToContact()">Quiero blindar y expandir mis cuentas</button>
+          <button class="btn-secondary-download" (click)="downloadBrochure()">Descargar Brochure Proveedores Software-Partners</button>
+        </div>
       </section>
     </div>
   `,
@@ -170,16 +175,19 @@ export class IntelligenceComponent implements AfterViewInit {
   offerCards = [
     {
       title: 'Detección de Brechas Evolutivas',
+      icon: 'assets/Icono Brecha.png',
       back:
         'Identificamos requerimientos técnicos reales que el cliente aún no sabe que tiene. Te entregamos un informe con oportunidades de upselling y cross-selling masticadas y listas para cerrar.'
     },
     {
       title: 'Blindaje Estratégico',
+      icon: 'assets/Icono Candado.png',
       back:
         'Al eliminar la fricción del usuario, aseguramos un cliente fiel, que integra tu software en su ADN operativo y por ende se vuelve indispensable. Un cliente que domina la herramienta no busca alternativas; pide más funciones.'
     },
     {
-      title: 'El Informe de Inteligencia Estratégica',
+      title: 'Feedback de percepción del producto',
+      icon: 'assets/Icono Diana.png',
       back:
         'Este no es un resumen de asistencia. Es una matriz de oportunidades de negocio y una auditoría de percepción que te permite corregir desviaciones antes de que se conviertan en una baja del servicio.'
     }
@@ -188,16 +196,19 @@ export class IntelligenceComponent implements AfterViewInit {
   whyCards = [
     {
       title: 'Liberación de Recursos Críticos',
+      icon: 'assets/Icono Engranage.png',
       back:
         'Tus consultores senior deben estar implantando, no dando formación básica. Al contratarnos, liberas a tu equipo de mayor coste para tareas de alta facturación, mientras nosotros generamos el pipeline para sus próximos proyectos.'
     },
     {
       title: 'El Canal de Confianza',
+      icon: 'assets/Icono Confianza.png',
       back:
         'El cliente suele ser reticente a pedir mejoras a su Partner por miedo a que "le quieran vender algo más". Al presentarnos como un auditor externo de adopción, el cliente baja la guardia y confiesa sus necesidades reales, que nosotros te entregamos listas para facturar.'
     },
     {
       title: 'Metodología de Extracción de Datos',
+      icon: 'assets/Icono CargaCerebro.png',
       back:
         'Tu equipo enseña a usar el software; nosotros estamos entrenados para extraer inteligencia. Cada una de nuestras sesiones es una sesión de preventa encubierta que detecta oportunidades que un recurso sin este enfoque le es difícil alcanzar.'
     }
@@ -293,4 +304,15 @@ export class IntelligenceComponent implements AfterViewInit {
   navigateToContact(): void {
     window.location.href = '/contacto';
   }
+
+  downloadBrochure(): void {
+    const link = document.createElement('a');
+    const brochurePath = '/assets/Brochure Proveedores Software-Partners.pdf';
+    link.href = encodeURI(brochurePath);
+    link.download = 'Brochure-Proveedores-Software-Partners.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 }
+
