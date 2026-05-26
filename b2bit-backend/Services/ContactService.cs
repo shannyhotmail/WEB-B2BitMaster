@@ -2,6 +2,7 @@ using B2BitBackend.Models;
 using B2BitBackend.DTOs;
 using B2BitBackend.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 
 namespace B2BitBackend.Services;

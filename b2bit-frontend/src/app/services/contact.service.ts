@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -24,6 +24,9 @@ export interface ContactMessage {
 })
 export class ContactService {
   private apiUrl = `${environment.apiUrl}/api/contact`;
+  private functionBase = environment.azureFunctionBaseUrl;
+  private useFunctions = !!environment.useAzureFunctions;
+  private functionKey = environment.azureFunctionKey;
 
   constructor(private http: HttpClient) { }
 
@@ -33,6 +36,11 @@ export class ContactService {
    * @returns Observable con la respuesta del servidor
    */
   sendContactMessage(message: ContactMessage): Observable<any> {
+    if (this.useFunctions) {
+      const url = `${this.functionBase}/SendContactMessage`;
+      const headers = this.functionKey ? new HttpHeaders({ 'x-functions-key': this.functionKey }) : undefined;
+      return this.http.post(url, message, headers ? { headers } : {});
+    }
     return this.http.post(`${this.apiUrl}/send-message`, message);
   }
 
@@ -41,6 +49,11 @@ export class ContactService {
    * @returns Observable con la lista de mensajes
    */
   getMessages(): Observable<ContactMessage[]> {
+    if (this.useFunctions) {
+      const url = `${this.functionBase}/GetContactMessages`;
+      const headers = this.functionKey ? new HttpHeaders({ 'x-functions-key': this.functionKey }) : undefined;
+      return this.http.get<ContactMessage[]>(url, headers ? { headers } : {});
+    }
     return this.http.get<ContactMessage[]>(`${this.apiUrl}/messages`);
   }
 }

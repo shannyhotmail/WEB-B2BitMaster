@@ -98,3 +98,14 @@ public class ContactMessageListDto
     /// </summary>
     public DateTime CreatedAt { get; set; }
 }
+
+/// <summary>
+/// DTO para actualizar el estado de un mensaje de contacto
+/// </summary>
+public class UpdateStatusDto
+{
+    /// <summary>
+    /// Estado nuevo del mensaje
+    /// </summary>
+    public string Status { get; set; } = string.Empty;
+}
