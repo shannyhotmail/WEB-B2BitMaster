@@ -1,7 +1,7 @@
 # Global .gitignore for b2bit project
 
 # IDEs
-.vscode/
+
 .idea/
 *.swp
 *.swo
