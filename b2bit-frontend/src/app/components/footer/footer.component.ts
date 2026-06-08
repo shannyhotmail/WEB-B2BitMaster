@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 
         <div class="footer-section footer-right">
           <h4>Contacto</h4>
-          <p>Email: <a href="mailto:info&#64;b2bit.com">info&#64;b2bit.com</a></p>
+          <p>Email: <a href="mailto:info&#64;b2bitmaster.com">info&#64;b2bitmaster.com</a></p>
           <p>Teléfono: <a href="tel:+34960730151">+34 (960) 730-151</a></p>
         </div>
       </div>

@@ -137,7 +137,7 @@ import { ContactService } from '../../../services/contact.service';
           <div class="info-item">
             <h3>📞 Teléfono</h3>
             <p>
-              <a href="tel:+1234567890">+1 (234) 567-890</a>
+              <a href="tel:+34960730151">+34 (960) 730-151</a>
             </p>
           </div>
         </section>
