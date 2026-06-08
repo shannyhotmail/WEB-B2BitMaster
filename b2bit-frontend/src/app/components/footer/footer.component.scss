@@ -56,11 +56,25 @@
   padding-top: 20px;
   max-width: 1200px;
   margin: 0 auto;
+
+  p {
     color: #ff3131;
-    &:hover {
-      text-decoration: underline;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  a {
+    color: #f1a805;
+    text-decoration: none;
+    transition: none;
+
+    &:hover,
+    &:focus {
+      color: #f1a805;
+      text-decoration: none;
     }
   }
+}
 
 @media (max-width: 768px) {
   .footer {
