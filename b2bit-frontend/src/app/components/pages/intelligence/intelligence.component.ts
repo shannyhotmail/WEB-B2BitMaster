@@ -164,7 +164,7 @@ import { CommonModule } from '@angular/common';
         <h2>Delega este servicio post venta en nosotros y conviértete en el socio estratégico de tus clientes</h2>
         <div class="button-group">
           <button class="btn-primary" (click)="navigateToContact()">Quiero blindar y expandir mis cuentas</button>
-          <button class="btn-secondary-download" (click)="downloadBrochure()">Descargar Brochure Proveedores Software-Partners</button>
+          <button class="btn-secondary-download" (click)="downloadBrochure()">Descargar Brochure TAI Services</button>
         </div>
       </section>
     </div>
@@ -307,9 +307,9 @@ export class IntelligenceComponent implements AfterViewInit {
 
   downloadBrochure(): void {
     const link = document.createElement('a');
-    const brochurePath = '/assets/Brochure Proveedores Software-Partners.pdf';
+    const brochurePath = '/assets/Brochure TAI Services.pdf';
     link.href = encodeURI(brochurePath);
-    link.download = 'Brochure-Proveedores-Software-Partners.pdf';
+    link.download = 'Brochure TAI Services.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

@@ -191,7 +191,7 @@ import { CommonModule } from '@angular/common';
         <h2>¿Quiere dejar de "sobrevivir" a mi software y empezar a liderar con él?</h2>
         <div class="button-group">
           <button class="btn-primary" (click)="navigateToContact()">Solicitar Diagnóstico Estratégico</button>
-          <button class="btn-secondary-download" (click)="downloadCatalog()">Descargue el catálogo de este servicio</button>
+          <button class="btn-secondary-download" (click)="downloadCatalog()">Descargar Brochure TAS Services</button>
         </div>
       </section>
     </div>
@@ -345,9 +345,9 @@ export class StrategyComponent implements AfterViewInit {
 
   downloadCatalog(): void {
     const link = document.createElement('a');
-    const brochurePath = '/assets/Brochure Usuario Software-Cliente final.pdf';
+    const brochurePath = '/assets/Brochure TAS Services.pdf';
     link.href = encodeURI(brochurePath);
-    link.download = 'Brochure Usuario Software-Cliente final.pdf';
+    link.download = 'Brochure TAS Services.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
