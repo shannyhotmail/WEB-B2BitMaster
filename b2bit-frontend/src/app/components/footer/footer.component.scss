@@ -61,6 +61,10 @@
     color: #ff3131;
     margin: 0;
     font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
   }
 
   a {
@@ -74,17 +78,108 @@
       text-decoration: none;
     }
   }
+
+  .footer-separator {
+    color: #ffffff;
+    font-weight: 700;
+  }
+}
+
+.footer-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.footer-modal {
+  width: min(1040px, 80vw);
+  max-width: 1040px;
+  min-width: 520px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 28px 85px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  border: 1px solid rgba(1, 61, 90, 0.14);
+}
+
+.footer-modal-body {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 70vh;
+  border: none;
+  overflow: hidden;
+}
+
+.footer-modal-body iframe {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  border: none;
+}
+
+.footer-modal-header {
+  padding: 24px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid rgba(1, 61, 90, 0.12);
+}
+
+.footer-modal-header h3 {
+  font-size: 22px;
+  margin: 0;
+  color: #013d5a;
+}
+
+.footer-modal-header .modal-close {
+  background: transparent;
+  border: 1px solid rgba(1, 61, 90, 0.18);
+  color: #013d5a;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.footer-modal-header .modal-close:hover {
+  background: rgba(241, 168, 5, 0.1);
 }
 
 @media (max-width: 768px) {
-  .footer {
-    padding: 30px 15px 15px;
-    margin-top: 60px;
+  .footer-modal {
+    width: min(96vw, 700px);
+    min-width: unset;
+    max-height: 88vh;
+  }
+
+  .footer-modal-body {
+    min-height: 60vh;
+  }
+
+  .footer-modal-header {
+    padding: 18px 20px;
+  }
+
+  .footer-modal-header h3 {
+    font-size: 18px;
+  }
+
+  .footer-modal-header .modal-close {
+    padding: 10px 14px;
   }
 
   .footer-content {
-    gap: 20px;
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .footer-section {

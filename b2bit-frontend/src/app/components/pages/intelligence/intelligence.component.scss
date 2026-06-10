@@ -475,19 +475,44 @@
     }
   }
 
+  .section-grid,
+  .section-grid.active,
+  .reverse-grid,
+  .reverse-grid.active,
+  .section-3.opened .section-grid,
+  .reverse-grid.active {
+    grid-template-columns: 1fr !important;
+  }
+
+  .section-image,
+  .section-panel {
+    width: 100%;
+  }
+
+  .section-image {
+    margin-bottom: 24px;
+  }
+
+  .section-image img {
+    max-width: 100%;
+    width: 100%;
+  }
+
   .toggle-module summary {
     font-size: 20px;
     padding: 22px 24px;
+    grid-template-columns: 1fr;
   }
 
   .toggle-content {
     padding: 22px 24px;
   }
 
-  .intro-line {
-    font-size: 18px;
+  .toggle-content p {
+    font-size: 15px;
   }
 
+  .intro-line,
   .closing-sentence {
     font-size: 18px;
   }

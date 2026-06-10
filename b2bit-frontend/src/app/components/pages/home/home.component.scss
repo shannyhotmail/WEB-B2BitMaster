@@ -391,6 +391,33 @@
     min-height: 300px;
   }
 
+  .hero-overlay {
+    padding: 0 16px 32px;
+  }
+
+  .section-inline-image,
+  .section-2-grid,
+  .image-card,
+  .flip-grid {
+    width: 100%;
+  }
+
+  .section-inline-image {
+    margin: 0 auto 24px;
+  }
+
+  .section-inline-image img,
+  .image-card img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .section-2-grid,
+  .flip-grid,
+  .flip-grid.two-col {
+    grid-template-columns: 1fr !important;
+  }
+
   .hero-title {
     font-size: 28px;
   }
@@ -402,5 +429,22 @@
 
   .big-bridge {
     font-size: 20px;
+  }
+
+  .section-title-box {
+    padding: 24px 18px;
+  }
+
+  .section-title-box h2 {
+    font-size: 24px;
+  }
+
+  .section-text {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .actions-row {
+    gap: 14px;
   }
 }
