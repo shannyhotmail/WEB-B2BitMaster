@@ -1,7 +1,9 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ContactService } from '../../../services/contact.service';
+import { SeoService } from '../../../services/seo.service';
 
 /**
  * Componente Contacto
@@ -10,16 +12,14 @@ import { ContactService } from '../../../services/contact.service';
 @Component({
   selector: 'app-contacto',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   template: `
-    <div class="page-container">
-      <section class="page-header">
+    <div class="page">
+      <section class="page-hero">
+        <a routerLink="/home" class="back-link">← Volver al inicio</a>
+        <span class="eyebrow">Diagnóstico inicial sin compromiso</span>
         <h1>Contáctenos</h1>
-        <p class="tagline">Estaremos encantados de conocerlos y brindarles la solución que necesitan</p>
-      </section>
-
-      <section class="page-intro">
-        <p>
+        <p class="lead">
           Ya sea que necesite blindar su cartera de clientes como Partner o Proveedor, o que busque exprimir cada gota de valor de su software de empresa, el primer paso es un diagnóstico claro. Cuéntenos su situación y diseñaremos la estrategia de adopción que su negocio necesita.
         </p>
       </section>
@@ -109,7 +109,7 @@ import { ContactService } from '../../../services/contact.service';
             <button
               type="submit"
               [disabled]="contactForm.invalid || isSubmitting()"
-              class="btn-submit"
+              class="btn-primary btn-submit"
             >
               {{ isSubmitting() ? 'Enviando...' : 'Enviar Mensaje' }}
             </button>
@@ -128,16 +128,24 @@ import { ContactService } from '../../../services/contact.service';
           <h2>Información de Contacto</h2>
 
           <div class="info-item">
-            <h3>📧 Correo Electrónico</h3>
+            <h3>Correo Electrónico</h3>
             <p>
               <a href="mailto:info&#64;b2bitmaster.com">info&#64;b2bitmaster.com</a>
             </p>
           </div>
 
           <div class="info-item">
-            <h3>📞 Teléfono</h3>
+            <h3>Teléfono</h3>
             <p>
               <a href="tel:+34960730151">+34 (960) 730-151</a>
+            </p>
+          </div>
+
+          <div class="info-item">
+            <h3>¿No sabe por dónde empezar?</h3>
+            <p class="info-links">
+              <a routerLink="/intelligence">Vea Tech Adoption Intelligence (TAI)</a>
+              <a routerLink="/strategy">Vea Tech Adoption Strategy (TAS)</a>
             </p>
           </div>
         </section>
@@ -146,9 +154,10 @@ import { ContactService } from '../../../services/contact.service';
   `,
   styleUrls: ['./contacto.component.scss']
 })
-export class ContactoComponent {
+export class ContactoComponent implements OnInit {
   private fb = inject(FormBuilder);
   private contactService = inject(ContactService);
+  private seo = inject(SeoService);
 
   contactForm: FormGroup;
   isSubmitting = signal(false);
@@ -163,6 +172,14 @@ export class ContactoComponent {
       company: [''],
       subject: ['', Validators.required],
       message: ['', [Validators.required, Validators.minLength(10)]]
+    });
+  }
+
+  ngOnInit(): void {
+    this.seo.apply({
+      title: 'Contacto | b2bitmaster',
+      description: 'Hable con b2bitmaster sobre Tech Adoption Intelligence (TAI) o Tech Adoption Strategy (TAS). Diagnóstico inicial sin compromiso.',
+      path: '/contacto'
     });
   }
 
