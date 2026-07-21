@@ -267,7 +267,6 @@ import { IconComponent } from '../../shared/icon/icon.component';
         </p>
         <div class="button-group">
           <button type="button" class="btn-primary" (click)="navigateToContact()">Solicitar Diagnóstico Estratégico</button>
-          <button type="button" class="btn-secondary" (click)="downloadCatalog()">Descargar Brochure TAS Services</button>
         </div>
       </section>
     </div>
@@ -381,15 +380,5 @@ export class StrategyComponent implements OnInit {
 
   setProblemTab(index: number): void {
     this.activeProblemTab = index;
-  }
-
-  downloadCatalog(): void {
-    const link = document.createElement('a');
-    const brochurePath = '/assets/Brochure TAS Services.pdf';
-    link.href = encodeURI(brochurePath);
-    link.download = 'Brochure TAS Services.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   }
 }

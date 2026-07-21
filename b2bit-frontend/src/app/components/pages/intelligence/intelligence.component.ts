@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
 import { SeoService } from '../../../services/seo.service';
 import { IconComponent } from '../../shared/icon/icon.component';
-import { ProcessLoopComponent, ProcessStep } from '../../shared/process-loop/process-loop.component';
-import { PipelineStagnationChartComponent } from '../../shared/charts/pipeline-stagnation-chart.component';
+import { RadarBlindspotComponent } from '../../shared/radar-blindspot/radar-blindspot.component';
+import { QbrCycleDiagramComponent } from '../../shared/qbr-cycle-diagram/qbr-cycle-diagram.component';
 
 /**
  * Tech Adoption Intelligence (TAI): servicio de inteligencia de retención
@@ -13,49 +13,135 @@ import { PipelineStagnationChartComponent } from '../../shared/charts/pipeline-s
 @Component({
   selector: 'app-intelligence',
   standalone: true,
-  imports: [CommonModule, RouterLink, IconComponent, ProcessLoopComponent, PipelineStagnationChartComponent],
+  imports: [CommonModule, RouterLink, IconComponent, RadarBlindspotComponent, QbrCycleDiagramComponent],
   template: `
     <div class="page tai-page">
       <section class="page-hero">
-        <a routerLink="/home" class="back-link">← Volver al inicio</a>
-        <span class="eyebrow">Para Partners y proveedores de software</span>
-        <h1>Tech Adoption Intelligence (TAI)</h1>
-        <p class="lead">
-          Un motor externo que mueve el <strong>Net Revenue Retention (NRR)</strong> de tu cartera, trimestre a trimestre: recuperas el control estratégico de la cuenta y activas upselling y cross-selling con datos, no con suposiciones.
-        </p>
-        <button type="button" class="btn-primary" (click)="navigateToContact()">Quiero blindar y expandir mis cuentas</button>
+        <div class="hero-grid">
+          <div class="hero-text">
+            <a routerLink="/home" class="back-link">← Volver al inicio</a>
+            <span class="eyebrow">Para partners y proveedores de software</span>
+            <h1>De la oportunidad esperada a la venta orquestada</h1>
+            <p class="lead">
+              Un motor externo que activa y sostiene el <strong>up-selling</strong> y el <strong>cross-selling</strong> de su cartera, para que cada cuenta se convierta en una fuente recurrente de nuevo negocio — y no en un contrato que solo se sostiene hasta la próxima renovación.
+            </p>
+            <p class="lead lead-emphasis">Tome el control estratégico del crecimiento de su negocio.</p>
+            <button type="button" class="btn-primary" (click)="navigateToContact()">Quiero blindar y expandir mis cuentas</button>
+          </div>
+          <div class="hero-diagram">
+            <div class="solution-card">
+              <span class="eyebrow eyebrow--sm">Nuestra solución — TAI: el ciclo QBR</span>
+
+              <div class="qbr-top-row">
+                <div class="qbr-card qbr-card--1">
+                  <div class="qbr-card-strip"></div>
+                  <div class="qbr-card-body">
+                    <span class="qbr-card-title">Activación</span>
+                    <span class="qbr-card-tag">On boarding / Capacitación</span>
+                  </div>
+                </div>
+                <div class="qbr-card qbr-card--2">
+                  <div class="qbr-card-strip"></div>
+                  <div class="qbr-card-body">
+                    <span class="qbr-card-title">Diagnóstico</span>
+                    <span class="qbr-card-tag">QC / Evolutivos</span>
+                  </div>
+                </div>
+                <div class="qbr-card qbr-card--3">
+                  <div class="qbr-card-strip"></div>
+                  <div class="qbr-card-body">
+                    <span class="qbr-card-title">Radar de Cuenta</span>
+                    <span class="qbr-card-tag">Dossier de Oportunidades</span>
+                  </div>
+                </div>
+                <div class="qbr-card qbr-card--4">
+                  <div class="qbr-card-strip"></div>
+                  <div class="qbr-card-body qbr-card-body--gold">
+                    <span class="qbr-card-title">QBR</span>
+                    <span class="qbr-card-tag">Quarterly Business Review</span>
+                  </div>
+                  <span class="qbr-arrow-down">↓</span>
+                </div>
+              </div>
+
+              <div class="qbr-bottom-row">
+                <div class="qbr-spacer"></div>
+                <div class="qbr-cycle">
+                  <div class="qbr-mini-row">
+                    <div class="qbr-mini">
+                      <div class="qbr-mini-card">
+                        <div class="qbr-mini-strip"></div>
+                        <span class="qbr-mini-label">QBR</span>
+                      </div>
+                      <span class="qbr-arrow-down qbr-arrow-down--mini">↓</span>
+                    </div>
+                    <div class="qbr-mini">
+                      <div class="qbr-mini-card">
+                        <div class="qbr-mini-strip"></div>
+                        <span class="qbr-mini-label">QBR</span>
+                      </div>
+                      <span class="qbr-arrow-down qbr-arrow-down--mini">↓</span>
+                    </div>
+                    <div class="qbr-mini">
+                      <div class="qbr-mini-card">
+                        <div class="qbr-mini-strip"></div>
+                        <span class="qbr-mini-label">QBR</span>
+                      </div>
+                      <span class="qbr-arrow-down qbr-arrow-down--mini">↓</span>
+                    </div>
+                  </div>
+                  <div class="qbr-portfolio-bar">Radar de Cartera</div>
+                </div>
+              </div>
+
+              <a href="#que-es-tai" (click)="scrollToSection($event, 'que-es-tai')" class="solution-card-link">Ver la solución completa →</a>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="section">
-        <div class="section-grid">
-          <div class="section-image section-image--chart">
-            <app-pipeline-stagnation-chart></app-pipeline-stagnation-chart>
-          </div>
+      <section class="section blindspot-section">
+        <div class="section-grid section-grid--balanced">
           <div class="section-copy">
-            <h2>La ceguera del proveedor de software</h2>
-            <p>
-              Como Partner o proveedor de software, tu mayor activo es tu cartera de clientes, pero también es tu mayor punto ciego. Tras la implantación pierdes visibilidad: no sabes si el cliente está infrautilizando la solución, no pide evolutivos porque ni siquiera sabe qué más puede hacer la herramienta, y probablemente ya esté usando procesos manuales paralelos en Excel para cubrir lo que no domina.
+            <h2>El punto ciego del proveedor de software</h2>
+            <p class="section-intro">
+              Como partner o proveedor de software, su cartera de clientes es su mayor activo — y su mayor riesgo. Tras la implantación, pierde visibilidad: no sabe si el cliente está infrautilizando la solución, si no pide evolutivos porque desconoce hasta dónde llega la herramienta, o si ya volvió a su Excel en paralelo. Ese silencio no es paz — es la primera señal de un churn que no verá venir.
             </p>
-            <p>
-              La falta de feedback estructurado post-venta es uno de los factores de <strong>churn</strong> más citados en el sector SaaS/B2B: cuando nadie audita la adopción real, el riesgo de churn silencioso no desaparece, simplemente deja de verse.
-            </p>
-            <p class="closing">La falta de feedback no es paz; es una señal de peligro.</p>
+          </div>
+          <div class="section-image blindspot-radar-col">
+            <app-radar-blindspot></app-radar-blindspot>
+          </div>
+        </div>
+
+        <div class="blindspot-kpis">
+          <div class="blindspot-kpi">
+            <span class="blindspot-kpi-label">Churn ligado a mal onboarding</span>
+            <span class="blindspot-kpi-value">&gt;20%</span>
+            <span class="blindspot-kpi-desc">del churn voluntario en B2B está ligado a un mal onboarding</span>
+            <span class="blindspot-kpi-source">Recurly</span>
+          </div>
+          <div class="blindspot-kpi">
+            <span class="blindspot-kpi-label">Retención media en B2B SaaS</span>
+            <span class="blindspot-kpi-value">74%</span>
+            <span class="blindspot-kpi-desc">de retención media en B2B SaaS, frente a &gt;120% en los mejores</span>
+            <span class="blindspot-kpi-source">Benchmarkit</span>
+          </div>
+          <div class="blindspot-kpi">
+            <span class="blindspot-kpi-label">Coste de adquirir vs retener</span>
+            <span class="blindspot-kpi-value">5-25x</span>
+            <span class="blindspot-kpi-desc">más caro adquirir un cliente nuevo que retener uno existente</span>
+            <span class="blindspot-kpi-source">Harvard Business Review</span>
           </div>
         </div>
       </section>
 
       <section class="section section-alt" id="que-es-tai">
-        <h2>¿Qué es TAI?</h2>
-        <p class="section-intro">
-          TAI es un servicio externalizado de inteligencia de retención sobre tu cartera ya vendida. Coordinamos el diagnóstico, la ejecución —propia o a través de nuestra red de especialistas certificados por plataforma— y el reporting, siempre bajo una única metodología. El resultado no es un curso: es una <strong>Matriz de Oportunidades</strong> entregada dentro de un ciclo <strong>QBR (Quarterly Business Review)</strong> trimestral.
+        <h2 class="section-title-centered">¿Qué es TAI?</h2>
+        <p class="section-summary">
+          TAI es el sistema que convierte cada implantación en un motor de expansión comercial. Activamos la adopción real del software, detectamos brechas y oportunidades que el cliente aún no verbaliza, y se las entregamos en un Radar de Cuenta accionable. Cuando ese ciclo se repite trimestre a trimestre con QBR y se consolida en un Radar de Cartera, usted deja de esperar oportunidades para empezar a orquestarlas.
         </p>
-        <div class="card-grid card-grid--3">
-          <article class="offer-card" *ngFor="let card of offerCards">
-            <app-icon class="offer-card-icon" [name]="card.icon"></app-icon>
-            <h3>{{ card.title }}</h3>
-            <p [innerHTML]="card.back"></p>
-          </article>
-        </div>
+
+        <app-qbr-cycle-diagram></app-qbr-cycle-diagram>
       </section>
 
       <section class="section">
@@ -68,18 +154,18 @@ import { PipelineStagnationChartComponent } from '../../shared/charts/pipeline-s
               Tu pipeline deja de depender solo de captar nuevos logos y empieza a alimentarse del crecimiento orgánico de tu cartera actual, ciclo QBR tras ciclo QBR.
             </p>
             <p>
-              Imagina entrar a tu próxima reunión de cuenta no a preguntar "¿cómo va todo?", sino a presentar un plan de crecimiento basado en necesidades reales detectadas en sus propios empleados. Eso es <strong>fidelización activa</strong>.
+              Cada vuelta de esta espiral no lo devuelve al punto de partida: el cliente que atraviesa Diagnóstico, Oportunidades y Expansión vuelve a Activación más blindado y con más negocio que en el ciclo anterior. Así es como una cartera que hoy solo renueva por inercia empieza, vuelta a vuelta, a crecer por decisión propia — no por casualidad, ni por la competencia.
             </p>
           </div>
-          <div class="section-image section-image--loop">
-            <app-process-loop [steps]="resultSteps" centerLabel="Revenue Driven Loop" accent="gold"></app-process-loop>
+          <div class="section-image section-image--loop-static">
+            <img src="assets/espiral-blindaje-expansion-cartera.png" alt="Espiral de Blindaje y Expansión de Cartera: Diagnóstico, Oportunidades, Expansión y Activación conectados en sentido horario alrededor de un núcleo central" loading="lazy" />
           </div>
         </div>
       </section>
 
       <section class="section section-alt">
-        <h2>¿Por qué delegar este servicio post venta en nosotros?</h2>
-        <p class="section-intro">
+        <h2 class="section-title-centered">¿Por qué delegar este servicio post venta en nosotros?</h2>
+        <p class="section-intro section-intro--full">
           Muchos Partners o proveedores de software intentan que sus propios consultores o comerciales hagan este trabajo, pero fracasan por cuatro razones críticas que nosotros resolvemos.
         </p>
         <div class="card-grid card-grid--4">
@@ -99,7 +185,7 @@ import { PipelineStagnationChartComponent } from '../../shared/charts/pipeline-s
       </section>
 
       <section class="section section-faq">
-        <h2>Preguntas frecuentes sobre TAI</h2>
+        <h2 class="section-title-centered">Preguntas frecuentes sobre TAI</h2>
         <div class="faq-list">
           <details class="faq-item" *ngFor="let item of faqItems">
             <summary>{{ item.q }}</summary>
@@ -115,7 +201,6 @@ import { PipelineStagnationChartComponent } from '../../shared/charts/pipeline-s
         </p>
         <div class="button-group">
           <button type="button" class="btn-primary" (click)="navigateToContact()">Quiero blindar y expandir mis cuentas</button>
-          <button type="button" class="btn-secondary" (click)="downloadBrochure()">Descargar Brochure TAI Services</button>
         </div>
       </section>
     </div>
@@ -125,46 +210,6 @@ import { PipelineStagnationChartComponent } from '../../shared/charts/pipeline-s
 export class IntelligenceComponent implements OnInit {
   private router = inject(Router);
   private seo = inject(SeoService);
-
-  resultSteps: ProcessStep[] = [
-    {
-      label: 'Activación',
-      detail: 'Arrancamos el ciclo con la formación técnica como punto de entrada a la operativa real del cliente.'
-    },
-    {
-      label: 'Diagnóstico',
-      detail: 'Documentamos cada carencia y proceso manual que el software aún no cubre, extrayendo la información que tu equipo comercial no puede ver por sí mismo.'
-    },
-    {
-      label: 'Matriz de Oportunidades',
-      detail: 'Entregamos el hallazgo dentro del ciclo QBR trimestral: upselling y cross-selling identificado y listo para cerrar.'
-    },
-    {
-      label: 'Expansión (Pipeline)',
-      detail: 'Tu pipeline se alimenta del crecimiento orgánico de la cartera actual, ciclo QBR tras ciclo QBR, y el proceso vuelve a activarse.'
-    }
-  ];
-
-  offerCards = [
-    {
-      title: 'Detección de Brechas Evolutivas',
-      icon: 'route-off',
-      back:
-        'Cada ciclo QBR trimestral incluye una Matriz de Oportunidades con los requerimientos técnicos reales que el cliente aún no sabe que tiene, con <strong>upselling y cross-selling identificado</strong> y listo para que tu equipo comercial lo cierre.'
-    },
-    {
-      title: 'Blindaje Estratégico',
-      icon: 'lock',
-      back:
-        'Al eliminar la fricción del usuario, el cliente integra tu software en su operativa diaria y se vuelve menos propenso a buscar alternativas. Un cliente que domina la herramienta <strong>no cambia de proveedor; pide más funciones</strong>.'
-    },
-    {
-      title: 'Feedback de percepción del producto',
-      icon: 'message-circle',
-      back:
-        'Dentro de cada QBR entregamos una auditoría de percepción que te permite corregir desviaciones antes de que se conviertan en una baja del servicio. No es un resumen de asistencia: es <strong>inteligencia de cuenta accionable</strong>.'
-    }
-  ];
 
   whyCards = [
     {
@@ -233,13 +278,13 @@ export class IntelligenceComponent implements OnInit {
     this.router.navigate(['/contacto']);
   }
 
-  downloadBrochure(): void {
-    const link = document.createElement('a');
-    const brochurePath = '/assets/Brochure TAI Services.pdf';
-    link.href = encodeURI(brochurePath);
-    link.download = 'Brochure TAI Services.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  /**
+   * Angular resuelve href="#id" contra el <base href> del documento
+   * (navega a "/"), no contra la ruta actual. Interceptamos el clic para
+   * hacer scroll manual y conservamos el href real por accesibilidad.
+   */
+  scrollToSection(event: MouseEvent, id: string): void {
+    event.preventDefault();
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
