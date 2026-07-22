@@ -26,14 +26,15 @@ const ROTATION_STEP_MS = 3700;
   imports: [CommonModule],
   template: `
     <div class="orbit">
-      <div class="orbit-ring orbit-ring--dashed"></div>
+      <div class="orbit-ring orbit-ring--dashed-outer"></div>
+      <div class="orbit-ring orbit-ring--dashed-inner"></div>
       <div class="orbit-ring orbit-ring--solid"></div>
 
-      <svg class="orbit-axes" viewBox="0 0 480 480">
-        <line x1="240" y1="240" x2="240" y2="136"></line>
-        <line x1="240" y1="240" x2="440" y2="240"></line>
-        <line x1="240" y1="240" x2="240" y2="344"></line>
-        <line x1="240" y1="240" x2="40" y2="240"></line>
+      <svg class="orbit-axes" viewBox="0 0 1600 500" preserveAspectRatio="none">
+        <line x1="800" y1="250" x2="800" y2="30"></line>
+        <line x1="800" y1="250" x2="1560" y2="250"></line>
+        <line x1="800" y1="250" x2="800" y2="470"></line>
+        <line x1="800" y1="250" x2="40" y2="250"></line>
       </svg>
 
       <div class="orbit-sun">
@@ -140,33 +141,18 @@ export class PerspectiveOrbitComponent {
     const angle = (baseAngle + rotation) % 360;
     const rad = (angle * Math.PI) / 180;
 
-    // Vertical squash turns the circular path into a tilted ellipse, the
-    // visual cue for a ring seen in 3D rather than flat-on.
-    const squash = 0.52;
-    let leftPct = 50 + 41.67 * Math.sin(rad);
-    let topPct = 50 - 41.67 * squash * Math.cos(rad);
+    // rx/ry are percentages of the (rectangular) container itself, so the
+    // ellipse shape falls out of the container's own aspect ratio.
+    const rx = 46;
+    const ry = 40;
+    const leftPct = 50 + rx * Math.sin(rad);
+    const topPct = 50 - ry * Math.cos(rad);
 
     // Depth: 0 = furthest (back of the ring), 1 = nearest (front).
     const depth = (1 - Math.cos(rad)) / 2;
-    const scale = 0.68 + 0.42 * depth;
+    const scale = 0.6 + 0.5 * depth;
     const opacity = 0.55 + 0.45 * depth;
     const zIndex = Math.round(depth * 100) + 400;
-
-    // Radial clearance floor so the squashed top/bottom of the ellipse never
-    // lets a node overlap the sun's fixed circle.
-    const sunRadiusPct = 17.5;
-    const nodeRadiusPct = 12 * scale;
-    const minClearancePct = sunRadiusPct + nodeRadiusPct + 3;
-    const dx = leftPct - 50;
-    const dy = topPct - 50;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist < minClearancePct && dist > 0.001) {
-      const k = minClearancePct / dist;
-      leftPct = 50 + dx * k;
-      topPct = 50 + dy * k;
-    } else if (dist <= 0.001) {
-      topPct = 50 - minClearancePct;
-    }
 
     return {
       left: `${leftPct}%`,

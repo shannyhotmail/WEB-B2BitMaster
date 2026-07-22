@@ -15,24 +15,23 @@ import { PerspectiveOrbitComponent } from './perspective-orbit/perspective-orbit
   imports: [CommonModule, RouterLink, PerspectiveOrbitComponent],
   template: `
     <section class="hero-section">
-      <div class="hero-container">
-        <div class="hero-copy">
-          <div class="hero-eyebrow">
-            <span class="hero-eyebrow-line"></span>
-            <span>Adopción tecnológica que se convierte en negocio</span>
-          </div>
-          <h1 class="hero-title">La implantación no es el final. Es el principio.</h1>
-          <p class="hero-description">
-            Lo que pasa después de firmar el contrato o encender el software determina si esa inversión se convierte en <strong>rentabilidad o en gasto silencioso</strong>. b2bitmaster interviene justo ahí, con dos servicios distintos para dos lados de la misma relación comercial.
-          </p>
-          <div class="hero-actions">
-            <button type="button" class="btn-primary" (click)="navigateToContact()">Solicitar diagnóstico</button>
-            <a href="#capas" class="btn-link">Conocer soluciones →</a>
-          </div>
+      <div class="hero-copy">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-line"></span>
+          <span>De la implantación de software a la Maestría de Negocio</span>
         </div>
-        <div class="hero-visual">
-          <app-perspective-orbit></app-perspective-orbit>
+        <h1 class="hero-title">Master for Business to Business</h1>
+        <p class="hero-description">
+          Transformamos el servicio post-venta en inteligencia de negocio para maximizar el ROI tecnológico y reactivar el pipeline de ventas.
+        </p>
+        <div class="hero-actions">
+          <button type="button" class="btn-primary" (click)="navigateToContact()">Solicitar diagnóstico</button>
+          <a href="#capas" class="btn-link">Conocer soluciones →</a>
         </div>
+      </div>
+
+      <div class="hero-visual">
+        <app-perspective-orbit></app-perspective-orbit>
       </div>
     </section>
 
