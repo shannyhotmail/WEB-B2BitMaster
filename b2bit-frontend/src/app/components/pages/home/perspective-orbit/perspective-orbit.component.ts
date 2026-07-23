@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 interface Perspective {
   role: string;
   detail: string;
+  solution: string;
 }
 
 interface OrbitNode {
@@ -25,7 +26,7 @@ const ROTATION_STEP_MS = 3700;
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="orbit">
+    <div class="orbit" (click)="resume()">
       <div class="orbit-ring orbit-ring--dashed-outer"></div>
       <div class="orbit-ring orbit-ring--dashed-inner"></div>
       <div class="orbit-ring orbit-ring--solid"></div>
@@ -47,34 +48,51 @@ const ROTATION_STEP_MS = 3700;
         [class.active]="node.active"
         [ngStyle]="node.style"
       >
-        <button type="button" (click)="select(node.index)">{{ node.role }}</button>
+        <button type="button" (click)="select(node.index, $event)">{{ node.role }}</button>
       </div>
     </div>
 
-    <div class="orbit-panel">
-      <span class="orbit-panel-role">{{ displayed().role }}</span>
-      <p class="orbit-panel-detail">{{ displayed().detail }}</p>
+    <div class="compare-panel">
+      <div class="compare-card compare-card--today">
+        <span class="compare-card-label">Hoy — {{ displayed().role }}</span>
+        <p class="compare-card-text">{{ displayed().detail }}</p>
+      </div>
+
+      <div class="compare-vs">
+        <div class="compare-vs-badge">VS</div>
+        <span class="compare-vs-caption">con B2BitMaster</span>
+      </div>
+
+      <div class="compare-card compare-card--future">
+        <span class="compare-card-label">Con B2BitMaster</span>
+        <p class="compare-card-text">{{ displayed().solution }}</p>
+      </div>
     </div>
   `,
   styleUrls: ['./perspective-orbit.component.scss']
 })
 export class PerspectiveOrbitComponent {
+  // Orden = posición inicial en el aro (BASE_ANGLES [0,90,180,270] = arriba/derecha/abajo/izquierda).
   private readonly perspectives: Perspective[] = [
     {
-      role: 'Usuario final',
-      detail: 'No sabe explotar el software: lo vive como una carga y nunca llega a reportar sus fricciones al proveedor.'
-    },
-    {
-      role: 'Empresa',
-      detail: 'El software queda subutilizado y sin métricas centralizadas: múltiples plataformas que podrían consolidarse en muchas menos.'
-    },
-    {
-      role: 'Desarrollador del proveedor',
-      detail: 'Trabaja a ciegas: sin señales tempranas del cliente acumula retrabajo y llega mal preparado a los nuevos desafíos.'
+      role: 'Usuario',
+      detail: 'No sabe explotar el software: lo vive como una carga y no como una herramienta útil y rara vez llega a reportar sus fricciones.',
+      solution: 'Usuario que hace del software parte de su rutina diaria, como aliado de su productividad.'
     },
     {
       role: 'Proveedor',
-      detail: 'El cliente que no entiende la solución no pide evolutivos ni optimizaciones, y el pipeline deja de crecer.'
+      detail: 'El cliente que no entiende la solución no pide evolutivos ni optimizaciones, y el pipeline deja de crecer.',
+      solution: 'Proveedor que no espera una oportunidad sino que la orquesta, blindando y expandiendo sus cuentas.'
+    },
+    {
+      role: 'Cliente',
+      detail: 'El software queda subutilizado y sin métricas centralizadas, procesos manuales paralelos: múltiples plataformas que podrían consolidarse en muchas menos.',
+      solution: 'Retorno esperado de las inversiones en software, optimización de procesos y soberanía tecnológica.'
+    },
+    {
+      role: 'Desarrollador',
+      detail: 'Trabaja a ciegas: sin feedback oportuno que le permita optimizar futuros desarrollos, lo que se traduce en retrabajo o un producto sin conformidad.',
+      solution: 'Desarrollador con la oportunidad de crear soluciones cada vez más eficientes y eficaces, con alta receptividad en el mercado.'
     }
   ];
 
@@ -127,7 +145,8 @@ export class PerspectiveOrbitComponent {
     return index;
   }
 
-  select(index: number): void {
+  select(index: number, event: MouseEvent): void {
+    event.stopPropagation();
     if (this.paused() && this.selected() === index) {
       this.paused.set(false);
       this.selected.set(null);
@@ -135,6 +154,12 @@ export class PerspectiveOrbitComponent {
       this.paused.set(true);
       this.selected.set(index);
     }
+  }
+
+  // Clic en cualquier zona del aro que no sea una esfera: reanuda la rotación automática.
+  resume(): void {
+    this.paused.set(false);
+    this.selected.set(null);
   }
 
   private nodeStyle(index: number, baseAngle: number, rotation: number): OrbitNode['style'] {

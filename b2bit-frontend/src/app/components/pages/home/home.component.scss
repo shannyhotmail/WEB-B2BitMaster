@@ -8,7 +8,7 @@
 }
 
 .hero-copy {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 48px 40px 8px;
   text-align: center;
@@ -45,9 +45,13 @@
 
 .hero-description {
   font-size: 17px;
-  line-height: 1.6;
-  max-width: 620px;
-  margin: 0 auto 30px;
+  line-height: 1.55;
+  max-width: 1080px;
+  margin: 0 auto 22px;
+}
+
+.hero-description--tight {
+  margin-bottom: 10px;
 }
 
 .hero-actions {
@@ -56,12 +60,13 @@
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
+  padding: 0 24px 56px;
 }
 
 .hero-visual {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 8px 24px 48px;
+  padding: 8px 24px 8px;
 }
 
 /* Shared buttons */
@@ -123,11 +128,41 @@
   font-size: 17px;
   line-height: 1.7;
   max-width: var(--measure);
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   em {
     font-style: normal;
     color: var(--color-navy-dark);
     font-weight: 600;
+  }
+}
+
+.layer-pain-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(200px, 360px);
+  gap: 40px;
+  align-items: center;
+}
+
+.layer-pain-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 760px) {
+  .layer-pain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .layer-pain-image {
+    max-width: 320px;
+    margin: 0 auto;
   }
 }
 
@@ -207,11 +242,15 @@
 
 @media (max-width: 900px) {
   .hero-copy {
-    padding: 40px 24px 8px;
+    padding: 40px 16px 8px;
   }
 
   .hero-visual {
-    padding: 8px 16px 40px;
+    padding: 8px 16px 8px;
+  }
+
+  .hero-actions {
+    padding: 0 16px 40px;
   }
 
   .page-container {

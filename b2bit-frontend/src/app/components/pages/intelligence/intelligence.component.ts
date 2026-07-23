@@ -21,7 +21,10 @@ import { QbrCycleDiagramComponent } from '../../shared/qbr-cycle-diagram/qbr-cyc
           <div class="hero-text">
             <a routerLink="/home" class="back-link">← Volver al inicio</a>
             <span class="eyebrow">Para partners y proveedores de software</span>
-            <h1>De la oportunidad esperada a la venta orquestada</h1>
+            <h1>
+              <span class="hero-product-name">Tech Adoption Intelligence</span>
+              <span class="hero-subtitle">De la oportunidad esperada a la venta orquestada</span>
+            </h1>
             <p class="lead">
               Un motor externo que activa y sostiene el <strong>up-selling</strong> y el <strong>cross-selling</strong> de su cartera, para que cada cuenta se convierta en una fuente recurrente de nuevo negocio — y no en un contrato que solo se sostiene hasta la próxima renovación.
             </p>
@@ -149,9 +152,9 @@ import { QbrCycleDiagramComponent } from '../../shared/qbr-cycle-diagram/qbr-cyc
           <div class="section-copy">
             <span class="eyebrow eyebrow--sm">Resultado</span>
             <h2>Un modelo circular de generación de negocio</h2>
-            <p class="closing closing--first">Pasas de una relación transaccional a ser un aliado imprescindible.</p>
+            <p class="closing closing--first">Pasa de una relación transaccional a ser un aliado imprescindible.</p>
             <p>
-              Tu pipeline deja de depender solo de captar nuevos logos y empieza a alimentarse del crecimiento orgánico de tu cartera actual, ciclo QBR tras ciclo QBR.
+              Su pipeline deja de depender solo de captar nuevos logos y empieza a alimentarse del crecimiento orgánico de su cartera actual, ciclo QBR tras ciclo QBR.
             </p>
             <p>
               Cada vuelta de esta espiral no lo devuelve al punto de partida: el cliente que atraviesa Diagnóstico, Oportunidades y Expansión vuelve a Activación más blindado y con más negocio que en el ciclo anterior. Así es como una cartera que hoy solo renueva por inercia empieza, vuelta a vuelta, a crecer por decisión propia — no por casualidad, ni por la competencia.
@@ -180,7 +183,7 @@ import { QbrCycleDiagramComponent } from '../../shared/qbr-cycle-diagram/qbr-cyc
       <section class="section section-commercial">
         <h2>Modelo comercial</h2>
         <p>
-          Nuestro modelo de pago se adapta al tipo de valor generado: una cuota base cubre el diagnóstico y el ciclo QBR trimestral, y un componente adicional se activa únicamente cuando el informe se traduce en un contrato real de desarrollo evolutivo para ti. Así, <strong>nuestro incentivo queda alineado con el tuyo desde el primer día</strong>.
+          Nuestro modelo de pago se adapta al tipo de valor generado: una cuota base cubre el diagnóstico y el ciclo QBR trimestral, y un componente adicional se activa únicamente cuando el informe se traduce en un contrato real de desarrollo evolutivo para usted. Así, <strong>nuestro incentivo queda alineado con el suyo desde el primer día</strong>.
         </p>
       </section>
 
@@ -195,9 +198,9 @@ import { QbrCycleDiagramComponent } from '../../shared/qbr-cycle-diagram/qbr-cyc
       </section>
 
       <section class="section cta-section">
-        <h2>Delega este servicio post venta en nosotros y conviértete en el socio estratégico de tus clientes</h2>
+        <h2>Delegue este servicio post venta en nosotros y conviértase en el socio estratégico de sus clientes</h2>
         <p class="bridge-note">
-          ¿Tu cliente final necesita antes poner en orden su propia operación interna? Nuestro servicio hermano, <a routerLink="/strategy">Tech Adoption Strategy (TAS)</a>, hace ese diagnóstico directamente con la empresa usuaria, y puede alimentar de vuelta tu propia Matriz de Oportunidades.
+          ¿Su cliente final necesita antes poner en orden su propia operación interna? Nuestro servicio hermano, <a routerLink="/strategy">Tech Adoption Strategy (TAS)</a>, hace ese diagnóstico directamente con la empresa usuaria, y puede alimentar de vuelta su propia Matriz de Oportunidades.
         </p>
         <div class="button-group">
           <button type="button" class="btn-primary" (click)="navigateToContact()">Quiero blindar y expandir mis cuentas</button>
@@ -216,32 +219,32 @@ export class IntelligenceComponent implements OnInit {
       title: 'Liberación de Recursos Críticos',
       icon: 'hand-coins',
       back:
-        'Tus consultores senior deben estar implantando, no dando formación básica. Al contratarnos, <strong>liberas a tu equipo de mayor coste</strong> para tareas de alta facturación, mientras nosotros generamos el pipeline para sus próximos proyectos.'
+        'Sus consultores senior deben estar implantando, no dando formación básica. Al contratarnos, <strong>libera a su equipo de mayor coste</strong> para tareas de alta facturación, mientras nosotros generamos el pipeline para sus próximos proyectos.'
     },
     {
       title: 'El Canal de Confianza',
       icon: 'shield-check',
       back:
-        'El cliente suele ser reticente a pedir mejoras a su Partner por miedo a que "le quieran vender algo más". Al presentarnos como un auditor externo de adopción, <strong>el cliente baja la guardia y confiesa sus necesidades reales</strong>, que nosotros te entregamos listas para facturar.'
+        'El cliente suele ser reticente a pedir mejoras a su Partner por miedo a que "le quieran vender algo más". Al presentarnos como un auditor externo de adopción, <strong>el cliente baja la guardia y confiesa sus necesidades reales</strong>, que nosotros le entregamos listas para facturar.'
     },
     {
       title: 'Metodología de Extracción de Datos',
       icon: 'brain-circuit',
       back:
-        'Tu equipo enseña a usar el software; nosotros estamos entrenados para extraer inteligencia. Cada una de nuestras sesiones es una <strong>sesión de preventa encubierta</strong> que detecta oportunidades que un recurso sin este enfoque difícilmente alcanza.'
+        'Su equipo enseña a usar el software; nosotros estamos entrenados para extraer inteligencia. Cada una de nuestras sesiones es una <strong>sesión de preventa encubierta</strong> que detecta oportunidades que un recurso sin este enfoque difícilmente alcanza.'
     },
     {
       title: 'Red de Especialistas Certificados por Plataforma',
       icon: 'network',
       back:
-        'No dependes de que un único perfil domine Salesforce, Atlassian, Microsoft y demás plataformas a la vez. Coordinamos una <strong>red de especialistas certificados por herramienta</strong>, manteniendo un único estándar de calidad y un único informe, sin importar quién ejecute la sesión.'
+        'No depende de que un único perfil domine Salesforce, Atlassian, Microsoft y demás plataformas a la vez. Coordinamos una <strong>red de especialistas certificados por herramienta</strong>, manteniendo un único estándar de calidad y un único informe, sin importar quién ejecute la sesión.'
     }
   ];
 
   faqItems = [
     {
       q: '¿TAI reemplaza a mi equipo de Customer Success?',
-      a: 'No. TAI es un servicio externo complementario enfocado en detectar oportunidades de negocio y riesgo de churn mediante un ciclo QBR trimestral; tu equipo de Customer Success sigue gestionando la relación día a día.'
+      a: 'No. TAI es un servicio externo complementario enfocado en detectar oportunidades de negocio y riesgo de churn mediante un ciclo QBR trimestral; su equipo de Customer Success sigue gestionando la relación día a día.'
     },
     {
       q: '¿Quién ejecuta la formación técnica si mi plataforma no es Salesforce, Atlassian o Microsoft?',
@@ -260,7 +263,7 @@ export class IntelligenceComponent implements OnInit {
   ngOnInit(): void {
     this.seo.apply({
       title: 'Tech Adoption Intelligence (TAI) | Retención y expansión de cartera para partners',
-      description: 'TAI convierte tu servicio post-venta en un ciclo QBR trimestral con Matriz de Oportunidades: detecta upselling, blinda cuentas y protege tu Net Revenue Retention.',
+      description: 'TAI convierte su servicio post-venta en un ciclo QBR trimestral con Matriz de Oportunidades: detecta upselling, blinda cuentas y protege su Net Revenue Retention.',
       path: '/intelligence',
       jsonLd: {
         '@context': 'https://schema.org',

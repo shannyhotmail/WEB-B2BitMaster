@@ -142,6 +142,21 @@
   margin-bottom: 20px;
 }
 
+.hero-product-name {
+  display: block;
+  font-size: 38px;
+  color: var(--accent);
+}
+
+.hero-subtitle {
+  display: block;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--color-navy-dark);
+  max-width: 20ch;
+  margin-top: 12px;
+}
+
 .lead {
   font-size: 18px;
   line-height: 1.65;

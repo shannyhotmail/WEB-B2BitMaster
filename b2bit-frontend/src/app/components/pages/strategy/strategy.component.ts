@@ -19,7 +19,10 @@ import { IconComponent } from '../../shared/icon/icon.component';
           <div class="hero-text">
             <a routerLink="/home" class="back-link">← Volver al inicio</a>
             <span class="eyebrow">Para empresas cliente de software, o sin software</span>
-            <h1>De la infrautilización a la Maestría Operativa</h1>
+            <h1>
+              <span class="hero-product-name">Tech Adoption Strategy</span>
+              <span class="hero-subtitle">De la infrautilización a la Maestría Operativa</span>
+            </h1>
             <p class="lead">
               Consultoría de negocio y optimización de procesos, con la IA como palanca de mejora, para cualquier empresa con cualquier stack tecnológico, o sin él.
             </p>

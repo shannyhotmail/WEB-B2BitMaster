@@ -37,7 +37,10 @@
 .lead {
   font-size: 17px;
   line-height: 1.65;
-  max-width: 68ch;
+  /* Mismo ancho que la primera columna (formulario) de .contact-wrapper:
+     ambos bloques comparten max-width y padding, así que replicamos aquí
+     la proporción 1.6fr de su grid de 1.6fr 1fr con gap 48px. */
+  max-width: calc((100% - 48px) * 1.6 / 2.6);
 }
 
 .contact-wrapper {
@@ -175,6 +178,10 @@
 @media (max-width: 900px) {
   .page-hero {
     padding: 40px 24px 12px;
+  }
+
+  .lead {
+    max-width: none;
   }
 
   .contact-wrapper {

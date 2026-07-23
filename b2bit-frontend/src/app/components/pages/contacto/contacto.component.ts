@@ -26,7 +26,7 @@ import { SeoService } from '../../../services/seo.service';
 
       <div class="contact-wrapper">
         <section class="contact-form-section">
-          <h2>Envíanos un Mensaje</h2>
+          <h2>Envíenos un mensaje</h2>
           <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="name">Nombre Completo *</label>
@@ -34,7 +34,7 @@ import { SeoService } from '../../../services/seo.service';
                 type="text"
                 id="name"
                 formControlName="name"
-                placeholder="Tu nombre"
+                placeholder="Su nombre"
                 class="form-input"
               />
               <span class="error" *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
@@ -48,11 +48,11 @@ import { SeoService } from '../../../services/seo.service';
                 type="email"
                 id="email"
                 formControlName="email"
-                placeholder="tu@email.com"
+                placeholder="su@email.com"
                 class="form-input"
               />
               <span class="error" *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
-                Ingresa un correo válido
+                Ingrese un correo válido
               </span>
             </div>
 
@@ -73,22 +73,22 @@ import { SeoService } from '../../../services/seo.service';
                 type="text"
                 id="company"
                 formControlName="company"
-                placeholder="Nombre de tu empresa"
+                placeholder="Nombre de su empresa"
                 class="form-input"
               />
             </div>
 
             <div class="form-group">
-              <label for="subject">¿Con cuál escenario te identificas? *</label>
+              <label for="subject">¿Con cuál escenario se identifica? *</label>
               <select id="subject" formControlName="subject" class="form-input">
-                <option value="">Selecciona una opción</option>
+                <option value="">Seleccione una opción</option>
                 <option value="partner">Soy un Partner o Proveedor de soluciones IT y necesito detectar nuevas oportunidades de negocio en mis clientes actuales.</option>
                 <option value="empresa">Soy una Empresa y siento que mi equipo está subutilizando el software que pagamos.</option>
                 <option value="auditoria">Necesito una Auditoría de Adopción para entender dónde están mis cuellos de botella.</option>
                 <option value="otro">Otro</option>
               </select>
               <span class="error" *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched">
-                Selecciona una opción
+                Seleccione una opción
               </span>
             </div>
 
@@ -97,7 +97,7 @@ import { SeoService } from '../../../services/seo.service';
               <textarea
                 id="message"
                 formControlName="message"
-                placeholder="Cuéntanos sobre tu proyecto..."
+                placeholder="Cuéntenos sobre su proyecto..."
                 class="form-textarea"
                 rows="6"
               ></textarea>
@@ -197,14 +197,14 @@ export class ContactoComponent implements OnInit {
 
     this.contactService.sendContactMessage(this.contactForm.value).subscribe({
       next: () => {
-        this.successMessage.set('¡Tu mensaje ha sido enviado exitosamente! Te contactaremos pronto.');
+        this.successMessage.set('¡Su mensaje ha sido enviado exitosamente! Le contactaremos pronto.');
         this.contactForm.reset();
         this.isSubmitting.set(false);
         setTimeout(() => this.successMessage.set(''), 5000);
       },
       error: (err) => {
         console.error('Error al enviar mensaje:', err);
-        this.errorMessage.set('Ocurrió un error al enviar tu mensaje. Intenta de nuevo.');
+        this.errorMessage.set('Ocurrió un error al enviar su mensaje. Intente de nuevo.');
         this.isSubmitting.set(false);
         setTimeout(() => this.errorMessage.set(''), 5000);
       }

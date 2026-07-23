@@ -16,7 +16,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       <div class="footer-content">
         <div class="footer-section footer-brand">
           <a routerLink="/home" class="footer-logo">b2bitmaster</a>
-          <p>Inteligencia de retención para proveedores de software (TAI) y consultoría de optimización de procesos para empresas (TAS).</p>
+          <p>Rentabilidad y autonomía operativa para empresas que adoptan tecnología (TAS); blindaje y expansión de cartera para proveedores de software (TAI).</p>
         </div>
 
         <div class="footer-section">

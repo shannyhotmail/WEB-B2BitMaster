@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 /**
- * Header global: nav plana (Inicio, TAI, TAS, Contáctenos) sin degradado,
+ * Header global: nav plana (Inicio, TAS, TAI, Contáctenos) sin degradado,
  * visible en las 4 páginas del sitio.
  */
 @Component({
@@ -31,8 +31,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
         <nav id="primary-nav" class="menu" [class.open]="menuOpen()">
           <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="menu-link" (click)="menuOpen.set(false)">Inicio</a>
-          <a routerLink="/intelligence" routerLinkActive="active" class="menu-link" (click)="menuOpen.set(false)">TAI</a>
           <a routerLink="/strategy" routerLinkActive="active" class="menu-link" (click)="menuOpen.set(false)">TAS</a>
+          <a routerLink="/intelligence" routerLinkActive="active" class="menu-link" (click)="menuOpen.set(false)">TAI</a>
           <a routerLink="/contacto" routerLinkActive="active" class="menu-link menu-cta" (click)="menuOpen.set(false)">Contáctenos</a>
         </nav>
       </div>
