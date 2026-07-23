@@ -1,66 +1,69 @@
-// contacto.component.scss
-.page-container {
-  max-width: 1200px;
+:host {
+  display: block;
+}
+
+.page-hero {
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 56px 40px 16px;
 }
 
-.page-header {
-  text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #f1a805 0%, #013d5a 100%);
-  color: #ffffff;
-  border-radius: 12px;
-  margin-bottom: 40px;
+.back-link {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 28px;
 
-  h1 {
-    font-size: 40px;
-    margin: 0 0 10px 0;
-    font-weight: 700;
-  }
-
-  .tagline {
-    font-size: 18px;
-    margin: 0;
-    font-weight: 500;
-    opacity: 0.95;
+  &:hover {
+    color: var(--color-navy);
   }
 }
 
-.page-intro {
-  margin-bottom: 40px;
-  color: #013d5a;
-  font-size: 16px;
-  line-height: 1.8;
+.eyebrow {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 14px;
+}
+
+.page-hero h1 {
+  margin-bottom: 20px;
+}
+
+.lead {
+  font-size: 17px;
+  line-height: 1.65;
+  /* Mismo ancho que la primera columna (formulario) de .contact-wrapper:
+     ambos bloques comparten max-width y padding, así que replicamos aquí
+     la proporción 1.6fr de su grid de 1.6fr 1fr con gap 48px. */
+  max-width: calc((100% - 48px) * 1.6 / 2.6);
 }
 
 .contact-wrapper {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 40px 96px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  align-items: start;
 }
 
-.contact-form-section {
-  h2 {
-    font-size: 24px;
-    color: #013d5a;
-    margin: 0 0 25px 0;
-    font-weight: 700;
-  }
-}
-
+.contact-form-section,
 .contact-info-section {
-  h2 {
-    font-size: 24px;
-    color: #013d5a;
-    margin: 0 0 25px 0;
-    font-weight: 700;
-  }
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 36px;
+}
+
+.contact-form-section h2,
+.contact-info-section h2 {
+  margin-bottom: 24px;
 }
 
 .form-group {
@@ -70,165 +73,124 @@
     display: block;
     font-size: 14px;
     font-weight: 600;
-    color: #013d5a;
+    color: var(--color-navy-dark);
     margin-bottom: 8px;
   }
 }
 
 .form-input,
-.form-textarea,
-select.form-input {
+.form-textarea {
   width: 100%;
-  padding: 12px;
-  border: 2px solid #e0e0e0;
-  border-radius: 6px;
-  font-size: 14px;
-  font-family: inherit;
-  background-color: #ffffff;
-  color: #013d5a;
-  transition: all 0.3s ease;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: border-color 0.2s ease;
 
-  option {
-    background: #ffffff;
-    color: #013d5a;
+  &::placeholder {
+    color: #8a97a0;
   }
 
-  &:focus {
-    outline: none;
-    border-color: #ff3131;
-    box-shadow: 0 0 0 3px rgba(255, 49, 49, 0.1);
-  }
-
-  &:invalid {
-    border-color: #ff6b6b;
+  &:focus-visible {
+    border-color: var(--color-gold);
   }
 }
 
 .form-textarea {
   resize: vertical;
+  min-height: 140px;
 }
 
 .error {
   display: block;
-  font-size: 12px;
-  color: #ff6b6b;
-  margin-top: 5px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--color-red);
 }
 
 .btn-submit {
   width: 100%;
-  background-color: #ff3131;
-  color: #ffffff;
-  border: none;
-  padding: 12px;
-  font-size: 16px;
+  margin-top: 8px;
+}
+
+.btn-primary {
+  font-size: 15px;
   font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  color: var(--color-bg);
+  background: var(--color-navy-dark);
+  padding: 15px 28px;
+  border: none;
+  border-radius: var(--radius-sm);
+  transition: background 0.25s ease;
 
   &:hover:not(:disabled) {
-    background-color: #d62828;
-    transform: scale(1.02);
-  }
-
-  &:active:not(:disabled) {
-    transform: scale(0.98);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+    background: var(--color-navy);
   }
 }
 
 .success-message {
-  margin-top: 15px;
-  padding: 12px;
-  background-color: #d4edda;
-  color: #155724;
-  border-radius: 6px;
-  border-left: 4px solid #28a745;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: #e5f3ea;
+  color: #1b7a4a;
   font-size: 14px;
-  font-weight: 500;
-  animation: slideDown 0.3s ease;
 }
 
 .error-message {
-  margin-top: 15px;
-  padding: 12px;
-  background-color: #f8d7da;
-  color: #721c24;
-  border-radius: 6px;
-  border-left: 4px solid #f5c6cb;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: #fde8e8;
+  color: var(--color-red-dark);
   font-size: 14px;
-  font-weight: 500;
-  animation: slideDown 0.3s ease;
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.contact-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .info-item {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  border-left: 4px solid #f1a805;
-
   h3 {
-    font-size: 16px;
-    color: #013d5a;
-    margin: 0 0 10px 0;
-    font-weight: 600;
+    font-size: 15px;
+    color: var(--color-navy-dark);
+    margin-bottom: 8px;
   }
 
   p {
-    margin: 0;
-    font-size: 14px;
-    color: #333333;
-    line-height: 1.6;
+    font-size: 15px;
+  }
 
-    a {
-      color: #ff3131;
-      text-decoration: none;
-      transition: color 0.3s ease;
-
-      &:hover {
-        color: #013d5a;
-        text-decoration: underline;
-      }
-    }
+  a {
+    font-weight: 500;
   }
 }
 
-@media (max-width: 480px) {
-  .page-container {
-    padding: 20px 15px;
+.info-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .page-hero {
+    padding: 40px 24px 12px;
   }
 
-  .page-header {
-    padding: 30px 15px;
-
-    h1 {
-      font-size: 28px;
-    }
-
-    .tagline {
-      font-size: 14px;
-    }
+  .lead {
+    max-width: none;
   }
 
-  .contact-form-section h2,
-  .contact-info-section h2 {
-    font-size: 20px;
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    padding: 32px 24px 64px;
+  }
+
+  .contact-form-section,
+  .contact-info-section {
+    padding: 28px 24px;
   }
 }

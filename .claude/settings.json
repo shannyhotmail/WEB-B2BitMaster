@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sf http://localhost:4300 -o /dev/null)",
+      "Bash(npx playwright *)",
+      "Read(//Users/luixanyvelasquezveitia/Library/Caches/**)",
+      "Bash(node \"/private/tmp/claude-501/-Users-luixanyvelasquezveitia-Documents-PortalB2BMaster-WEB-B2BitMaster/dcaf46c8-de9c-41d2-a083-5442ff36b0e9/scratchpad/check_hero.mjs\")",
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(node check_hero.mjs)",
+      "Bash(pkill -f \"ng serve --port 4300\")",
+      "Bash(break)",
+      "Bash(curl -s http://localhost:4200/main.js -o /tmp/main-4200.js)",
+      "Bash(curl -s http://localhost:4300/main.js -o /tmp/main-4300.js)",
+      "Read(//tmp/**)",
+      "Bash(node check_animation.mjs)",
+      "Bash(npx ng *)",
+      "Bash(grep -n \"page-container\\\\|</div>$\" src/app/components/pages/home/home.component.ts)",
+      "Bash(node check_hero_fullwidth.mjs)",
+      "Bash(npm ls *)",
+      "Bash(ls -la ~/Library/Caches/ms-playwright 2>&1; ls -la /private/tmp/claude-501/-Users-luixanyvelasquezveitia-Documents-PortalB2BMaster-WEB-B2BitMaster/6eb8362b-7aa9-4854-ab51-0ae8a0b9f587/scratchpad/pw/node_modules/.bin 2>&1)",
+      "Read(//Users/luixanyvelasquezveitia/Library/Caches/ms-playwright/**)",
+      "Bash(node interact.js)"
+    ]
+  }
+}
