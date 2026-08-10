@@ -4,9 +4,13 @@
       <stop offset="0%" stop-color="#03334c" />
       <stop offset="100%" stop-color="#0b5375" />
     </linearGradient>
+    <linearGradient id="arrowGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b8402a" />
+      <stop offset="100%" stop-color="#d9a017" />
+    </linearGradient>
   </defs>
   <rect width="340" height="100" fill="transparent" />
   <text x="8" y="72" font-family="Segoe UI, Arial, sans-serif" font-size="68" font-weight="800" letter-spacing="-2" fill="url(#logoGradient)">b2bit</text>
-  <path d="M 58 80 L 90 42 L 114 66 L 152 28 L 192 54 L 236 12" fill="none" stroke="#ff3131" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
-  <path d="M 230 8 L 250 8 L 246 0 Z" fill="#ff3131" />
+  <path d="M 58 80 L 90 42 L 114 66 L 152 28 L 192 54 L 236 12" fill="none" stroke="url(#arrowGradient)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 230 8 L 250 8 L 246 0 Z" fill="#d9a017" />
 </svg>

@@ -9,6 +9,8 @@ import { DiagnosticoIaComponent } from './components/pages/diagnostico-ia/diagno
  * Configuración de rutas de la aplicación.
  * Define las páginas accesibles y sus componentes asociados.
  */
+// Nota de planificacion: /blog queda reservada para una fase futura.
+// No agregar componente ni logica de generacion de contenido hasta que se decida explicitamente.
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },

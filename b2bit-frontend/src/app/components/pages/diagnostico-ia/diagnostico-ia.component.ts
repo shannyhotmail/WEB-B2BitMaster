@@ -288,9 +288,10 @@ export class DiagnosticoIaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seoService.setSeo({
+    this.seoService.apply({
       title: 'Diagnóstico de Preparación para IA en su Empresa | b2bitmaster Valencia',
       description: 'Diagnóstico Express de Preparación para IA en Valencia. Una sesión de 2 horas, 95€ (descontables del Plan Estratégico), para saber si su empresa necesita IA o antes ordenar sus procesos.',
+      path: '/diagnostico-ia',
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'Service',
