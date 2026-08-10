@@ -53,11 +53,6 @@ public class CreateContactMessageDto
 public class ContactMessageResponseDto
 {
     /// <summary>
-    /// Id del mensaje creado
-    /// </summary>
-    public int Id { get; set; }
-
-    /// <summary>
     /// Mensaje de éxito
     /// </summary>
     public string Message { get; set; } = "Mensaje enviado exitosamente";
@@ -71,51 +66,4 @@ public class ContactMessageResponseDto
     /// Fecha de creación
     /// </summary>
     public DateTime CreatedAt { get; set; }
-}
-
-/// <summary>
-/// DTO para listar mensajes (reducido, sin contenido completo)
-/// </summary>
-public class ContactMessageListDto
-{
-    /// <summary>
-    /// Id del mensaje
-    /// </summary>
-    public int Id { get; set; }
-
-    /// <summary>
-    /// Nombre del remitente
-    /// </summary>
-    public string Name { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Email del remitente
-    /// </summary>
-    public string Email { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Asunto del mensaje
-    /// </summary>
-    public string Subject { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Estado del mensaje
-    /// </summary>
-    public string Status { get; set; } = "new";
-
-    /// <summary>
-    /// Fecha de creación
-    /// </summary>
-    public DateTime CreatedAt { get; set; }
-}
-
-/// <summary>
-/// DTO para actualizar el estado de un mensaje de contacto
-/// </summary>
-public class UpdateStatusDto
-{
-    /// <summary>
-    /// Estado nuevo del mensaje
-    /// </summary>
-    public string Status { get; set; } = string.Empty;
 }

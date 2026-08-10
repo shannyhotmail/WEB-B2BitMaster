@@ -3,9 +3,6 @@
  */
 export const environment = {
   production: true,
-  apiUrl: 'https://api.b2bit.com',
-  // Azure Functions configuration for production
-  useAzureFunctions: true,
-  azureFunctionBaseUrl: 'https://<your-function-app>.azurewebsites.net/api',
-  azureFunctionKey: ''
+  functionsBaseUrl: 'https://b2bit-func-app-web-cag7bgenhtftgvgt.spaincentral-01.azurewebsites.net/api',
+  functionsKey: 'c2zDr6b4CVJVDctlJhTYGQIKB7tIV0TpCYsWgGn4nK7LAzFu7oPNjw=='
 };

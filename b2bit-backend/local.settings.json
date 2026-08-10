@@ -2,9 +2,12 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
-    "AzureWebJobsStorage": "UseDevelopmentStorage=true"
-  },
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=B2BitDb;Trusted_Connection=true;"
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "Smtp__Host": "smtp.office365.com",
+    "Smtp__Port": "587",
+    "Smtp__Username": "",
+    "Smtp__Password": "",
+    "Smtp__FromAddress": "",
+    "Smtp__RecipientAddress": ""
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ContactService } from '../../../services/contact.service';
 import { SeoService } from '../../../services/seo.service';
 
@@ -13,7 +14,7 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
 @Component({
   selector: 'app-diagnostico-ia',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   template: `
     <div class="diagnostico-ia">
       <!-- 1. HERO -->
@@ -28,7 +29,7 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
               con certeza qué necesita realmente su empresa.
             </p>
             <div class="hero-actions">
-              <a href="#llamada" class="btn-primary">Solicitar Diagnóstico Express — 95€</a>
+              <a href="#formulario" class="btn-primary" (click)="scrollToForm($event)">Solicitar Diagnóstico Express — 95€</a>
               <a [href]="calendlyUrl" target="_blank" rel="noopener noreferrer" class="btn-outline">
                 Prefiero agendar una llamada de 15 min
               </a>
@@ -75,6 +76,10 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
         </div>
         <p class="problem-quote">"Meter IA donde antes había caos no elimina el caos. Lo acelera."</p>
       </section>
+
+      <div class="inline-cta">
+        <a href="#formulario" class="btn-primary" (click)="scrollToForm($event)">Solicitar Diagnóstico Express</a>
+      </div>
 
       <!-- 4. QUE ES EL DIAGNOSTICO -->
       <section class="diagnostic-section">
@@ -158,35 +163,12 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
         </div>
       </section>
 
-      <!-- 7. FAQ -->
-      <section class="faq-section">
-        <h2>Preguntas frecuentes</h2>
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary>¿Por qué cobran el diagnóstico si otros lo ofrecen gratis?</summary>
-            <p>Preferimos ser honestas: un diagnóstico gratuito sin límites no es sostenible para una consultora pequeña, y termina siendo superficial. El coste simbólico de 95€ nos permite dedicarle el tiempo real que su empresa merece — y se descuenta al 100% si sigue adelante con el Plan Estratégico.</p>
-          </details>
-          <details class="faq-item">
-            <summary>¿Y si el diagnóstico dice que no necesito IA?</summary>
-            <p>Se lo diremos con la misma claridad. El objetivo del diagnóstico es que usted tenga información real, no que le vendamos algo que no necesita.</p>
-          </details>
-          <details class="faq-item">
-            <summary>¿Tengo que comprometerme a contratar el Plan Estratégico después?</summary>
-            <p>No. El diagnóstico es un servicio independiente. Si decide no continuar, no hay ninguna obligación.</p>
-          </details>
-          <details class="faq-item">
-            <summary>¿Cuánto tiempo tardan en darme el resultado?</summary>
-            <p>Recibirá el informe del diagnóstico en un máximo de una semana tras la sesión.</p>
-          </details>
-          <details class="faq-item">
-            <summary>¿Trabajan fuera de Valencia?</summary>
-            <p>Nuestro enfoque actual es presencial en Valencia y su área metropolitana, aunque también podemos trabajar de forma remota si su empresa está fuera de esta zona.</p>
-          </details>
-        </div>
-      </section>
+      <div class="inline-cta">
+        <a href="#formulario" class="btn-primary" (click)="scrollToForm($event)">Solicitar Diagnóstico Express</a>
+      </div>
 
-      <!-- 8. CTA FINAL + FORM -->
-      <section id="llamada" class="final-cta-section">
+      <!-- 7. CTA FINAL + FORM -->
+      <section id="formulario" class="final-cta-section">
         <h2>Empecemos por entender su situación real</h2>
         <div class="final-cta-grid">
           <form class="diagnostic-form" [formGroup]="diagnosticForm" (ngSubmit)="onSubmit()">
@@ -252,6 +234,39 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
           </div>
         </div>
       </section>
+
+      <!-- 8. FAQ -->
+      <section class="faq-section">
+        <h2>Preguntas frecuentes</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>¿Por qué cobran el diagnóstico si otros lo ofrecen gratis?</summary>
+            <p>Preferimos ser honestas: un diagnóstico gratuito sin límites no es sostenible para una consultora pequeña, y termina siendo superficial. El coste simbólico de 95€ nos permite dedicarle el tiempo real que su empresa merece — y se descuenta al 100% si sigue adelante con el Plan Estratégico.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Y si el diagnóstico dice que no necesito IA?</summary>
+            <p>Se lo diremos con la misma claridad. El objetivo del diagnóstico es que usted tenga información real, no que le vendamos algo que no necesita.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Tengo que comprometerme a contratar el Plan Estratégico después?</summary>
+            <p>No. El diagnóstico es un servicio independiente. Si decide no continuar, no hay ninguna obligación.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Cuánto tiempo tardan en darme el resultado?</summary>
+            <p>Recibirá el informe del diagnóstico en un máximo de una semana tras la sesión.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Trabajan fuera de Valencia?</summary>
+            <p>Nuestro enfoque actual es presencial en Valencia y su área metropolitana, aunque también podemos trabajar de forma remota si su empresa está fuera de esta zona.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- 9. NOTA DE PIE DE PÁGINA (propia de esta landing) -->
+      <p class="page-footer-note">
+        ¿Ya tiene claro que su prioridad es una hoja de ruta estratégica, sin pasar primero por el diagnóstico?
+        Conozca <a routerLink="/strategy">TAS — Transformación y Alineamiento Estratégico</a>.
+      </p>
     </div>
   `,
   styleUrls: ['./diagnostico-ia.component.scss']
@@ -309,6 +324,11 @@ export class DiagnosticoIaComponent implements OnInit {
         }
       }
     });
+  }
+
+  scrollToForm(event: Event): void {
+    event.preventDefault();
+    document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   onSubmit(): void {
