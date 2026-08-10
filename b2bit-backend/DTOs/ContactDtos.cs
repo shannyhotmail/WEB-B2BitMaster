@@ -35,6 +35,16 @@ public class CreateContactMessageDto
     /// Contenido del mensaje
     /// </summary>
     public string Message { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Número aproximado de empleados (opcional, usado por el formulario de /diagnostico-ia)
+    /// </summary>
+    public string? NumeroEmpleados { get; set; }
+
+    /// <summary>
+    /// Motivo de contacto (opcional, usado por el formulario de /diagnostico-ia)
+    /// </summary>
+    public string? MotivoContacto { get; set; }
 }
 
 /// <summary>

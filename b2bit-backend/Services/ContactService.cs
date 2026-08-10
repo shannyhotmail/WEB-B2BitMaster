@@ -51,6 +51,8 @@ public class ContactService : IContactService
             Company = string.IsNullOrWhiteSpace(dto.Company) ? null : SanitizeInput(dto.Company),
             Subject = SanitizeInput(dto.Subject),
             Message = SanitizeInput(dto.Message),
+            NumeroEmpleados = string.IsNullOrWhiteSpace(dto.NumeroEmpleados) ? null : SanitizeInput(dto.NumeroEmpleados),
+            MotivoContacto = string.IsNullOrWhiteSpace(dto.MotivoContacto) ? null : SanitizeInput(dto.MotivoContacto),
             ClientIp = clientIp,
             Status = "new",
             CreatedAt = DateTime.UtcNow,

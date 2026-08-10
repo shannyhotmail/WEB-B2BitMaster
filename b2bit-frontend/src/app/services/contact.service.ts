@@ -13,6 +13,8 @@ export interface ContactMessage {
   company?: string;
   subject: string;
   message: string;
+  numeroEmpleados?: string;
+  motivoContacto?: string;
 }
 
 /**

@@ -1,0 +1,626 @@
+// diagnostico-ia.component.scss
+// Paleta reutilizada del resto del sitio (strategy/contacto): navy #013d5a, rojo #ff3131, dorado #f1a805
+.diagnostico-ia {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 20px 0;
+}
+
+h2 {
+  color: #013d5a;
+}
+
+/* 1. HERO */
+.hero-section {
+  padding: 24px 0 56px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-copy {
+  .eyebrow {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #ff3131;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 3.4vw, 42px);
+    max-width: 22ch;
+    margin-bottom: 20px;
+    color: #013d5a;
+    line-height: 1.15;
+  }
+
+  .hero-subhead {
+    font-size: 18px;
+    line-height: 1.65;
+    max-width: 60ch;
+    color: #333333;
+    margin: 0 0 32px;
+  }
+
+  .hero-note {
+    font-size: 13px;
+    font-style: italic;
+    line-height: 1.6;
+    color: #6e6b62;
+    margin-top: 20px;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #013d5a;
+  padding: 15px 28px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #ff3131;
+    color: #ffffff;
+    transform: scale(1.02);
+  }
+}
+
+.btn-outline {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #013d5a;
+  background: transparent;
+  padding: 14px 26px;
+  border: 1.5px solid #013d5a;
+  border-radius: 6px;
+  text-align: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #013d5a;
+    color: #ffffff;
+  }
+}
+
+.btn-outline--block {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-stat-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-top: 3px solid #ff3131;
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 20px 60px rgba(1, 61, 90, 0.09);
+
+  .stat-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #6e6b62;
+  }
+
+  .stat-number {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    color: #f1a805;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333333;
+    margin: 8px 0 0;
+  }
+
+  .stat-source {
+    font-size: 11px;
+    color: #6e6b62;
+    margin-top: 4px;
+  }
+}
+
+.stat-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 56px;
+  margin-top: 8px;
+}
+
+.stat-bar {
+  flex: 1;
+  background: #f0eee6;
+  border-radius: 3px;
+}
+
+.stat-bar--accent {
+  background: #f1a805;
+}
+
+/* 2. TRUST BAR */
+.trust-bar {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 24px 20px;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #013d5a;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot--red { background: #ff3131; }
+.dot--navy { background: #013d5a; }
+.dot--gold { background: #f1a805; }
+
+/* 3. PROBLEMA */
+.problem-section {
+  padding: 56px 0;
+
+  h2 {
+    font-size: clamp(24px, 2.6vw, 32px);
+    max-width: 28ch;
+    margin-bottom: 18px;
+  }
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 44px;
+  align-items: center;
+
+  p {
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 60ch;
+    margin: 0;
+    color: #333333;
+  }
+}
+
+.problem-donut-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.problem-donut {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: conic-gradient(#ff3131 0 60%, #e0e0e0 60% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.problem-donut-inner {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  font-weight: 800;
+  color: #013d5a;
+}
+
+.problem-donut-label {
+  font-size: 13px;
+  color: #6e6b62;
+  text-align: center;
+  max-width: 18ch;
+}
+
+.problem-quote {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #013d5a;
+  line-height: 1.5;
+}
+
+/* 4. QUE ES EL DIAGNOSTICO / 6. POR QUE B2BITMASTER */
+.diagnostic-section,
+.why-section {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #ffffff;
+  padding: 56px 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.section-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+
+  h2 {
+    font-size: clamp(24px, 2.6vw, 32px);
+    max-width: 32ch;
+    margin-bottom: 18px;
+  }
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info-card {
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-top: 3px solid #013d5a;
+  border-radius: 12px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h4 {
+    font-size: 16px;
+    color: #013d5a;
+    margin: 0;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333333;
+    margin: 0;
+  }
+}
+
+.info-card--red { border-top-color: #ff3131; }
+.info-card--navy { border-top-color: #013d5a; }
+.info-card--gold { border-top-color: #f1a805; }
+
+.honesty-note {
+  margin-top: 32px;
+  background: #fdecea;
+  border-radius: 12px;
+  padding: 24px 28px;
+
+  p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #013d5a;
+    margin: 0;
+  }
+}
+
+/* 5. QUE PASA DESPUES */
+.process-section {
+  padding: 56px 20px 70px;
+
+  h2 {
+    font-size: clamp(24px, 2.6vw, 32px);
+    max-width: 32ch;
+    margin-bottom: 18px;
+  }
+}
+
+.process-steps {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.process-step {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+.process-step-bar {
+  height: 6px;
+  border-radius: 3px 3px 0 0;
+}
+
+.process-step-bar--red { background: linear-gradient(90deg, #ff3131, #f3a8a8); }
+.process-step-bar--navy { background: linear-gradient(90deg, #013d5a, #8a9bab); }
+.process-step-bar--gold { background: linear-gradient(90deg, #f1a805, #e4cb85); }
+
+.process-step-body {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0 0 10px 10px;
+  padding: 28px;
+  min-height: 170px;
+
+  h4 {
+    font-size: 18px;
+    margin: 0 0 12px;
+    color: #013d5a;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333333;
+    margin: 0;
+  }
+}
+
+.process-step-number {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.process-step-number--red { color: #ff3131; }
+.process-step-number--navy { color: #013d5a; }
+.process-step-number--gold { color: #f1a805; }
+
+.process-reinforcement {
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 70ch;
+  margin-top: 32px;
+  color: #333333;
+}
+
+/* 7. FAQ */
+.faq-section {
+  padding: 56px 0;
+
+  h2 {
+    font-size: clamp(24px, 2.6vw, 32px);
+    max-width: 32ch;
+    margin-bottom: 32px;
+  }
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 18px 22px;
+
+  summary {
+    font-weight: 600;
+    font-size: 15px;
+    color: #013d5a;
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  p {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333333;
+  }
+}
+
+/* 8. CTA FINAL + FORM */
+.final-cta-section {
+  padding: 56px 0 70px;
+  scroll-margin-top: 24px;
+
+  h2 {
+    font-size: clamp(24px, 2.6vw, 32px);
+    max-width: 32ch;
+    margin-bottom: 18px;
+  }
+}
+
+.final-cta-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 44px;
+  align-items: start;
+  margin-top: 24px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.diagnostic-form {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #013d5a;
+  }
+}
+
+.form-input {
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-family: inherit;
+  background-color: #ffffff;
+  color: #013d5a;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #ff3131;
+    box-shadow: 0 0 0 3px rgba(255, 49, 49, 0.1);
+  }
+}
+
+.error {
+  font-size: 12px;
+  color: #ff6b6b;
+}
+
+.btn-submit {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #013d5a;
+  padding: 15px 28px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background: #ff3131;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.form-sla {
+  font-size: 12px;
+  color: #6e6b62;
+}
+
+.success-message {
+  padding: 12px;
+  background-color: #d4edda;
+  color: #155724;
+  border-radius: 6px;
+  border-left: 4px solid #28a745;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.error-message {
+  padding: 12px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 6px;
+  border-left: 4px solid #f5c6cb;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.call-panel {
+  background: #fdecea;
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  h4 {
+    font-size: 18px;
+    color: #013d5a;
+    margin: 0;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #013d5a;
+    margin: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .problem-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .problem-donut-wrap {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .diagnostico-ia {
+    padding: 24px 15px 0;
+  }
+}

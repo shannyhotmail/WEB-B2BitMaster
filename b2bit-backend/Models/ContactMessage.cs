@@ -42,6 +42,19 @@ public class ContactMessage
     public string Message { get; set; } = string.Empty;
 
     /// <summary>
+    /// Número aproximado de empleados de la empresa del remitente (rango: 1-5, 5-20, 20-50, más de 50).
+    /// Usado en el formulario de la campaña /diagnostico-ia para segmentar leads.
+    /// </summary>
+    public string? NumeroEmpleados { get; set; }
+
+    /// <summary>
+    /// Motivo de contacto seleccionado en el formulario de /diagnostico-ia
+    /// (ej. "Quiero explorar IA", "Sé que algo no funciona bien pero no sé qué").
+    /// Usado para analizar el rendimiento de la campaña.
+    /// </summary>
+    public string? MotivoContacto { get; set; }
+
+    /// <summary>
     /// Estado del mensaje (new, read, responded, closed)
     /// </summary>
     public string Status { get; set; } = "new";

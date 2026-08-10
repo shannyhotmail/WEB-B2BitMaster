@@ -58,6 +58,12 @@ public class B2BitDbContext : DbContext
                 .IsRequired()
                 .HasMaxLength(5000);
 
+            entity.Property(e => e.NumeroEmpleados)
+                .HasMaxLength(50);
+
+            entity.Property(e => e.MotivoContacto)
+                .HasMaxLength(200);
+
             entity.Property(e => e.Status)
                 .IsRequired()
                 .HasMaxLength(20)
