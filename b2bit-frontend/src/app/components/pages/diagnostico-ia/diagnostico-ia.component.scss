@@ -308,6 +308,14 @@ h2 {
   }
 }
 
+.card-grid--two {
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
 .info-card {
   background: #f9f9f9;
   border: 1px solid #e0e0e0;

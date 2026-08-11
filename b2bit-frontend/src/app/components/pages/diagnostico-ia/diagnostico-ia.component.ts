@@ -52,8 +52,8 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
 
       <!-- 2. TRUST BAR -->
       <section class="trust-bar">
-        <span class="trust-item"><span class="dot dot--red"></span>Basado en Valencia — atención presencial en su empresa</span>
-        <span class="trust-item"><span class="dot dot--navy"></span>Dirigido por una ingeniera de telecomunicaciones</span>
+        <span class="trust-item"><span class="dot dot--red"></span>Opción "In situ" — si está ubicado en Valencia nos trasladamos a sus instalaciones</span>
+        <span class="trust-item"><span class="dot dot--navy"></span>Personalización — No usamos recetas genéricas, le hacemos un "traje a medida"</span>
         <span class="trust-item"><span class="dot dot--gold"></span>Diagnóstico neutral — no vendemos ninguna herramienta ni software concreto</span>
       </section>
 
@@ -85,14 +85,10 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
       <section class="diagnostic-section">
         <div class="section-inner">
           <h2>Una sesión, sin compromiso, con respuestas claras</h2>
-          <div class="card-grid">
-            <div class="info-card info-card--red">
-              <h4>Duración</h4>
-              <p>Una sesión presencial u online de 2 horas en su empresa (o por videollamada, si lo prefiere).</p>
-            </div>
+          <div class="card-grid card-grid--two">
             <div class="info-card info-card--navy">
               <h4>Qué incluye</h4>
-              <p>Revisión de sus procesos actuales, herramientas en uso, y los puntos donde probablemente esté perdiendo tiempo o dinero — traducido a cifras concretas, no en jerga técnica.</p>
+              <p>Una sesión especializada, presencial o remota para la revisión de sus procesos actuales, herramientas en uso, y los puntos donde probablemente esté perdiendo tiempo o dinero — traducido a cifras concretas, no en jerga técnica.</p>
             </div>
             <div class="info-card info-card--gold">
               <h4>Qué recibe</h4>
