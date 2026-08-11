@@ -36,7 +36,7 @@ export class ContactService {
    * @returns Observable con la respuesta del servidor
    */
   sendContactMessage(message: ContactMessage): Observable<any> {
-    const url = `${this.baseUrl}/SendContactMessage`;
+    const url = `${this.baseUrl}/contact/send-message`;
     const headers = this.functionKey ? new HttpHeaders({ 'x-functions-key': this.functionKey }) : undefined;
     return this.http.post(url, message, headers ? { headers } : {});
   }
