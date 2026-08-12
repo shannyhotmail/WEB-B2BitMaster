@@ -185,7 +185,8 @@ export class CookieConsentService {
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied',
-      analytics_storage: 'denied'
+      analytics_storage: 'denied',
+      wait_for_update: 500
     });
     win.gtag('js', new Date());
   }
