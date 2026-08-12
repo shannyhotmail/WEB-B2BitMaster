@@ -15,9 +15,13 @@ export class CookieConsentService {
   private apiPromise: Promise<CookieConsentApi> | null = null;
   private marketingLoaded = false;
   private analyticsLoaded = false;
-  private gtagBaseInitialized = false;
 
   init(): void {
+    // dataLayer/gtag y el consentimiento por defecto (todo denegado) se
+    // establecen de inmediato, antes de que el usuario decida nada y antes
+    // de que se cargue ningún script de Ads/GA4 — así Google Consent Mode
+    // tiene una señal explícita desde el primer momento en vez de asumirla.
+    this.ensureGtagBase();
     this.loadApi().then(CookieConsent => this.run(CookieConsent));
   }
 
@@ -109,18 +113,31 @@ export class CookieConsentService {
           }
         }
       },
-      onFirstConsent: () => this.applyConsent(CookieConsent),
+      // onConsent ya cubre la primera decisión y cada carga de página;
+      // onFirstConsent sería redundante y duplicaba el gtag('consent','update').
       onConsent: () => this.applyConsent(CookieConsent),
       onChange: () => this.applyConsent(CookieConsent)
     }).catch(err => console.error('[CookieConsent] run() failed:', err));
   }
 
   private applyConsent(CookieConsent: CookieConsentApi): void {
-    if (CookieConsent.acceptedCategory('analytics' satisfies ConsentCategory)) {
+    const analyticsAccepted = CookieConsent.acceptedCategory('analytics' satisfies ConsentCategory);
+    const marketingAccepted = CookieConsent.acceptedCategory('marketing' satisfies ConsentCategory);
+
+    // Se envía en cada decisión (inicial o posterior vía "Configurar cookies"),
+    // para que Google refleje también las revocaciones, no solo las aceptaciones.
+    this.gtagWindow().gtag('consent', 'update', {
+      analytics_storage: analyticsAccepted ? 'granted' : 'denied',
+      ad_storage: marketingAccepted ? 'granted' : 'denied',
+      ad_user_data: marketingAccepted ? 'granted' : 'denied',
+      ad_personalization: marketingAccepted ? 'granted' : 'denied'
+    });
+
+    if (analyticsAccepted) {
       this.enableAnalytics();
     }
 
-    if (CookieConsent.acceptedCategory('marketing' satisfies ConsentCategory)) {
+    if (marketingAccepted) {
       this.enableMarketing();
     }
   }
@@ -140,7 +157,6 @@ export class CookieConsentService {
     }
     this.marketingLoaded = true;
 
-    this.ensureGtagBase();
     this.injectGtagScript(GOOGLE_ADS_ID);
     this.gtagWindow().gtag('config', GOOGLE_ADS_ID);
   }
@@ -151,14 +167,13 @@ export class CookieConsentService {
     }
     this.analyticsLoaded = true;
 
-    this.ensureGtagBase();
     this.injectGtagScript(GA4_MEASUREMENT_ID);
     this.gtagWindow().gtag('config', GA4_MEASUREMENT_ID);
   }
 
-  // window.dataLayer/gtag y la llamada gtag('js', ...) se comparten entre
-  // Ads y GA4: solo deben inicializarse una vez, sin importar qué categoría
-  // se acepte primero.
+  // dataLayer/gtag, gtag('js', ...) y el consentimiento por defecto se
+  // establecen una sola vez, desde init(), antes de cualquier decisión del
+  // usuario y antes de cargar ningún script de Ads/GA4.
   private ensureGtagBase(): void {
     const win = this.gtagWindow();
     win.dataLayer = win.dataLayer || [];
@@ -166,10 +181,13 @@ export class CookieConsentService {
       win.dataLayer.push(args);
     };
 
-    if (!this.gtagBaseInitialized) {
-      this.gtagBaseInitialized = true;
-      win.gtag('js', new Date());
-    }
+    win.gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied'
+    });
+    win.gtag('js', new Date());
   }
 
   private injectGtagScript(id: string): void {
