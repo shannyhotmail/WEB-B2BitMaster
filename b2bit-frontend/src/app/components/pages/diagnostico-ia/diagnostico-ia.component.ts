@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { RouterLink } from '@angular/router';
 import { ContactService } from '../../../services/contact.service';
 import { SeoService } from '../../../services/seo.service';
+import { CookieConsentService } from '../../../services/cookie-consent.service';
 
 const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
 
@@ -271,6 +272,7 @@ export class DiagnosticoIaComponent implements OnInit {
   private fb = inject(FormBuilder);
   private contactService = inject(ContactService);
   private seoService = inject(SeoService);
+  private cookieConsent = inject(CookieConsentService);
 
   calendlyUrl = CALENDLY_URL;
 
@@ -349,6 +351,7 @@ export class DiagnosticoIaComponent implements OnInit {
     }).subscribe({
       next: () => {
         this.successMessage.set('¡Solicitud enviada! Le contactamos en menos de 24h laborables.');
+        this.cookieConsent.trackDiagnosticoIaFormConversion();
         this.diagnosticForm.reset({
           numeroEmpleados: this.numeroEmpleadosOptions[0],
           motivoContacto: this.motivoContactoOptions[0]

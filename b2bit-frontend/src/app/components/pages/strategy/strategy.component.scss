@@ -180,22 +180,6 @@
   }
 }
 
-.btn-secondary {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--color-navy-dark);
-  background: transparent;
-  padding: 14px 26px;
-  border: 1.5px solid var(--color-navy-dark);
-  border-radius: var(--radius-sm);
-  transition: background 0.25s ease, color 0.25s ease;
-
-  &:hover {
-    background: var(--color-navy-dark);
-    color: var(--color-bg);
-  }
-}
-
 /* Sections */
 .section {
   max-width: 1120px;

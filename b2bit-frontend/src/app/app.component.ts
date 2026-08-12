@@ -4,6 +4,7 @@ import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CookieConsentService } from './services/cookie-consent.service';
 
 /**
  * Componente raíz de la aplicación.
@@ -30,7 +31,7 @@ export class AppComponent {
   // Header simplificado (solo logo) en landings de campaña como /diagnostico-ia
   minimalHeader = signal(false);
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cookieConsent: CookieConsentService) {
     this.minimalHeader.set(this.isMinimalHeaderRoute(this.router.url));
 
     this.router.events.pipe(
@@ -39,6 +40,8 @@ export class AppComponent {
       window.scrollTo(0, 0);
       this.minimalHeader.set(this.isMinimalHeaderRoute((event as NavigationEnd).urlAfterRedirects));
     });
+
+    this.cookieConsent.init();
   }
 
   private isMinimalHeaderRoute(url: string): boolean {

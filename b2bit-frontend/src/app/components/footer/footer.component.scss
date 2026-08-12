@@ -130,6 +130,44 @@
   border: none;
 }
 
+.footer-modal-html {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 32px 40px;
+  color: var(--color-navy-dark);
+  font-size: 15px;
+  line-height: 1.7;
+
+  h4 {
+    font-size: 16px;
+    margin: 28px 0 10px;
+    color: var(--color-navy-dark);
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    margin: 0 0 14px;
+  }
+
+  ul {
+    margin: 0 0 14px;
+    padding-left: 22px;
+  }
+
+  li {
+    margin-bottom: 8px;
+  }
+
+  strong {
+    color: var(--color-navy-dark);
+  }
+}
+
 .footer-modal-header {
   padding: 22px 26px;
   display: flex;
@@ -179,6 +217,10 @@
 
   .footer-modal-body {
     min-height: 60vh;
+  }
+
+  .footer-modal-html {
+    padding: 22px 20px;
   }
 
   .footer-modal-header {
