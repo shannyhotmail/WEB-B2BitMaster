@@ -39,6 +39,7 @@ export class AppComponent {
     ).subscribe((event) => {
       window.scrollTo(0, 0);
       this.minimalHeader.set(this.isMinimalHeaderRoute((event as NavigationEnd).urlAfterRedirects));
+      this.cookieConsent.trackPageView((event as NavigationEnd).urlAfterRedirects);
     });
 
     this.cookieConsent.init();

@@ -15,6 +15,7 @@ export class CookieConsentService {
   private apiPromise: Promise<CookieConsentApi> | null = null;
   private marketingLoaded = false;
   private analyticsLoaded = false;
+  private lastTrackedPath: string | null = null;
 
   init(): void {
     // dataLayer/gtag y el consentimiento por defecto (todo denegado) se
@@ -168,7 +169,20 @@ export class CookieConsentService {
     this.analyticsLoaded = true;
 
     this.injectGtagScript(GA4_MEASUREMENT_ID);
-    this.gtagWindow().gtag('config', GA4_MEASUREMENT_ID);
+    // GA4 no detecta de forma fiable los cambios de ruta del router de
+    // Angular (confirmado con Google Analytics Debugger: nunca procesa un
+    // page_view). Se desactiva el automático y se dispara a mano, aquí y
+    // en cada NavigationEnd (ver trackPageView / app.component.ts).
+    this.gtagWindow().gtag('config', GA4_MEASUREMENT_ID, { send_page_view: false });
+    this.trackPageView(window.location.pathname + window.location.search);
+  }
+
+  trackPageView(path: string): void {
+    if (!this.analyticsLoaded || path === this.lastTrackedPath) {
+      return;
+    }
+    this.lastTrackedPath = path;
+    this.gtagWindow().gtag('event', 'page_view', { page_path: path });
   }
 
   // dataLayer/gtag, gtag('js', ...) y el consentimiento por defecto se
