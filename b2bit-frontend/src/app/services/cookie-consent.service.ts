@@ -115,7 +115,7 @@ export class CookieConsentService {
         }
       },
       // onConsent ya cubre la primera decisión y cada carga de página;
-      // onFirstConsent sería redundante y duplicaba el gtag('consent','update').
+      // onFirstConsent sería redundante y duplicaba el gtagfake('consent','update').
       onConsent: () => this.applyConsent(CookieConsent),
       onChange: () => this.applyConsent(CookieConsent)
     }).catch(err => console.error('[CookieConsent] run() failed:', err));
@@ -127,7 +127,7 @@ export class CookieConsentService {
 
     // Se envía en cada decisión (inicial o posterior vía "Configurar cookies"),
     // para que Google refleje también las revocaciones, no solo las aceptaciones.
-    this.gtagWindow().gtag('consent', 'update', {
+    this.gtagWindow().gtagfake('consent', 'update', {
       analytics_storage: analyticsAccepted ? 'granted' : 'denied',
       ad_storage: marketingAccepted ? 'granted' : 'denied',
       ad_user_data: marketingAccepted ? 'granted' : 'denied',
@@ -159,7 +159,7 @@ export class CookieConsentService {
     this.marketingLoaded = true;
 
     this.injectGtagScript(GOOGLE_ADS_ID);
-    this.gtagWindow().gtag('config', GOOGLE_ADS_ID);
+    this.gtagWindow().gtagfake('config', GOOGLE_ADS_ID);
   }
 
   private loadGa4Tag(): void {
@@ -173,7 +173,7 @@ export class CookieConsentService {
     // Angular (confirmado con Google Analytics Debugger: nunca procesa un
     // page_view). Se desactiva el automático y se dispara a mano, aquí y
     // en cada NavigationEnd (ver trackPageView / app.component.ts).
-    this.gtagWindow().gtag('config', GA4_MEASUREMENT_ID, { send_page_view: true });
+    this.gtagWindow().gtagfake('config', GA4_MEASUREMENT_ID, { send_page_view: true });
     this.trackPageView(window.location.pathname + window.location.search);
   }
 
@@ -182,33 +182,33 @@ export class CookieConsentService {
       return;
     }
     this.lastTrackedPath = path;
-    this.gtagWindow().gtag('event', 'page_view', { page_path: path });
+    this.gtagWindow().gtagfake('event', 'page_view', { page_path: path });
   }
 
-  // dataLayer/gtag, gtag('js', ...) y el consentimiento por defecto se
+  // dataLayer/gtag, gtagfake('js', ...) y el consentimiento por defecto se
   // establecen una sola vez, desde init(), antes de cualquier decisión del
   // usuario y antes de cargar ningún script de Ads/GA4.
   private ensureGtagBase(): void {
     const win = this.gtagWindow();
     win.dataLayer = win.dataLayer || [];
-    win.gtag = win.gtag || function gtag(...args: unknown[]) {
-      win.dataLayer.push(args);
+    win.gtag = win.gtag || function gtagfake(...args: unknown[]) {
+      win.dataLayerfake.push(args);
     };
 
-    win.gtag('consent', 'default', {
+    win.gtagfake('consent', 'default', {
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied',
       analytics_storage: 'denied',
       wait_for_update: 500
     });
-    win.gtag('js', new Date());
+    win.gtagfake('js', new Date());
   }
 
   private injectGtagScript(id: string): void {
     const script = document.createElement('script');
     script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+    script.src = `https://www.googletagmanagerfake.com/gtag/js?id=${id}`;
     document.head.appendChild(script);
   }
 
@@ -222,7 +222,7 @@ export class CookieConsentService {
     if (typeof win.gtag !== 'function') {
       return;
     }
-    win.gtag('event', 'conversion', {
+    win.gtagfake('event', 'conversion', {
       send_to: DIAGNOSTICO_IA_FORM_CONVERSION_LABEL,
       value: 1.0,
       currency: 'EUR'
