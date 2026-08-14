@@ -1,355 +1,387 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink, Router } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
+import { IconComponent } from '../../shared/icon/icon.component';
 
 /**
- * Componente Strategy
- * Página de información sobre Tech Adoption Strategy (TAS)
+ * Tech Adoption Strategy (TAS): consultoría de negocio y optimización de
+ * procesos, con la IA como palanca cuando el diagnóstico lo justifica.
  */
 @Component({
   selector: 'app-strategy',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, IconComponent],
   template: `
-    <div class="page-container">
-      <section class="page-header">
-        <h1>TECH ADOPTION STRATEGY (TAS)</h1>
-        <p class="tagline">De la Infrautilización a la Maestría Operativa</p>
-      </section>
-
-      <section class="section section-1">
-        <div class="section-grid" [class.active]="section1Active">
-          <div class="section-image image-frame">
-            <img src="assets/Problema cliente.jpg" alt="Problema Cliente" />
+    <div class="page tas-page">
+      <section class="page-hero">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <a routerLink="/home" class="back-link">← Volver al inicio</a>
+            <span class="eyebrow">Para empresas cliente de software, o sin software</span>
+            <h1>
+              <span class="hero-product-name">Tech Adoption Strategy</span>
+              <span class="hero-subtitle">De la infrautilización a la Maestría Operativa</span>
+            </h1>
+            <p class="lead">
+              Consultoría de negocio y optimización de procesos, con la IA como palanca de mejora, para cualquier empresa con cualquier stack tecnológico, o sin él.
+            </p>
+            <p class="lead">
+              El objetivo es mejorar la facturación y la rentabilidad de su empresa.
+            </p>
+            <button type="button" class="btn-primary" (click)="navigateToContact()">Solicitar Diagnóstico Estratégico</button>
           </div>
-          <div class="section-panel">
-            <details
-              class="toggle-module"
-              (mouseenter)="setActive('section1', true)"
-              (mouseleave)="setActive('section1', false)"
-            >
-              <summary class="toggle-title">
-                <span class="title-content">¿Su software es una inversión o un gasto ineficiente?</span>
-                <span class="toggle-icon">▤▤▾</span>
-              </summary>
-              <div class="toggle-content">
-                <p>
-                  El "Efecto Iceberg": Tu empresa paga por el 100% de la tecnología, pero es muy probable que solo aproveches el 20% de su capacidad, porque su equipo probablemente solo utiliza la superficie visible.
-                </p>
-                <p>
-                  El resto es el "Efecto Iceberg": dinero desperdiciado en funciones que nadie usa, mientras tu equipo sigue perdiendo horas en hojas de cálculo paralelas, procesos manuales lentos, errores por falta de dominio y una dependencia absoluta de consultores externos para tareas básicas.
-                </p>
-                <p class="closing-sentence">
-                  Tu equipo ya tiene las herramientas. Es hora de que aprenda a ganar la batalla de la productividad con ellas.
-                </p>
+          <div class="hero-diagram">
+            <div class="solution-card">
+              <span class="eyebrow eyebrow--sm">Nuestra solución — TAS</span>
+              <div class="mini-stairs-cards">
+                <div class="mini-stairs-card mini-stairs-card--1">
+                  <div class="mini-stairs-card-strip"></div>
+                  <div class="mini-stairs-card-body">
+                    <span class="mini-stairs-card-title">Auditoría</span>
+                    <span class="mini-stairs-card-tag">Diagnóstico</span>
+                  </div>
+                </div>
+                <div class="mini-stairs-card mini-stairs-card--2">
+                  <div class="mini-stairs-card-strip"></div>
+                  <div class="mini-stairs-card-body">
+                    <span class="mini-stairs-card-title">Plan Estratégico a Medida (PEM)</span>
+                    <span class="mini-stairs-card-tag">Solución</span>
+                  </div>
+                </div>
+                <div class="mini-stairs-card mini-stairs-card--3">
+                  <div class="mini-stairs-card-strip"></div>
+                  <div class="mini-stairs-card-body">
+                    <span class="mini-stairs-card-title">Implantación</span>
+                    <span class="mini-stairs-card-tag">Resultados</span>
+                  </div>
+                </div>
               </div>
-            </details>
+              <a href="#que-es-tas" (click)="scrollToSection($event, 'que-es-tas')" class="solution-card-link">Ver la solución completa →</a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section section-2">
-        <details class="toggle-module">
-          <summary class="toggle-title">
-            <span class="title-content">El "Caos Post-Implantación"</span>
-            <span class="toggle-icon">▤▤▾</span>
-          </summary>
-          <div class="toggle-content">
-            <p>
-              En el escenario actual, <span class="highlight-blue">la aceleración tecnológica ha superado la capacidad de asimilación de la fuerza laboral</span>.
-            </p>
-            <p>
-              Esta <span class="highlight-blue">asimetría</span> genera un fenómeno crítico: empresas que adquieren soluciones de software de alto rendimiento, pero carecen de "operarios" capaces de explotar su potencial. El mayor desafío para una empresa que adquiere software de alto rendimiento es la <span class="highlight-blue">fuga de ROI</span> producida por una adopción deficiente. Tras la implantación, surgen tres problemas críticos.
-            </p>
-            <div class="flip-grid">
-              <div
-                class="flip-card"
-                *ngFor="let card of chaosCards; index as i"
-                [class.flipped]="chaosFlipped[i]"
-                (click)="toggleFlip('chaos', i)"
-              >
-                <div class="flip-card-inner">
-                  <div class="flip-card-face flip-card-front">
-                    <img
-                      *ngIf="card.icon"
-                      class="card-icon"
-                      [class.card-icon--large]="card.size === 'large'"
-                      [class.card-icon--small]="card.size === 'small'"
-                      [src]="card.icon"
-                      [alt]="card.title"
-                    />
-                    <span class="card-title">{{ card.title }}</span>
-                    <button class="btn-view-more">VER MÁS</button>
-                  </div>
-                  <div class="flip-card-face flip-card-back">
-                    <span>{{ card.back }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </details>
-      </section>
+      <section class="section" id="el-problema">
+        <span class="eyebrow">El problema</span>
+        <h2 class="el-problema-title">Tres frentes penalizan el ROI de su operación</h2>
 
-      <section class="section section-3">
-        <details class="toggle-module">
-          <summary class="toggle-title">
-            <span class="title-content">¿QUE ES TAS?</span>
-            <span class="toggle-icon">▤▤▾</span>
-          </summary>
-          <div class="toggle-content">
-            <p class="intro-line">
-              Tech Adoption Strategy (TAS) es nuestra solución, una Maestría operativa y soberanía tecnológica.
+        <div class="tab-card">
+          <div class="tab-row" role="tablist">
+            <button type="button" class="tab-btn" role="tab" [class.active]="activeProblemTab === 0" [attr.aria-selected]="activeProblemTab === 0" (click)="setProblemTab(0)">01 · Coste Invisible</button>
+            <button type="button" class="tab-btn" role="tab" [class.active]="activeProblemTab === 1" [attr.aria-selected]="activeProblemTab === 1" (click)="setProblemTab(1)">02 · Caos Post-Implantación</button>
+            <button type="button" class="tab-btn" role="tab" [class.active]="activeProblemTab === 2" [attr.aria-selected]="activeProblemTab === 2" (click)="setProblemTab(2)">03 · Desafío u Oportunidad</button>
+          </div>
+
+          <div class="tab-panel tab-panel--full-width" *ngIf="activeProblemTab === 0">
+            <h3 class="tab-title">¿Está obteniendo el máximo ROI de sus operaciones?</h3>
+            <p>
+              Por lo general <strong class="highlight-navy">el ROI de sus operaciones es penalizado por un </strong><strong>Coste Invisible</strong>: cada herramienta sin explotar, cada hoja de cálculo paralela, cada tarea manual que debería estar automatizada es dinero que ya pagó y no está recuperando.
             </p>
             <p>
-              No impartimos formación genérica; realizamos una transferencia de soberanía tecnológica. Diseñamos una <span class="highlight-blue">Hoja de Ruta de Adopción y Evolución</span> basada en vuestros propios casos de negocio.
+              Como agravante está el hecho de que los <strong>costes laborales suben</strong> a un ritmo más acelerado que la productividad (*).
             </p>
-            <div class="flip-grid">
-              <div
-                class="flip-card"
-                *ngFor="let card of tasCards; index as i"
-                [class.flipped]="tasFlipped[i]"
-                (click)="toggleFlip('tas', i)"
-              >
-                <div class="flip-card-inner">
-                  <div class="flip-card-face flip-card-front">
-                    <img *ngIf="card.icon" class="card-icon" [src]="card.icon" [alt]="card.title" />
-                    <span class="card-title">{{ card.title }}</span>
-                    <button class="btn-view-more">VER MÁS</button>
-                  </div>
-                  <div class="flip-card-face flip-card-back">
-                    <span>{{ card.back }}</span>
-                  </div>
-                </div>
-              </div>
+            <div class="section-image tab-image-banner">
+              <img src="assets/remeros-ilustracion.png" alt="Comparación entre un equipo remando de forma descoordinada y uno remando en sincronía, avanzando más rápido con el mismo número de remeros" loading="lazy" />
             </div>
+            <div class="tab-quote-block">
+              <p class="quote"><strong>El barco cada vez es más pesado, se necesita remar más rápido y más lejos, pero con el mismo número de remeros… La clave está entonces en analizar el "cómo" reman.</strong></p>
+            </div>
+            <p class="footnote">(*) Solo en España, entre el primer trimestre de 2021 y finales de 2025, los costes laborales subieron un 29% en microempresas y un 28,7% en pequeñas empresas, frente al 23,4% en medianas (CEPYME, Indicador CEPYME sobre la Situación de la Pyme, 2S 2025).</p>
           </div>
-        </details>
-      </section>
 
-      <section class="section section-3 section-6" [class.zoomed]="section6Zoomed" [class.opened]="section6Open" [class.center-zoomed]="section6CenterZoomed" [class.clicked-panel]="section6ClickedPanel" [class.clicked-image]="section6ClickedImage">
-        <div class="section-grid reverse-grid" [class.active]="section6Active">
-          <div class="section-panel" (click)="onSection6PanelClick()">
-            <details
-              #section6Details
-              class="toggle-module"
-              (toggle)="setSection6Open(section6Details.open)"
-              (mouseenter)="setActive('section6', true)"
-              (mouseleave)="setActive('section6', false)"
-            >
-              <summary class="toggle-title">
-                <span class="title-primary">RESULTADO</span>
-                <span class="title-secondary">Transforme su fuerza laboral en un ACTIVO CIRCULAR de expansión y alto rendimiento.</span>
-                <span class="toggle-icon">▤▤▾</span>
-              </summary>
-              <div class="toggle-content">
+          <div class="tab-panel" *ngIf="activeProblemTab === 1">
+            <div class="section-grid section-grid--balanced">
+              <div class="section-copy">
+                <h3 class="tab-title">El "Caos Post-Implantación"</h3>
                 <p>
-                  Reduzca el estrés por brecha tecnológica y transforme un entorno de trabajo pesado en un ecosistema ágil donde la <span class="highlight-blue">herramienta trabaja para las personas, y no al revés</span>.
+                  La aceleración tecnológica actual supera la capacidad de asimilación de la fuerza laboral, exista o no un software formal de por medio: <strong>se implementa más rápido de lo que se puede adoptar</strong>.
+                </p>
+                <p>
+                  El mayor riesgo es <strong>la fuga de ROI</strong> que produce una <strong>adopción deficiente</strong>. De ahí surgen cuatro problemas críticos.
                 </p>
               </div>
-            </details>
+              <div class="section-image">
+                <img src="assets/meta-inalcanzable.png" alt="Persona corriendo hacia una meta que se aleja y se multiplica, representando una adopción que nunca alcanza a la velocidad de implantación" loading="lazy" />
+              </div>
+            </div>
+            <div class="card-grid card-grid--4">
+              <details class="offer-card" *ngFor="let card of chaosCards">
+                <summary class="offer-card-summary">
+                  <app-icon class="offer-card-icon" [name]="card.icon"></app-icon>
+                  <div class="offer-card-summary-row">
+                    <h4>{{ card.title }}</h4>
+                    <span class="offer-card-toggle" aria-hidden="true"></span>
+                  </div>
+                </summary>
+                <p [innerHTML]="card.back"></p>
+              </details>
+            </div>
+            <p class="chaos-closing">Trabajemos en la adopción, la usabilidad y la optimización estratégica, antes de seguir perdiendo dinero por el camino. <strong>Esto no es un lujo, es una necesidad.</strong></p>
           </div>
-          <div class="section-image image-frame zoom-image" (click)="onSection6ImageClick()">
-            <img src="assets/Diagrama circular Usuario.jpg" alt="Diagrama Cliente" />
+
+          <div class="tab-panel" *ngIf="activeProblemTab === 2">
+            <div class="section-grid section-grid--balanced section-grid--stretch">
+              <div class="section-copy">
+                <h3 class="tab-title">¿Desafío o mas bien Oportunidad?</h3>
+                <p>
+                  La IA está cambiando las reglas del juego, y <strong>su adopción es tan desafiante como necesaria</strong> para empresas y empleados por igual. No se trata de eliminar posiciones sino de <strong>reformularlas</strong> para generar <strong>más negocio</strong>.
+                </p>
+              </div>
+              <div class="section-image section-image--capped section-image--match-text">
+                <img src="assets/ia-equipo-engranaje.png" alt="Una persona conectando un engranaje con una figura humana formada por nodos de datos, representando la colaboración entre el equipo humano y la IA" loading="lazy" />
+              </div>
+            </div>
+
+            <div class="tab-copy-full">
+              <p>
+                Los datos muestran una <strong>adopción acelerada de la IA</strong> —casi el doble en solo dos años—, aunque la mayoría la usa en fase experimental y sin haber adaptado su estructura para sostenerla, lo que deriva en <strong>una inversión con poco retorno</strong>.
+              </p>
+            </div>
+
+            <div class="data-panel">
+              <div class="data-card">
+                <span class="data-card-label">Adopción de IA en España</span>
+                <span class="data-kpi-value">21,1%</span>
+                <span class="data-kpi-subtitle">empresas usando IA, frente al 12,4% en 2023</span>
+                <span class="data-card-footnote">casi se duplica en dos años · INE</span>
+              </div>
+
+              <div class="data-card">
+                <span class="data-card-label">De las que ya usan IA</span>
+                <span class="data-kpi-value">19,9%</span>
+                <span class="data-kpi-subtitle">la usa hoy en su operación</span>
+                <span class="data-card-footnote">60% aún experimental o en piloto · Banco de España</span>
+              </div>
+
+              <div class="data-card">
+                <span class="data-card-label">Principales obstáculos</span>
+                <span class="data-kpi-value">45,8%</span>
+                <span class="data-kpi-subtitle">señala la falta de personal cualificado como principal freno</span>
+                <span class="data-card-footnote">Banco de España, EBAE Q4 2024</span>
+              </div>
+
+              <div class="data-card">
+                <span class="data-card-label">Dos cifras que resumen el reto</span>
+                <div class="stat-split">
+                  <div class="stat-split-item">
+                    <span class="stat-split-value">84%</span>
+                    <span class="stat-split-desc">no ha rediseñado los puestos para integrar la IA</span>
+                    <span class="stat-split-source">Deloitte</span>
+                  </div>
+                  <div class="stat-split-item">
+                    <span class="stat-split-value">23%</span>
+                    <span class="stat-split-desc">de iniciativas de IA logra el ROI esperado</span>
+                    <span class="stat-split-source">IT User, 2025</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="chaos-closing">El mundo exige cada vez más, y <strong>no podemos quedar fuera de esta ola</strong>, pero hay que subirse bien, no de cualquier forma.</p>
+          </div>
+
+          <div class="dots">
+            <button type="button" class="dot" [class.active]="activeProblemTab === 0" (click)="setProblemTab(0)" aria-label="Ir a Coste Invisible"></button>
+            <button type="button" class="dot" [class.active]="activeProblemTab === 1" (click)="setProblemTab(1)" aria-label="Ir a Caos Post-Implantación"></button>
+            <button type="button" class="dot" [class.active]="activeProblemTab === 2" (click)="setProblemTab(2)" aria-label="Ir a Desafío u Oportunidad"></button>
           </div>
         </div>
       </section>
 
-      <section class="section section-7">
-        <details class="toggle-module">
-          <summary class="toggle-title">
-            <span class="title-content">¿POR QUÉ DELEGAR ESTA MISIÓN EN NOSOTROS</span>
-            <span class="toggle-icon">▤▤▾</span>
-          </summary>
-          <div class="toggle-content">
-            <p>
-              Contratar una "formación genérica" o dejarlo en manos de IT es el camino más corto hacia la repetición de errores. He aquí por qué nuestra intervención es una inversión con retorno garantizado:
-            </p>
-            <div class="flip-grid">
-              <div
-                class="flip-card"
-                *ngFor="let card of missionCards; index as i"
-                [class.flipped]="missionFlipped[i]"
-                (click)="toggleFlip('mission', i)"
-              >
-                <div class="flip-card-inner">
-                  <div class="flip-card-face flip-card-front">
-                    <img *ngIf="card.icon" class="card-icon" [src]="card.icon" [alt]="card.title" />
-                    <span class="card-title">{{ card.title }}</span>
-                    <button class="btn-view-more">VER MÁS</button>
-                  </div>
-                  <div class="flip-card-face flip-card-back">
-                    <span>{{ card.back }}</span>
-                  </div>
-                </div>
-              </div>
+      <section class="section stairs-section" id="que-es-tas">
+        <span class="eyebrow">La solución</span>
+        <h2>¿Qué es TAS?</h2>
+        <p class="section-intro">
+          Tech Adoption Strategy (TAS) es nuestra consultoría de negocio y optimización de procesos, con la IA como palanca cuando el diagnóstico lo justifica, no como punto de partida. No partimos de una plataforma ni de un curso genérico: partimos de una <strong>Auditoría Operativa completa</strong> de su empresa, tenga o no software, y diseñamos un plan de mejora a la medida de lo que encontramos.
+        </p>
+
+        <div class="stairs-cards">
+          <div class="stairs-card stairs-card--1">
+            <div class="stairs-card-strip"></div>
+            <div class="stairs-card-body">
+              <span class="stairs-card-number">01</span>
+              <h3 class="stairs-card-title">Auditoría</h3>
+              <p>Profundizamos en su problema real: procesos, herramientas, gestión de la información, seguridad y cómo detecta hoy oportunidades de negocio. Traducimos cada hallazgo a euros de ineficiencia o de oportunidad perdida.</p>
             </div>
           </div>
-        </details>
+          <div class="stairs-card stairs-card--2">
+            <div class="stairs-card-strip"></div>
+            <div class="stairs-card-body">
+              <span class="stairs-card-number">02</span>
+              <h3 class="stairs-card-title">Plan Estratégico a Medida (PEM)</h3>
+              <p>Definimos qué optimizar o estandarizar, qué herramientas escalar o sustituir, y qué automatizar con IA — nunca una hoja de ruta genérica, sino adaptada a la realidad de su negocio.</p>
+            </div>
+          </div>
+          <div class="stairs-card stairs-card--3">
+            <div class="stairs-card-strip"></div>
+            <div class="stairs-card-body">
+              <span class="stairs-card-number">03</span>
+              <h3 class="stairs-card-title">Implantación</h3>
+              <p>Le acompañamos en la puesta en marcha: implantación ordenada, progresiva y priorizada según sus necesidades y su matriz de riesgo, siempre con nuestro respaldo. Si hace falta, incluimos formación práctica no genérica, basada en sus casos de uso reales.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="stairs-closing"><strong>Nuestro objetivo no es vender tecnología -en algunos casos podría ser parte de la solución-. Nuestro objetivo es llevarlo de donde está a donde quiere estar, de forma ordenada y estratégica</strong></p>
       </section>
 
-      <section class="cta-section">
-        <h2>¿Quiere dejar de "sobrevivir" a mi software y empezar a liderar con él?</h2>
+      <section class="section section-alt">
+        <div class="section-grid reverse">
+          <div class="section-copy">
+            <span class="eyebrow eyebrow--sm">Resultado</span>
+            <h2>Transforme su fuerza laboral en un activo circular de expansión y alto rendimiento</h2>
+            <p>
+              Reduzca el estrés por brecha tecnológica y transforme un entorno de trabajo pesado en un ecosistema ágil donde <strong>la herramienta trabaja para las personas, y no al revés</strong>.
+            </p>
+          </div>
+          <div class="section-image section-image--loop-static">
+            <img src="assets/diagrama_espiral_rentabilidad.png" alt="Diagrama circular de la Espiral de Rentabilidad y Autonomía: Auditoría Operativa, Plan de Mejora, Implementación y Mayor Rentabilidad conectados alrededor de un núcleo central mediante flechas curvas" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>¿Por qué delegar esta misión en nosotros?</h2>
+        <div class="card-grid card-grid--3">
+          <article class="offer-card" *ngFor="let card of missionCards">
+            <app-icon class="offer-card-icon" [name]="card.icon"></app-icon>
+            <h3>{{ card.title }}</h3>
+            <p [innerHTML]="card.back"></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-faq section-alt">
+        <h2>Preguntas frecuentes sobre TAS</h2>
+        <div class="faq-list">
+          <details class="faq-item" *ngFor="let item of faqItems">
+            <summary>{{ item.q }}</summary>
+            <p>{{ item.a }}</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section cta-section">
+        <h2>¿Quiere dejar de "sobrevivir" a su operación y empezar a liderarla?</h2>
+        <p class="bridge-note">
+          ¿Su optimización interna reveló una necesidad concreta de un proveedor de software? Nuestro servicio hermano, <a routerLink="/intelligence">Tech Adoption Intelligence (TAI)</a>, conecta ese tipo de necesidades con nuestro ecosistema de partners certificados.
+        </p>
         <div class="button-group">
-          <button class="btn-primary" (click)="navigateToContact()">Solicitar Diagnóstico Estratégico</button>
-          <button class="btn-secondary-download" (click)="downloadCatalog()">Descargar Brochure TAS Services</button>
+          <button type="button" class="btn-primary" (click)="navigateToContact()">Solicitar Diagnóstico Estratégico</button>
         </div>
       </section>
     </div>
   `,
   styleUrls: ['./strategy.component.scss']
 })
-export class StrategyComponent implements AfterViewInit {
+export class StrategyComponent implements OnInit {
+  private router = inject(Router);
+  private seo = inject(SeoService);
+
+  activeProblemTab = 0;
+
   chaosCards = [
     {
       title: 'Subutilización Crónica',
-      icon: 'assets/Icono Subuti.png',
-      size: 'large',
+      icon: 'sliders-vertical',
       back:
-        'La empresa paga por el 100% de una herramienta (Salesforce, Jira, SAP, etc.) pero su personal solo utiliza el 20% por desconocimiento. Esto convierte una inversión estratégica en un coste hundido.'
+        'La empresa paga por el 100% de una herramienta o software, pero, por falta de dominio técnico, <strong>se explota la herramienta muy por debajo de su potencial</strong> y se siguen utilizando procesos manuales "paralelos" previamente adoptados. Así, una inversión estratégica se convierte en <strong>un coste hundido</strong>.'
     },
     {
       title: 'Silos de Información y Estrés Laboral',
-      icon: 'assets/Icono estres.png',
-      size: 'small',
+      icon: 'columns-3',
       back:
-        'La falta de dominio técnico genera procesos manuales "paralelos" (Excel externos, cadenas de emails), aumentando la carga de trabajo, el error humano y el estrés de los empleados.'
+        'La falta de adopción estandarizada de procesos y sistemas desorganiza y descentraliza la información, <strong>aumentando la carga de trabajo, el error humano y el estrés</strong> de los empleados.'
     },
     {
       title: 'Dependencia Ciega del Proveedor',
-      icon: 'assets/Icono ojo ciego.png',
+      icon: 'eye-off',
       back:
-        'Al no entender las capacidades reales de su software, el cliente no sabe qué pedirle a su Partner IT, aceptando presupuestos por soluciones que quizás ya tiene contratadas pero no sabe configurar.'
+        'Al no entender las capacidades reales de su software —o su forma de operar—, <strong>el cliente queda a merced del proveedor</strong>, forzado a comprar bolsas de horas de soporte solo para resolver consultas operativas o de configuración.'
+    },
+    {
+      title: 'Ecosistema Multiplataforma',
+      icon: 'workflow',
+      back:
+        'Desconocer el alcance real de las soluciones ya adquiridas lleva a contratar otras nuevas pensando que se necesitan para sustituir o complementar lo que ya tienen. El resultado es un ecosistema cada vez más difícil de asimilar, donde cada solución nueva se convierte en un problema más — <strong>una bola de nieve que no deja de crecer</strong>.'
     }
   ];
 
-  tasCards = [
-    {
-      title: 'Ingeniería Pedagógica "Learning by Doing"',
-      icon: 'assets/Icono CerebroDigital.png',
-      back:
-        'Diseñamos rutas de aprendizaje basadas 100% en sus procesos de negocio. Los empleados no aprenden "software", aprenden a resolver sus problemas diarios con la herramienta.'
-    },
-    {
-      title: 'Activos Digitales Permanentes',
-      icon: 'assets/Icono BibliDig.png',
-      back:
-        'Creamos una biblioteca de micro-learning a medida. Píldoras de vídeo de menos de 2 minutos que resuelven dudas en el acto, aceleran el onboarding de nuevos empleados en un 60% y liberan a su departamento de IT de tickets repetitivos.'
-    },
-    {
-      title: 'Informe o "Blueprint" Estratégico',
-      icon: 'assets/Icono Diana.png',
-      back:
-        'Tras nuestra intervención, recibirán un mapa de ruta estratégica, para optimizar lo que tienen y marcar la ruta hacia lo que quieren tener: oportunidades de mejora, optimización de procesos, guía de buenas prácticas personalizada para su equipo y, por otro lado, un informe funcional-técnico de nuevos requerimientos, enmarcado dentro objetivos y factibilidad, que podrá presentar a su proveedor de software.'
-    }
-  ];
 
   missionCards = [
     {
-      title: 'Neutralidad frente al Proveedor',
-      icon: 'assets/Icono Externo.png',
+      title: 'Neutralidad Total',
+      icon: 'refresh-cw',
       back:
-        'Nosotros no queremos venderle más licencias. Queremos que use bien las que ya tiene. Esta independencia nos permite decirle la verdad sobre qué procesos sobran y cuáles deben automatizarse, ahorrándole miles de euros en consultoría innecesaria.'
+        'No vendemos herramientas de ningún proveedor: solo recomendamos lo que su empresa realmente necesita, tenga o no software. Esta independencia nos permite decirle la verdad sobre qué procesos sobran y cuáles automatizar, <strong>sin conflicto de interés</strong>.'
     },
     {
-      title: 'Aprovechamiento del "Costo de oportunidad"',
-      icon: 'assets/Icono Horashombre.png',
+      title: 'Resultados sin Promesas Infladas',
+      icon: 'chart-line',
       back:
-        'Mientras su equipo pierde 30 minutos al día buscando cómo hacer una tarea, usted pierde meses de crecimiento al año. nuestra herramienta de microlearning optimizará el uso de las horas hombre en su empresa'
+        'No prometemos cifras de ROI infladas. El proceso típico de optimización en una pyme <strong>se recupera en 2 a 4 meses</strong> cuando se elige bien el primer proceso a intervenir; nuestro trabajo es asegurarnos de que elegimos el correcto.'
     },
     {
-      title: 'Soberanía Tecnológica',
-      icon: 'assets/Icono soberaniaIT.png',
+      title: 'Soberanía Operativa',
+      icon: 'flag',
       back:
-        'Sin nuestro Blueprint de Futuro, usted es "rehén" de lo que su proveedor le diga. Con nosotros, usted recupera el criterio técnico para exigir resultados, optimizar contratos y liderar su propia transformación digital.'
+        'Sin un diagnóstico propio, usted depende de lo que le diga su proveedor de turno. Con nosotros, <strong>recupera el criterio para decidir su propia transformación</strong>: qué automatizar, qué contratar y qué dejar como está.'
     }
   ];
 
-  chaosFlipped: Record<number, boolean> = {};
-  tasFlipped: Record<number, boolean> = {};
-  missionFlipped: Record<number, boolean> = {};
-  section1Active = false;
-  section6Active = false;
-  section6Open = false;
-  section6Visible = false;
-  section6Zoomed = false;
-  section6CenterZoomed = false;
-  section6ClickedPanel = false;
-  section6ClickedImage = false;
+  faqItems = [
+    {
+      q: '¿Necesito tener un software avanzado para trabajar con ustedes?',
+      a: 'No. Trabajamos igual con empresas que usan Salesforce, SAP o Jira que con empresas que hoy operan con Excel o sin ningún sistema formal: el diagnóstico se adapta a lo que ya tiene.'
+    },
+    {
+      q: '¿El servicio consiste en implementar inteligencia artificial?',
+      a: 'No necesariamente. La IA es una palanca que proponemos solo cuando el diagnóstico la justifica; en muchos casos la mejora real está en optimizar procesos que ya existen, no en añadir tecnología nueva.'
+    },
+    {
+      q: '¿Cómo miden el retorno de la inversión?',
+      a: 'No prometemos porcentajes de ROI genéricos. Medimos en función del proceso concreto intervenido y de cuánto tiempo o dinero libera; los procesos bien elegidos suelen recuperarse en 2 a 4 meses.'
+    },
+    {
+      q: '¿Qué pasa si mi equipo se resiste al cambio?',
+      a: 'Por eso el plan siempre incluye acompañamiento en la implementación, y solo agregamos formación práctica cuando el diagnóstico muestra que es necesaria: no la imponemos como punto de partida.'
+    }
+  ];
 
-  ngAfterViewInit(): void {
-    const resetOnLeave = (entry: IntersectionObserverEntry): void => {
-      if (!entry.isIntersecting && (entry.target as HTMLElement).classList.contains('section-6')) {
-        this.section6Visible = false;
-        this.section6Zoomed = false;
-        this.section6ClickedPanel = false;
-        this.section6ClickedImage = false;
+  ngOnInit(): void {
+    this.seo.apply({
+      title: 'Tech Adoption Strategy (TAS) | Optimización de procesos y rentabilidad',
+      description: 'TAS es una consultoría de negocio: auditoría operativa, plan de mejora e implementación con garantía, con IA solo cuando el diagnóstico lo justifica. Para empresas con o sin software.',
+      path: '/strategy',
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        serviceType: 'Tech Adoption Strategy (TAS)',
+        provider: { '@type': 'Organization', name: 'b2bitmaster' },
+        areaServed: 'ES',
+        audience: { '@type': 'Audience', audienceType: 'Empresas usuarias de software o sin sistema formal' },
+        description: 'Consultoría de negocio y optimización de procesos: auditoría operativa, plan de mejora personalizado e implementación con garantía, con la IA como palanca cuando el diagnóstico lo justifica.'
       }
-    };
-
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-      if ((entry.target as HTMLElement).classList.contains('section-6')) {
-        this.section6Visible = entry.isIntersecting;
-        this.section6Zoomed = entry.isIntersecting && !this.section6Open;
-        if (entry.isIntersecting) {
-          this.section6CenterZoomed = true;
-          setTimeout(() => this.section6CenterZoomed = false, 1000);
-        }
-      }
-      resetOnLeave(entry);
-    }), {
-      threshold: 0.5
     });
-
-    const section6 = document.querySelector('.section-6');
-    if (section6) {
-      observer.observe(section6);
-    }
-  }
-
-  setActive(section: 'section1' | 'section6', active: boolean): void {
-    if (section === 'section1') {
-      this.section1Active = active;
-    } else {
-      this.section6Active = active;
-    }
-  }
-
-  setSection6Open(open: boolean): void {
-    this.section6Open = open;
-    this.section6Zoomed = !open && this.section6Visible;
-  }
-
-  onSection6PanelClick(): void {
-    this.section6ClickedPanel = true;
-    setTimeout(() => this.section6ClickedPanel = false, 1000);
-  }
-
-  onSection6ImageClick(): void {
-    this.section6ClickedImage = true;
-    setTimeout(() => this.section6ClickedImage = false, 1000);
-  }
-
-  toggleFlip(section: 'chaos' | 'tas' | 'mission', index: number): void {
-    if (section === 'chaos') {
-      this.chaosFlipped[index] = !this.chaosFlipped[index];
-    } else if (section === 'tas') {
-      this.tasFlipped[index] = !this.tasFlipped[index];
-    } else {
-      this.missionFlipped[index] = !this.missionFlipped[index];
-    }
   }
 
   navigateToContact(): void {
-    window.location.href = '/contacto';
+    this.router.navigate(['/contacto']);
   }
 
-  downloadCatalog(): void {
-    const link = document.createElement('a');
-    const brochurePath = '/assets/Brochure TAS Services.pdf';
-    link.href = encodeURI(brochurePath);
-    link.download = 'Brochure TAS Services.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  /**
+   * Angular resuelve href="#id" contra el <base href> del documento
+   * (navega a "/"), no contra la ruta actual. Interceptamos el clic para
+   * hacer scroll manual y conservamos el href real por accesibilidad.
+   */
+  scrollToSection(event: MouseEvent, id: string): void {
+    event.preventDefault();
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  setProblemTab(index: number): void {
+    this.activeProblemTab = index;
   }
 }

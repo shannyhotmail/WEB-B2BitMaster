@@ -13,20 +13,20 @@ export interface ContactMessage {
   company?: string;
   subject: string;
   message: string;
+  numeroEmpleados?: string;
+  motivoContacto?: string;
 }
 
 /**
  * Servicio de Contacto
- * Gestiona la comunicación con el backend para enviar mensajes de contacto
+ * Gestiona el envío del formulario de contacto a la Azure Function
  */
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
-  private apiUrl = `${environment.apiUrl}/api/contact`;
-  private functionBase = environment.azureFunctionBaseUrl;
-  private useFunctions = !!environment.useAzureFunctions;
-  private functionKey = environment.azureFunctionKey;
+  private baseUrl = environment.functionsBaseUrl;
+  private functionKey = environment.functionsKey;
 
   constructor(private http: HttpClient) { }
 
@@ -36,24 +36,8 @@ export class ContactService {
    * @returns Observable con la respuesta del servidor
    */
   sendContactMessage(message: ContactMessage): Observable<any> {
-    if (this.useFunctions) {
-      const url = `${this.functionBase}/SendContactMessage`;
-      const headers = this.functionKey ? new HttpHeaders({ 'x-functions-key': this.functionKey }) : undefined;
-      return this.http.post(url, message, headers ? { headers } : {});
-    }
-    return this.http.post(`${this.apiUrl}/send-message`, message);
-  }
-
-  /**
-   * Obtiene la lista de contactos (solo para administradores)
-   * @returns Observable con la lista de mensajes
-   */
-  getMessages(): Observable<ContactMessage[]> {
-    if (this.useFunctions) {
-      const url = `${this.functionBase}/GetContactMessages`;
-      const headers = this.functionKey ? new HttpHeaders({ 'x-functions-key': this.functionKey }) : undefined;
-      return this.http.get<ContactMessage[]>(url, headers ? { headers } : {});
-    }
-    return this.http.get<ContactMessage[]>(`${this.apiUrl}/messages`);
+    const url = `${this.baseUrl}/contact/send-message`;
+    const headers = this.functionKey ? new HttpHeaders({ 'x-functions-key': this.functionKey }) : undefined;
+    return this.http.post(url, message, headers ? { headers } : {});
   }
 }
