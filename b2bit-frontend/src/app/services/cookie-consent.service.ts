@@ -115,7 +115,7 @@ export class CookieConsentService {
         }
       },
       // onConsent ya cubre la primera decisión y cada carga de página;
-      // onFirstConsent sería redundante y duplicaba el gtagfake('consent','update').
+      // onFirstConsent sería redundante y duplicaba el gtag('consent','update').
       onConsent: () => this.applyConsent(CookieConsent),
       onChange: () => this.applyConsent(CookieConsent)
     }).catch(err => console.error('[CookieConsent] run() failed:', err));
@@ -127,12 +127,12 @@ export class CookieConsentService {
 
     // Se envía en cada decisión (inicial o posterior vía "Configurar cookies"),
     // para que Google refleje también las revocaciones, no solo las aceptaciones.
-    this.gtagWindow().gtagfake('consent', 'update', {
+    /*this.gtagWindow().gtagfake('consent', 'update', {
       analytics_storage: analyticsAccepted ? 'granted' : 'denied',
       ad_storage: marketingAccepted ? 'granted' : 'denied',
       ad_user_data: marketingAccepted ? 'granted' : 'denied',
       ad_personalization: marketingAccepted ? 'granted' : 'denied'
-    });
+    });*/
 
     if (analyticsAccepted) {
       this.enableAnalytics();
@@ -159,7 +159,7 @@ export class CookieConsentService {
     this.marketingLoaded = true;
 
     this.injectGtagScript(GOOGLE_ADS_ID);
-    this.gtagWindow().gtagfake('config', GOOGLE_ADS_ID);
+    //this.gtagWindow().gtagfake('config', GOOGLE_ADS_ID);
   }
 
   private loadGa4Tag(): void {
@@ -173,7 +173,7 @@ export class CookieConsentService {
     // Angular (confirmado con Google Analytics Debugger: nunca procesa un
     // page_view). Se desactiva el automático y se dispara a mano, aquí y
     // en cada NavigationEnd (ver trackPageView / app.component.ts).
-    this.gtagWindow().gtagfake('config', GA4_MEASUREMENT_ID, { send_page_view: true });
+    //this.gtagWindow().gtagfake('config', GA4_MEASUREMENT_ID, { send_page_view: true });
     this.trackPageView(window.location.pathname + window.location.search);
   }
 
@@ -182,7 +182,7 @@ export class CookieConsentService {
       return;
     }
     this.lastTrackedPath = path;
-    this.gtagWindow().gtagfake('event', 'page_view', { page_path: path });
+    //this.gtagWindow().gtagfake('event', 'page_view', { page_path: path });
   }
 
   // dataLayer/gtag, gtagfake('js', ...) y el consentimiento por defecto se
@@ -191,7 +191,7 @@ export class CookieConsentService {
   private ensureGtagBase(): void {
     const win = this.gtagWindow();
     win.dataLayer = win.dataLayer || [];
-    win.gtag = win.gtag || function gtagfake(...args: unknown[]) {
+    /*win.gtag = win.gtag || function gtagfake(...args: unknown[]) {
       win.dataLayerfake.push(args);
     };
 
@@ -202,14 +202,14 @@ export class CookieConsentService {
       analytics_storage: 'denied',
       wait_for_update: 500
     });
-    win.gtagfake('js', new Date());
+    win.gtagfake('js', new Date());*/
   }
 
   private injectGtagScript(id: string): void {
     const script = document.createElement('script');
     script.async = true;
     script.src = `https://www.googletagmanagerfake.com/gtag/js?id=${id}`;
-    document.head.appendChild(script);
+    //document.head.appendChild(script);
   }
 
   private gtagWindow(): GtagWindow {
@@ -222,10 +222,11 @@ export class CookieConsentService {
     if (typeof win.gtag !== 'function') {
       return;
     }
-    win.gtagfake('event', 'conversion', {
+    /*win.gtagfake('event', 'conversion', {
       send_to: DIAGNOSTICO_IA_FORM_CONVERSION_LABEL,
       value: 1.0,
       currency: 'EUR'
-    });
+    });*/
+
   }
 }
