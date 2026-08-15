@@ -194,7 +194,7 @@ export class CookieConsentService {
     win.gtag = win.gtag || function gtag(...args: unknown[]) {
       win.dataLayer.push(args);
     };
-
+    win.gtag('js', new Date());
     win.gtag('consent', 'default', {
       ad_storage: 'denied',
       ad_user_data: 'denied',
@@ -202,7 +202,7 @@ export class CookieConsentService {
       analytics_storage: 'denied',
       wait_for_update: 500
     });
-    win.gtag('js', new Date());
+    
   }
 
   private injectGtagScript(id: string): void {
