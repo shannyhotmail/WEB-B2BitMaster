@@ -124,8 +124,7 @@ export class CookieConsentService {
   private applyConsent(CookieConsent: CookieConsentApi): void {
     const analyticsAccepted = CookieConsent.acceptedCategory('analytics' satisfies ConsentCategory);
     const marketingAccepted = CookieConsent.acceptedCategory('marketing' satisfies ConsentCategory);
-    this.injectGtagScript(GOOGLE_ADS_ID);
-    this.injectGtagScript(GA4_MEASUREMENT_ID);
+    
     // Se envía en cada decisión (inicial o posterior vía "Configurar cookies"),
     // para que Google refleje también las revocaciones, no solo las aceptaciones.
     this.gtagWindow().gtag('consent', 'update', {
@@ -192,6 +191,9 @@ export class CookieConsentService {
   // establecen una sola vez, desde init(), antes de cualquier decisión del
   // usuario y antes de cargar ningún script de Ads/GA4.
   private ensureGtagBase(): void {
+    window.alert("sometext");
+    this.injectGtagScript(GOOGLE_ADS_ID);
+    this.injectGtagScript(GA4_MEASUREMENT_ID);
     const win = this.gtagWindow();
     win.dataLayer = win.dataLayer || [];
     win.gtag = win.gtag || function gtag(...args: unknown[]) {
