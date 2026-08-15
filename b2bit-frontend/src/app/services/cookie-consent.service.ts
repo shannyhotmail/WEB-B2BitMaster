@@ -173,7 +173,9 @@ export class CookieConsentService {
     // Angular (confirmado con Google Analytics Debugger: nunca procesa un
     // page_view). Se desactiva el automático y se dispara a mano, aquí y
     // en cada NavigationEnd (ver trackPageView / app.component.ts).
-    this.gtagWindow().gtag('config', GA4_MEASUREMENT_ID, { send_page_view: false });
+    
+    this.gtagWindow().gtag('js', new Date());
+    this.gtagWindow().gtag('config', GA4_MEASUREMENT_ID);
     this.trackPageView(window.location.pathname + window.location.search);
   }
 
