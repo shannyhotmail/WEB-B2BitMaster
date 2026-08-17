@@ -124,7 +124,7 @@ export class CookieConsentService {
   private applyConsent(CookieConsent: CookieConsentApi): void {
     const analyticsAccepted = CookieConsent.acceptedCategory('analytics' satisfies ConsentCategory);
     const marketingAccepted = CookieConsent.acceptedCategory('marketing' satisfies ConsentCategory);
-    
+
     // Se envía en cada decisión (inicial o posterior vía "Configurar cookies"),
     // para que Google refleje también las revocaciones, no solo las aceptaciones.
     this.gtagWindow().gtag('consent', 'update', {
@@ -158,7 +158,7 @@ export class CookieConsentService {
     }
     this.marketingLoaded = true;
 
-    
+    this.injectGtagScript(GOOGLE_ADS_ID);
     this.gtagWindow().gtag('config', GOOGLE_ADS_ID);
   }
 
@@ -168,15 +168,12 @@ export class CookieConsentService {
     }
     this.analyticsLoaded = true;
 
-    
+    this.injectGtagScript(GA4_MEASUREMENT_ID);
     // GA4 no detecta de forma fiable los cambios de ruta del router de
     // Angular (confirmado con Google Analytics Debugger: nunca procesa un
     // page_view). Se desactiva el automático y se dispara a mano, aquí y
     // en cada NavigationEnd (ver trackPageView / app.component.ts).
-    window.alert("sometext2");
-    this.gtagWindow().gtag('js', new Date());
-    this.gtagWindow().gtag('config', GA4_MEASUREMENT_ID);
-    window.alert("sometext3");
+    this.gtagWindow().gtag('config', GA4_MEASUREMENT_ID, { send_page_view: false });
     this.trackPageView(window.location.pathname + window.location.search);
   }
 
@@ -192,15 +189,12 @@ export class CookieConsentService {
   // establecen una sola vez, desde init(), antes de cualquier decisión del
   // usuario y antes de cargar ningún script de Ads/GA4.
   private ensureGtagBase(): void {
-    
-    this.injectGtagScript(GOOGLE_ADS_ID);
-    this.injectGtagScript(GA4_MEASUREMENT_ID);
     const win = this.gtagWindow();
     win.dataLayer = win.dataLayer || [];
     win.gtag = win.gtag || function gtag(...args: unknown[]) {
       win.dataLayer.push(args);
     };
-    win.gtag('js', new Date());
+
     win.gtag('consent', 'default', {
       ad_storage: 'denied',
       ad_user_data: 'denied',
@@ -208,7 +202,7 @@ export class CookieConsentService {
       analytics_storage: 'denied',
       wait_for_update: 500
     });
-    
+    win.gtag('js', new Date());
   }
 
   private injectGtagScript(id: string): void {
