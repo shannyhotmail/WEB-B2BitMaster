@@ -3,7 +3,7 @@
 <head>
   <!-- Google Consent Mode: valores por defecto, debe cargar antes que Cookiebot y que cualquier gtag.js.
        data-cookieconsent="ignore" evita que el modo bloqueo automático de Cookiebot lo intercepte. -->
-  <script data-cookieconsent="ignore">
+  <!-- <script data-cookieconsent="ignore">
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag("consent", "default", {
@@ -18,12 +18,23 @@
     });
     gtag("set", "ads_data_redaction", true);
     gtag("set", "url_passthrough", false);
-  </script>
+  </script> -->
 
-  <!-- Cookiebot CMP: debe ser el primer script de bloqueo del <head> -->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-52SRCFZP');</script>
+<!-- End Google Tag Manager -->
+
+  <!-- Cookiebot CMP: debe ser el primer script de bloqueo del <head> 
   <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="af608f57-9489-4656-b498-3e697bf6fbfc" data-blockingmode="auto" type="text/javascript"></script>
 
-  <!-- GA4 (Statistics): solo carga y configura si se acepta esa categoría -->
+<script data-cookieconsent="ignore">    window.dataLayer = window.dataLayer || [];    function gtag() {        dataLayer.push(arguments);    }    gtag("consent", "default", {        ad_personalization: "denied",        ad_storage: "denied",        ad_user_data: "denied",        analytics_storage: "denied",        functionality_storage: "denied",        personalization_storage: "denied",        security_storage: "granted",        wait_for_update: 500,    });    gtag("set", "ads_data_redaction", true);    gtag("set", "url_passthrough", false);</script>
+-->
+
+  <!-- GA4 (Statistics): solo carga y configura si se acepta esa categoría 
   <script type="text/plain" data-cookieconsent="statistics">
     (function () {
       var s = document.createElement('script');
@@ -32,9 +43,9 @@
       document.head.appendChild(s);
       gtag('config', 'G-PPS9NCBNKP', { send_page_view: false });
     })();
-  </script>
+  </script> -->
 
-  <!-- Google Ads (Marketing): solo carga y configura si se acepta esa categoría, independiente de Statistics -->
+  <!-- Google Ads (Marketing): solo carga y configura si se acepta esa categoría, independiente de Statistics 
   <script type="text/plain" data-cookieconsent="marketing">
     (function () {
       var s = document.createElement('script');
@@ -43,7 +54,7 @@
       document.head.appendChild(s);
       gtag('config', 'AW-18385297761');
     })();
-  </script>
+  </script> -->
   <meta charset="utf-8">
   <title>b2bitmaster - Tech Adoption Intelligence & Strategy</title>
   <base href="/">
@@ -83,6 +94,10 @@
   </script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52SRCFZP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
   <app-root></app-root>
   <noscript>
     <p>Por favor, habilita JavaScript para usar esta aplicación.</p>
