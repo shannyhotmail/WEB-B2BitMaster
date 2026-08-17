@@ -1,15 +1,27 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <!-- Cookiebot CMP: debe ser el primer script del <head>, antes de cualquier otro -->
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="af608f57-9489-4656-b498-3e697bf6fbfc" data-blockingmode="auto" type="text/javascript"></script>
-
-  <!-- gtag bootstrap: se ejecuta siempre, pero no configura ningún producto todavía -->
-  <script>
+  <!-- Google Consent Mode: valores por defecto, debe cargar antes que Cookiebot y que cualquier gtag.js.
+       data-cookieconsent="ignore" evita que el modo bloqueo automático de Cookiebot lo intercepte. -->
+  <script data-cookieconsent="ignore">
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+      ad_personalization: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      analytics_storage: "denied",
+      functionality_storage: "denied",
+      personalization_storage: "denied",
+      security_storage: "granted",
+      wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
   </script>
+
+  <!-- Cookiebot CMP: debe ser el primer script de bloqueo del <head> -->
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="af608f57-9489-4656-b498-3e697bf6fbfc" data-blockingmode="auto" type="text/javascript"></script>
 
   <!-- GA4 (Statistics): solo carga y configura si se acepta esa categoría -->
   <script type="text/plain" data-cookieconsent="statistics">
