@@ -41,8 +41,6 @@ export class AppComponent {
       this.minimalHeader.set(this.isMinimalHeaderRoute((event as NavigationEnd).urlAfterRedirects));
       this.cookieConsent.trackPageView((event as NavigationEnd).urlAfterRedirects);
     });
-
-    this.cookieConsent.init();
   }
 
   private isMinimalHeaderRoute(url: string): boolean {
