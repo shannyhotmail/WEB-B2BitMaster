@@ -16,7 +16,7 @@ export interface SeoConfig {
  */
 @Injectable({ providedIn: 'root' })
 export class SeoService {
-  private readonly baseUrl = 'https://www.b2bitmaster.com';
+  private readonly baseUrl = 'https://b2bitmaster.com';
 
   private titleService = inject(Title);
   private meta = inject(Meta);

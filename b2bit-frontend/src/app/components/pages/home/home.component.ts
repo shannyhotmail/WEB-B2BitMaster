@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: 'b2bitmaster',
-        url: 'https://www.b2bitmaster.com/',
+        url: 'https://b2bitmaster.com/',
         description: 'Retención de cartera para proveedores de software (TAI) y consultoría de optimización de procesos para empresas (TAS).'
       }
     });

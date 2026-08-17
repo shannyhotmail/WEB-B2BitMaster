@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.b2bitmaster.com/sitemap.xml
+Sitemap: https://b2bitmaster.com/sitemap.xml
