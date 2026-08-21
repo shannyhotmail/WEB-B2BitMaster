@@ -212,6 +212,11 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
               </select>
             </div>
 
+            <div class="form-group">
+              <label for="comentario">¿Algo más que quiera contarnos? (opcional)</label>
+              <textarea id="comentario" formControlName="comentario" class="form-input" rows="3"></textarea>
+            </div>
+
             <button type="submit" [disabled]="diagnosticForm.invalid || isSubmitting()" class="btn-submit">
               {{ isSubmitting() ? 'Enviando...' : 'Solicitar Diagnóstico Express' }}
             </button>
@@ -296,7 +301,8 @@ export class DiagnosticoIaComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phone: [''],
       numeroEmpleados: [this.numeroEmpleadosOptions[0]],
-      motivoContacto: [this.motivoContactoOptions[0]]
+      motivoContacto: [this.motivoContactoOptions[0]],
+      comentario: ['']
     });
   }
 
@@ -339,13 +345,18 @@ export class DiagnosticoIaComponent implements OnInit {
     this.errorMessage.set('');
 
     const formValue = this.diagnosticForm.value;
+    const comentario = (formValue.comentario || '').trim();
+    const message = comentario
+      ? `Solicitud de Diagnóstico Express desde /diagnostico-ia.\n\nComentario del usuario: ${comentario}`
+      : 'Solicitud de Diagnóstico Express desde /diagnostico-ia.';
+
     this.contactService.sendContactMessage({
       name: formValue.name,
       email: formValue.email,
       phone: formValue.phone || undefined,
       company: formValue.company,
       subject: 'diagnostico-ia',
-      message: 'Solicitud de Diagnóstico Express desde /diagnostico-ia.',
+      message,
       numeroEmpleados: formValue.numeroEmpleados,
       motivoContacto: formValue.motivoContacto
     }).subscribe({
