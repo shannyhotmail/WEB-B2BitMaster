@@ -562,6 +562,11 @@ h2 {
   }
 }
 
+textarea.form-input {
+  resize: vertical;
+  min-height: 80px;
+}
+
 .error {
   font-size: 12px;
   color: #ff6b6b;
