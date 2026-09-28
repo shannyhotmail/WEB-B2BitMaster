@@ -31,7 +31,7 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
             </p>
             <div class="hero-actions">
               <a href="#formulario" class="btn-primary" (click)="scrollToForm($event)">Solicitar Diagnóstico Express — 95€</a>
-              <a [href]="calendlyUrl" target="_blank" rel="noopener noreferrer" class="btn-outline">
+              <a [href]="calendlyUrl" target="_blank" rel="noopener noreferrer" class="btn-outline" (click)="trackAgendarLlamadaClick()">
                 Prefiero agendar una llamada de 15 min
               </a>
             </div>
@@ -230,7 +230,7 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
           <div class="call-panel">
             <h4>¿Prefiere hablar antes de decidir?</h4>
             <p>Agende una llamada breve, sin compromiso, antes de solicitar el diagnóstico.</p>
-            <a [href]="calendlyUrl" target="_blank" rel="noopener noreferrer" class="btn-outline btn-outline--block">
+            <a [href]="calendlyUrl" target="_blank" rel="noopener noreferrer" class="btn-outline btn-outline--block" (click)="trackAgendarLlamadaClick()">
               Agendar llamada de 15 minutos, sin compromiso
             </a>
           </div>
@@ -333,6 +333,10 @@ export class DiagnosticoIaComponent implements OnInit {
   scrollToForm(event: Event): void {
     event.preventDefault();
     document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  trackAgendarLlamadaClick(): void {
+    this.cookieConsent.trackAgendarLlamadaClick();
   }
 
   onSubmit(): void {

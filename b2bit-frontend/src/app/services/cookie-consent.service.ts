@@ -34,6 +34,17 @@ export class CookieConsentService {
     this.push({ event: 'diagnostico_ia_conversion', value: 1.0, currency: 'EUR' });
   }
 
+  // Calendly se abre como link externo (target="_blank"), no hay widget
+  // embebido en el dominio, así que no podemos capturar la reserva
+  // confirmada (postMessage "calendly.event_scheduled"). Esto mide clic/
+  // interés, no reserva confirmada.
+  trackAgendarLlamadaClick(): void {
+    if (!(window as unknown as CookiebotWindow).Cookiebot?.consent?.marketing) {
+      return;
+    }
+    this.push({ event: 'agendar_llamada_click' });
+  }
+
   private push(data: Record<string, unknown>): void {
     const win = window as unknown as DataLayerWindow;
     win.dataLayer = win.dataLayer || [];
