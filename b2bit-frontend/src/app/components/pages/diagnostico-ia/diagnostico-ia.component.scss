@@ -639,6 +639,20 @@ textarea.form-input {
     color: #013d5a;
     margin: 0;
   }
+
+  // Widget inline de Calendly: sin altura hasta que carga, para que el panel
+  // no se ensanche cuando solo se ve el enlace de respaldo.
+  .calendly-host {
+    display: none;
+
+    &--active {
+      display: block;
+      min-width: 280px;
+      height: 700px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
 }
 
 @media (max-width: 900px) {
