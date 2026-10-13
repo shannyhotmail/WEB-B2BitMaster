@@ -1,10 +1,12 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ContactService } from '../../../services/contact.service';
 import { SeoService } from '../../../services/seo.service';
 import { CookieConsentService } from '../../../services/cookie-consent.service';
+import { CalendlyEmbedService } from '../../../services/calendly-embed.service';
+import { environment } from '../../../../environments/environment';
 
 const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
 
@@ -230,8 +232,9 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
           <div class="call-panel">
             <h4>¿Prefiere hablar antes de decidir?</h4>
             <p>Agende una llamada breve, sin compromiso, antes de solicitar el diagnóstico.</p>
+            <div *ngIf="calendlyEmbedEnabled" #calendlyHost class="calendly-host" [class.calendly-host--active]="calendlyWidgetActive()"></div>
             <a [href]="calendlyUrl" target="_blank" rel="noopener noreferrer" class="btn-outline btn-outline--block" (click)="trackAgendarLlamadaClick()">
-              Agendar llamada de 15 minutos, sin compromiso
+              {{ calendlyWidgetActive() ? 'Prefiero abrirlo en una pestaña nueva' : 'Agendar llamada de 15 minutos, sin compromiso' }}
             </a>
           </div>
         </div>
@@ -273,13 +276,20 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
   `,
   styleUrls: ['./diagnostico-ia.component.scss']
 })
-export class DiagnosticoIaComponent implements OnInit {
+export class DiagnosticoIaComponent implements OnInit, AfterViewInit, OnDestroy {
   private fb = inject(FormBuilder);
   private contactService = inject(ContactService);
   private seoService = inject(SeoService);
   private cookieConsent = inject(CookieConsentService);
+  private calendlyEmbed = inject(CalendlyEmbedService);
+
+  @ViewChild('calendlyHost') private calendlyHost?: ElementRef<HTMLElement>;
 
   calendlyUrl = CALENDLY_URL;
+  calendlyEmbedEnabled = environment.calendlyEmbedEnabled;
+  calendlyWidgetActive = signal(false);
+  private stopConsentWatch?: () => void;
+  private unmountCalendly?: () => void;
 
   numeroEmpleadosOptions = ['1-5', '5-20', '20-50', 'más de 50'];
   motivoContactoOptions = [
@@ -328,6 +338,44 @@ export class DiagnosticoIaComponent implements OnInit {
         }
       }
     });
+  }
+
+  // El widget solo se monta con consentimiento de Marketing; sin él (o si no
+  // carga) el enlace externo sigue siendo la vía de reserva.
+  ngAfterViewInit(): void {
+    if (!this.calendlyEmbedEnabled) {
+      return;
+    }
+    this.stopConsentWatch = this.cookieConsent.watchMarketingConsent(allowed => {
+      if (allowed) {
+        this.mountCalendly();
+      } else {
+        this.destroyCalendly();
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.stopConsentWatch?.();
+    this.destroyCalendly();
+  }
+
+  private mountCalendly(): void {
+    const host = this.calendlyHost?.nativeElement;
+    if (this.unmountCalendly || !host) {
+      return;
+    }
+    this.unmountCalendly = this.calendlyEmbed.mount(
+      host,
+      this.calendlyUrl,
+      () => this.cookieConsent.trackAgendarLlamadaConfirmada(),
+      ready => this.calendlyWidgetActive.set(ready)
+    );
+  }
+
+  private destroyCalendly(): void {
+    this.unmountCalendly?.();
+    this.unmountCalendly = undefined;
   }
 
   scrollToForm(event: Event): void {
