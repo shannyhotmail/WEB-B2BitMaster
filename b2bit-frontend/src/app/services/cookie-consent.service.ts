@@ -38,9 +38,10 @@ export class CookieConsentService {
     this.push({ event: 'diagnostico_ia_conversion', value: 1.0, currency: 'EUR' });
   }
 
-  // Clic en el enlace externo de Calendly (target="_blank"): mide interés,
-  // no reserva. La reserva confirmada se mide con el widget embebido
-  // (ver trackAgendarLlamadaConfirmada).
+  // Calendly se abre como link externo (target="_blank"), no hay widget
+  // embebido en el dominio, así que no podemos capturar la reserva
+  // confirmada (postMessage "calendly.event_scheduled"). Esto mide clic/
+  // interés, no reserva confirmada.
   trackAgendarLlamadaClick(): void {
     if (!(window as unknown as CookiebotWindow).Cookiebot?.consent?.marketing) {
       return;
