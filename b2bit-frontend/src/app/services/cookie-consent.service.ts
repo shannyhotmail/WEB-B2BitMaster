@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 type DataLayerWindow = Window & { dataLayer: unknown[] };
 type CookiebotWindow = Window & { Cookiebot?: { renew: () => void; consent?: { marketing?: boolean } } };
 
+// Eventos de ventana que emite Cookiebot cuando el estado de consentimiento
+// queda resuelto o cambia.
+const COOKIEBOT_CONSENT_EVENTS = ['CookiebotOnConsentReady', 'CookiebotOnAccept', 'CookiebotOnDecline'];
+
 @Injectable({ providedIn: 'root' })
 export class CookieConsentService {
   private lastTrackedPath: string | null = null;
@@ -32,6 +36,43 @@ export class CookieConsentService {
       return;
     }
     this.push({ event: 'diagnostico_ia_conversion', value: 1.0, currency: 'EUR' });
+  }
+
+  // Calendly se abre como link externo (target="_blank"), no hay widget
+  // embebido en el dominio, así que no podemos capturar la reserva
+  // confirmada (postMessage "calendly.event_scheduled"). Esto mide clic/
+  // interés, no reserva confirmada.
+  trackAgendarLlamadaClick(): void {
+    if (!(window as unknown as CookiebotWindow).Cookiebot?.consent?.marketing) {
+      return;
+    }
+    this.push({ event: 'agendar_llamada_click' });
+  }
+
+  // Reserva confirmada en el widget de Calendly (postMessage
+  // "calendly.event_scheduled", ver CalendlyEmbedService). Sin gate propio:
+  // el widget solo existe con consentimiento de Marketing y GTM aplica
+  // Consent Mode a las etiquetas.
+  trackAgendarLlamadaConfirmada(): void {
+    this.push({ event: 'agendar_llamada_confirmada' });
+  }
+
+  // Avisa de forma inmediata y en cada cambio del consentimiento de Marketing.
+  // Cookiebot llega de forma asíncrona vía GTM, así que el estado inicial puede
+  // ser "no consentido" hasta que dispare CookiebotOnConsentReady. Devuelve la
+  // función para dejar de escuchar.
+  watchMarketingConsent(callback: (allowed: boolean) => void): () => void {
+    let last: boolean | null = null;
+    const check = () => {
+      const allowed = !!(window as unknown as CookiebotWindow).Cookiebot?.consent?.marketing;
+      if (allowed !== last) {
+        last = allowed;
+        callback(allowed);
+      }
+    };
+    COOKIEBOT_CONSENT_EVENTS.forEach(name => window.addEventListener(name, check));
+    check();
+    return () => COOKIEBOT_CONSENT_EVENTS.forEach(name => window.removeEventListener(name, check));
   }
 
   private push(data: Record<string, unknown>): void {
