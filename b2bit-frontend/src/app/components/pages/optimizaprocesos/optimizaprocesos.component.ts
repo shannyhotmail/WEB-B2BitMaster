@@ -80,15 +80,50 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
             <p>Ventas, clientes y mercado, sin métricas.</p>
           </div>
         </div>
-        <p class="small-note">De media se usa solo la mitad de las licencias de software contratadas. Fuente: Zylo, 2024.</p>
+        <div class="meter-card">
+          <div class="meter-head">
+            <span class="meter-label">Licencias de software contratadas</span>
+            <span class="meter-value">≈50% usadas</span>
+          </div>
+          <div class="meter-bar" role="img" aria-label="La mitad de las licencias se usa y la otra mitad no">
+            <span class="meter-seg meter-seg--used"></span>
+            <span class="meter-seg"></span>
+          </div>
+          <div class="meter-legend"><span>En uso</span><span>Pagadas y sin usar</span></div>
+          <p class="small-note">Fuente: Zylo, 2024</p>
+        </div>
       </section>
 
       <!-- 3b. IA -->
       <section class="ia-section">
         <h2>La IA rinde cuando se integra en lo que ya funciona</h2>
         <p class="ia-text">Por eso empezamos por ordenar lo que ya tiene y después decidimos dónde automatizar o aplicar IA suma de verdad.</p>
+        <div class="stat-cards">
+          <div class="stat-card">
+            <div class="square-grid" role="img" aria-label="Cuadrícula de 100 cuadros con 34 resaltados">
+              <span *ngFor="let i of squares" class="square" [class.square--gold]="i < 34"></span>
+            </div>
+            <div class="stat-card-text">
+              <span class="stat-card-kicker">Una de cada tres</span>
+              <span class="stat-card-number stat-card-number--gold">33,6%</span>
+              <p class="stat-card-desc">de las empresas españolas de 10 o más empleados ya usa IA</p>
+              <span class="small-note">Fuente: INE, T1 2026</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="square-grid" role="img" aria-label="Cuadrícula de 100 cuadros con 5 resaltados">
+              <span *ngFor="let i of squares" class="square" [class.square--red]="i < 5"></span>
+            </div>
+            <div class="stat-card-text">
+              <span class="stat-card-kicker">19 de cada 20</span>
+              <span class="stat-card-number stat-card-number--red">95%</span>
+              <p class="stat-card-desc">de las organizaciones no obtiene retorno medible de la IA generativa</p>
+              <p class="stat-card-extra">Entre otras causas, por flujos de trabajo frágiles y poco alineados con la operación diaria.</p>
+              <span class="small-note">Fuente: MIT NANDA, 2025</span>
+            </div>
+          </div>
+        </div>
         <p class="problem-quote">"Meter IA donde antes había caos no elimina el caos. Lo acelera."</p>
-        <p class="small-note">El 33,6% de las empresas españolas ya usa IA (INE, T1 2026), pero el 95% de las organizaciones no obtiene retorno medible de la IA generativa (MIT NANDA, 2025), entre otras causas por flujos de trabajo frágiles y poco alineados con la operación diaria.</p>
       </section>
 
       <div class="inline-cta">
@@ -300,6 +335,8 @@ export class OptimizaProcesosComponent implements OnInit, AfterViewInit, OnDestr
   calendlyWidgetActive = signal(false);
   private stopConsentWatch?: () => void;
   private unmountCalendly?: () => void;
+
+  squares = Array.from({ length: 100 }, (_, i) => i);
 
   numeroEmpleadosOptions = ['1-5', '5-20', '20-50', 'más de 50'];
   motivoContactoOptions = [

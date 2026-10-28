@@ -207,7 +207,7 @@ h2 {
 
   h2 {
     font-size: clamp(24px, 2.6vw, 32px);
-    max-width: 28ch;
+    max-width: none;
     margin-bottom: 18px;
   }
 }
@@ -217,7 +217,7 @@ h2 {
 
   h2 {
     font-size: clamp(24px, 2.6vw, 32px);
-    max-width: 32ch;
+    max-width: none;
     margin-bottom: 18px;
   }
 }
@@ -235,7 +235,129 @@ h2 {
   line-height: 1.5;
   color: #6e6b62;
   margin: 16px 0 0;
-  max-width: 80ch;
+}
+
+/* Medidor de licencias */
+.meter-card {
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.meter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.meter-label {
+  font-size: 13px;
+  color: #333333;
+}
+
+.meter-value {
+  font-size: 22px;
+  font-weight: 500;
+  color: #ba7517;
+}
+
+.meter-bar {
+  display: flex;
+  gap: 2px;
+  height: 16px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.meter-seg {
+  flex: 1;
+  background: #d9d6cb;
+}
+
+.meter-seg--used {
+  background: #f1a805;
+}
+
+.meter-legend {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #6e6b62;
+}
+
+/* Tarjetas de dato de la sección IA */
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.stat-card {
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.square-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 10px);
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.square {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: #d9d6cb;
+}
+
+.square--gold { background: #f1a805; }
+.square--red { background: var(--color-tas-accent); }
+
+.stat-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.stat-card-kicker {
+  font-size: 12px;
+  color: #6e6b62;
+}
+
+.stat-card-number {
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.stat-card-number--gold { color: #ba7517; }
+.stat-card-number--red { color: var(--color-tas-accent); }
+
+.stat-card-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333333;
+  margin: 0;
+}
+
+.stat-card-extra {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6e6b62;
+  margin: 0;
 }
 
 .problem-quote {
@@ -639,6 +761,13 @@ textarea.form-input {
 @media (max-width: 900px) {
   .hero-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .stat-card {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
