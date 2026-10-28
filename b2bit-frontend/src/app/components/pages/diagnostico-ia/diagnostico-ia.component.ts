@@ -65,8 +65,8 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
         <h2>La IA está de moda. La adopción real, no tanto.</h2>
         <div class="problem-grid">
           <p>
-            El 21,1% de las empresas españolas de 10+ empleados ya usa IA (frente al 12,4% en 2023) — casi el doble
-            en solo dos años (INE). Pero de las que la usan, el 60% sigue en fase experimental o piloto (Banco de
+            El 33,6% de las empresas españolas de 10+ empleados ya usa IA — una de cada tres (INE, T1 2026). Pero de
+            las que la usan, el 60% sigue en fase experimental o piloto (Banco de
             España, EBAE Q4 2024), y el motivo más común para adoptarla no es "automatizar algo nuevo": es optimizar
             procesos que <strong>ya estaban automatizados</strong> y no funcionaban bien.
           </p>
