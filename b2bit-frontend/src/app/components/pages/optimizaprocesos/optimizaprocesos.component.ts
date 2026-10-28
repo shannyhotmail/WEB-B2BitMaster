@@ -24,12 +24,11 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
       <section class="hero-section">
         <div class="hero-grid">
           <div class="hero-copy">
-            <span class="eyebrow">Diagnóstico Express de Preparación para IA</span>
-            <h1>¿Su empresa necesita Inteligencia Artificial, o necesita antes poner en orden sus procesos?</h1>
+            <span class="eyebrow">Diagnóstico Express de Optimización Operativa</span>
+            <h1>¿Cuánto le cuesta a su empresa seguir trabajando como hasta ahora?</h1>
             <p class="hero-subhead">
-              Solo el 23% de las iniciativas de IA en empresas españolas logra el retorno esperado (IT User, 2025).
-              La diferencia no está en la tecnología — está en el diagnóstico previo. Antes de invertir en IA, sepa
-              con certeza qué necesita realmente su empresa.
+              Tareas manuales, herramientas a medias, información en pocas manos. En una sesión le mostramos dónde se
+              pierde tiempo y dinero, y por dónde empezar a recuperarlo, con o sin IA.
             </p>
             <div class="hero-actions">
               <a href="#formulario" class="btn-primary" (click)="scrollToForm($event)">Solicitar Diagnóstico Express — 95€</a>
@@ -40,15 +39,15 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
             <p class="hero-note">El coste del diagnóstico se descuenta al 100% si después contrata el Plan Estratégico.</p>
           </div>
           <div class="hero-stat-card">
-            <span class="stat-label">Retorno real de la IA en España</span>
-            <span class="stat-number">23%</span>
-            <p>de las iniciativas de IA logran el retorno esperado. El resto se pierde por falta de diagnóstico previo.</p>
+            <span class="stat-label">Datos de clientes sin sistematizar</span>
+            <span class="stat-number">33,9%</span>
+            <p>Solo una de cada tres empresas españolas de 10 o más empleados usa un CRM.</p>
             <div class="stat-bars">
               <span class="stat-bar" style="height: 100%"></span>
               <span class="stat-bar" style="height: 78%"></span>
-              <span class="stat-bar stat-bar--accent" style="height: 23%"></span>
+              <span class="stat-bar stat-bar--accent" style="height: 34%"></span>
             </div>
-            <span class="stat-source">Fuente: IT User, 2025</span>
+            <span class="stat-source">Fuente: INE, T1 2026</span>
           </div>
         </div>
       </section>
@@ -62,22 +61,34 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
 
       <!-- 3. PROBLEMA -->
       <section class="problem-section">
-        <h2>La IA está de moda. La adopción real, no tanto.</h2>
-        <div class="problem-grid">
-          <p>
-            El 21,1% de las empresas españolas de 10+ empleados ya usa IA (frente al 12,4% en 2023) — casi el doble
-            en solo dos años (INE). Pero de las que la usan, el 60% sigue en fase experimental o piloto (Banco de
-            España, EBAE Q4 2024), y el motivo más común para adoptarla no es "automatizar algo nuevo": es optimizar
-            procesos que <strong>ya estaban automatizados</strong> y no funcionaban bien.
-          </p>
-          <div class="problem-donut-wrap">
-            <div class="problem-donut">
-              <div class="problem-donut-inner">60%</div>
-            </div>
-            <span class="problem-donut-label">sigue en fase experimental o piloto</span>
+        <h2>Los costes que no ve son los que más pesan</h2>
+        <div class="card-grid card-grid--four">
+          <div class="info-card info-card--red">
+            <h4>Tareas manuales</h4>
+            <p>Procesos que dependen de Excel, correos y copiar datos.</p>
+          </div>
+          <div class="info-card info-card--navy">
+            <h4>Herramientas infrautilizadas</h4>
+            <p>Se paga por licencias que casi nadie usa.</p>
+          </div>
+          <div class="info-card info-card--gold">
+            <h4>Información en pocas manos</h4>
+            <p>El conocimiento vive en dos o tres personas.</p>
+          </div>
+          <div class="info-card info-card--red">
+            <h4>Decisiones sin datos</h4>
+            <p>Ventas, clientes y mercado, sin métricas.</p>
           </div>
         </div>
+        <p class="small-note">De media se usa solo la mitad de las licencias de software contratadas. Fuente: Zylo, 2024.</p>
+      </section>
+
+      <!-- 3b. IA -->
+      <section class="ia-section">
+        <h2>La IA rinde cuando se integra en lo que ya funciona</h2>
+        <p class="ia-text">Por eso empezamos por ordenar lo que ya tiene y después decidimos dónde automatizar o aplicar IA suma de verdad.</p>
         <p class="problem-quote">"Meter IA donde antes había caos no elimina el caos. Lo acelera."</p>
+        <p class="small-note">El 33,6% de las empresas españolas ya usa IA (INE, T1 2026), pero el 95% de las organizaciones no obtiene retorno medible de la IA generativa (MIT NANDA, 2025), entre otras causas por flujos de trabajo frágiles y poco alineados con la operación diaria.</p>
       </section>
 
       <div class="inline-cta">
@@ -91,17 +102,16 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
           <div class="card-grid card-grid--two">
             <div class="info-card info-card--navy">
               <h4>Qué incluye</h4>
-              <p>Una sesión especializada, presencial o remota para la revisión de sus procesos actuales, herramientas en uso, y los puntos donde probablemente esté perdiendo tiempo o dinero — traducido a cifras concretas, no en jerga técnica.</p>
+              <p>Una sesión, presencial o remota, para revisar sus procesos, herramientas, circulación de información y datos de ventas y clientes, con cifras concretas.</p>
             </div>
             <div class="info-card info-card--gold">
               <h4>Qué recibe</h4>
-              <p>Un informe breve con el diagnóstico de su situación real: si su prioridad es IA, es ordenar procesos primero, o ambas cosas — sin presión para contratar nada más.</p>
+              <p>Un informe breve con los puntos donde más se pierde, priorizados, y cómo resolverlos: ordenar procesos, aprovechar lo que ya tiene, automatizar o usar IA. Sin presión.</p>
             </div>
           </div>
           <div class="honesty-note">
             <p>
-              Puede que el diagnóstico concluya que la IA no es su prioridad ahora mismo. Se lo diremos igual.
-              Nuestro objetivo no es vender tecnología — es que usted tome la decisión correcta con información real.
+              Puede que la IA no sea su prioridad. Se lo diremos igual: nuestro objetivo no es vender tecnología.
             </p>
           </div>
         </div>
@@ -151,8 +161,8 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
               <p>No vendemos herramientas de ningún proveedor.</p>
             </div>
             <div class="info-card info-card--navy">
-              <h4>Soberanía Tecnológica</h4>
-              <p>Usted recupera el criterio para decidir su propia transformación, sin depender de lo que le diga su proveedor de turno.</p>
+              <h4>Partimos de lo que ya tiene</h4>
+              <p>Integramos y aprovechamos sus sistemas antes de proponer nada nuevo.</p>
             </div>
             <div class="info-card info-card--gold">
               <h4>Sin promesas infladas</h4>
@@ -249,8 +259,8 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
             <p>Preferimos ser honestas: un diagnóstico gratuito sin límites no es sostenible para una consultora pequeña, y termina siendo superficial. El coste simbólico de 95€ nos permite dedicarle el tiempo real que su empresa merece — y se descuenta al 100% si sigue adelante con el Plan Estratégico.</p>
           </details>
           <details class="faq-item">
-            <summary>¿Y si el diagnóstico dice que no necesito IA?</summary>
-            <p>Se lo diremos con la misma claridad. El objetivo del diagnóstico es que usted tenga información real, no que le vendamos algo que no necesita.</p>
+            <summary>¿Necesito comprar herramientas nuevas o IA?</summary>
+            <p>No necesariamente. Muchas veces el mayor retorno está en aprovechar mejor lo que ya tiene. Se lo diremos con claridad.</p>
           </details>
           <details class="faq-item">
             <summary>¿Tengo que comprometerme a contratar el Plan Estratégico después?</summary>
@@ -262,7 +272,7 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
           </details>
           <details class="faq-item">
             <summary>¿Trabajan fuera de Valencia?</summary>
-            <p>Nuestro enfoque actual es presencial en Valencia y su área metropolitana, aunque también podemos trabajar de forma remota si su empresa está fuera de esta zona.</p>
+            <p>Trabajamos con empresas de toda España. El diagnóstico es presencial en Valencia y su área metropolitana; fuera de Valencia lo realizamos en remoto y, según la valoración de cada caso, también podemos desplazarnos.</p>
           </details>
         </div>
       </section>
@@ -293,9 +303,10 @@ export class OptimizaProcesosComponent implements OnInit, AfterViewInit, OnDestr
 
   numeroEmpleadosOptions = ['1-5', '5-20', '20-50', 'más de 50'];
   motivoContactoOptions = [
-    'Quiero explorar IA',
-    'Sé que algo no funciona bien pero no sé qué',
-    'Quiero optimizar procesos ya existentes',
+    'Quiero reducir costes operativos',
+    'Quiero aprovechar mejor las herramientas que ya tengo',
+    'Sé que algo no funciona pero no sé qué',
+    'Quiero explorar automatización o IA',
     'Otro'
   ];
 
@@ -318,19 +329,19 @@ export class OptimizaProcesosComponent implements OnInit, AfterViewInit, OnDestr
 
   ngOnInit(): void {
     this.seoService.apply({
-      title: 'Diagnóstico de Preparación para IA en su Empresa | b2bitmaster Valencia',
-      description: 'Diagnóstico Express de Preparación para IA en Valencia. Una sesión de 2 horas, 95€ (descontables del Plan Estratégico), para saber si su empresa necesita IA o antes ordenar sus procesos.',
+      title: 'Diagnóstico de Optimización Operativa para su Empresa | b2bitmaster',
+      description: 'Diagnóstico Express de Optimización Operativa para empresas de toda España: una sesión de 2 horas, 95€ (descontables del Plan Estratégico), con visita presencial en Valencia.',
       path: '/optimizaprocesos',
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'Service',
-        name: 'Diagnóstico Express de Preparación para IA',
+        name: 'Diagnóstico Express de Optimización Operativa',
         provider: {
           '@type': 'LocalBusiness',
           name: 'b2bitmaster',
-          areaServed: 'Valencia, España'
+          areaServed: 'España'
         },
-        description: 'Sesión de diagnóstico de 2 horas sobre preparación de procesos y adopción de IA para empresas de Valencia y su área metropolitana.',
+        description: 'Sesión de diagnóstico de 2 horas para identificar costes ocultos, aprovechar mejor las herramientas y decidir dónde automatizar o aplicar IA, para empresas de toda España, con visita presencial en Valencia.',
         offers: {
           '@type': 'Offer',
           price: '95',

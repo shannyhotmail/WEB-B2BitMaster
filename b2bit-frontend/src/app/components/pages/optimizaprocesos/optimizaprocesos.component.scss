@@ -212,58 +212,30 @@ h2 {
   }
 }
 
-.problem-grid {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 44px;
-  align-items: center;
+.ia-section {
+  padding: 8px 0 56px;
 
-  p {
-    font-size: 16px;
-    line-height: 1.7;
-    max-width: 60ch;
-    margin: 0;
-    color: #333333;
+  h2 {
+    font-size: clamp(24px, 2.6vw, 32px);
+    max-width: 32ch;
+    margin-bottom: 18px;
   }
 }
 
-.problem-donut-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
+.ia-text {
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 60ch;
+  margin: 0;
+  color: #333333;
 }
 
-.problem-donut {
-  position: relative;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: conic-gradient(#ff3131 0 60%, #e0e0e0 60% 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.problem-donut-inner {
-  width: 128px;
-  height: 128px;
-  border-radius: 50%;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 34px;
-  font-weight: 800;
-  color: #013d5a;
-}
-
-.problem-donut-label {
-  font-size: 13px;
+.small-note {
+  font-size: 12px;
+  line-height: 1.5;
   color: #6e6b62;
-  text-align: center;
-  max-width: 18ch;
+  margin: 16px 0 0;
+  max-width: 80ch;
 }
 
 .problem-quote {
@@ -313,6 +285,15 @@ h2 {
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
+  }
+}
+
+.card-grid--four {
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 28px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -658,14 +639,6 @@ textarea.form-input {
 @media (max-width: 900px) {
   .hero-grid {
     grid-template-columns: 1fr;
-  }
-
-  .problem-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .problem-donut-wrap {
-    align-items: flex-start;
   }
 }
 
