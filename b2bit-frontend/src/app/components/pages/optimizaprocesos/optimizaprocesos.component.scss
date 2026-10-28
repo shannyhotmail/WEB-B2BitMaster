@@ -1,5 +1,10 @@
 // diagnostico-ia.component.scss
 // Paleta reutilizada del resto del sitio (strategy/contacto): navy #013d5a, rojo #ff3131, dorado #f1a805
+:host {
+  display: block;
+  overflow-x: clip;
+}
+
 .diagnostico-ia {
   max-width: 1120px;
   margin: 0 auto;
@@ -444,7 +449,7 @@ h2 {
 
 /* 5. QUE PASA DESPUES */
 .process-section {
-  padding: 56px 20px 70px;
+  padding: 56px 0 70px;
 
   h2 {
     font-size: clamp(24px, 2.6vw, 32px);
