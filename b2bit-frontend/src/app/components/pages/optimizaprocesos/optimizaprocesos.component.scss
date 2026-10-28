@@ -109,62 +109,91 @@ h2 {
   box-sizing: border-box;
 }
 
-.hero-stat-card {
-  background: #ffffff;
+.hero-chart-card {
+  background: #f9f9f9;
   border: 1px solid #e0e0e0;
   border-top: 3px solid #ff3131;
   border-radius: 12px;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  padding: 28px 28px 12px;
   box-shadow: 0 20px 60px rgba(1, 61, 90, 0.09);
-
-  .stat-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #6e6b62;
-  }
-
-  .stat-number {
-    font-size: 56px;
-    font-weight: 800;
-    line-height: 1;
-    color: #f1a805;
-  }
-
-  p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #333333;
-    margin: 8px 0 0;
-  }
-
-  .stat-source {
-    font-size: 11px;
-    color: #6e6b62;
-    margin-top: 4px;
-  }
 }
 
-.stat-bars {
+.hero-chart-title {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #6e6b62;
+  margin-bottom: 20px;
+}
+
+.bars {
   display: flex;
   align-items: flex-end;
-  gap: 6px;
-  height: 56px;
-  margin-top: 8px;
+  gap: 8px;
+  border-bottom: 1px solid #d9d6cb;
 }
 
-.stat-bar {
+.bar-col {
   flex: 1;
-  background: #f0eee6;
-  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
-.stat-bar--accent {
-  background: #f1a805;
+.bar-num {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.bar {
+  display: block;
+  width: 48px;
+  border-radius: 4px 4px 0 0;
+}
+
+.bar-rows {
+  margin-top: 4px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.bar-dot {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}
+
+.bar-text {
+  flex: 1;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: #333333;
+
+  strong {
+    font-weight: 500;
+  }
+}
+
+.bar-src {
+  font-size: 11px;
+  color: #6e6b62;
+  text-align: right;
+  max-width: 130px;
 }
 
 /* 2. TRUST BAR */
@@ -222,10 +251,15 @@ h2 {
   }
 }
 
+.ia-section .h2-line {
+  @media (min-width: 561px) {
+    display: block;
+  }
+}
+
 .ia-text {
   font-size: 16px;
   line-height: 1.7;
-  max-width: 60ch;
   margin: 0;
   color: #333333;
 }
@@ -235,59 +269,6 @@ h2 {
   line-height: 1.5;
   color: #6e6b62;
   margin: 16px 0 0;
-}
-
-/* Medidor de licencias */
-.meter-card {
-  background: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 20px;
-  margin-top: 24px;
-}
-
-.meter-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.meter-label {
-  font-size: 13px;
-  color: #333333;
-}
-
-.meter-value {
-  font-size: 22px;
-  font-weight: 500;
-  color: #ba7517;
-}
-
-.meter-bar {
-  display: flex;
-  gap: 2px;
-  height: 16px;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.meter-seg {
-  flex: 1;
-  background: #d9d6cb;
-}
-
-.meter-seg--used {
-  background: #f1a805;
-}
-
-.meter-legend {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 6px;
-  font-size: 11px;
-  color: #6e6b62;
 }
 
 /* Tarjetas de dato de la sección IA */
@@ -386,7 +367,7 @@ h2 {
 
   h2 {
     font-size: clamp(24px, 2.6vw, 32px);
-    max-width: 32ch;
+    max-width: none;
     margin-bottom: 18px;
   }
 }
@@ -467,7 +448,7 @@ h2 {
 
   h2 {
     font-size: clamp(24px, 2.6vw, 32px);
-    max-width: 32ch;
+    max-width: none;
     margin-bottom: 18px;
   }
 }
@@ -532,7 +513,6 @@ h2 {
 .process-reinforcement {
   font-size: 16px;
   line-height: 1.7;
-  max-width: 70ch;
   margin-top: 32px;
   color: #333333;
 }
@@ -566,7 +546,7 @@ h2 {
 
   h2 {
     font-size: clamp(24px, 2.6vw, 32px);
-    max-width: 32ch;
+    max-width: none;
     margin-bottom: 32px;
   }
 }
@@ -609,7 +589,7 @@ h2 {
 
   h2 {
     font-size: clamp(24px, 2.6vw, 32px);
-    max-width: 32ch;
+    max-width: none;
     margin-bottom: 18px;
   }
 }

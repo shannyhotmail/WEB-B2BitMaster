@@ -38,16 +38,21 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
             </div>
             <p class="hero-note">El coste del diagnóstico se descuenta al 100% si después contrata el Plan Estratégico.</p>
           </div>
-          <div class="hero-stat-card">
-            <span class="stat-label">Datos de clientes sin sistematizar</span>
-            <span class="stat-number">33,9%</span>
-            <p>Solo una de cada tres empresas españolas de 10 o más empleados usa un CRM.</p>
-            <div class="stat-bars">
-              <span class="stat-bar" style="height: 100%"></span>
-              <span class="stat-bar" style="height: 78%"></span>
-              <span class="stat-bar stat-bar--accent" style="height: 34%"></span>
+          <div class="hero-chart-card">
+            <span class="hero-chart-title">Dónde se pierde el tiempo y el dinero</span>
+            <div class="bars" aria-hidden="true">
+              <div class="bar-col" *ngFor="let d of heroBars">
+                <span class="bar-num" [style.color]="d.numColor">{{ d.label }}</span>
+                <span class="bar" [style.height.px]="d.pct * 1.25" [style.background]="d.color"></span>
+              </div>
             </div>
-            <span class="stat-source">Fuente: INE, T1 2026</span>
+            <div class="bar-rows">
+              <div class="bar-row" *ngFor="let d of heroBars">
+                <span class="bar-dot" [style.background]="d.color"></span>
+                <span class="bar-text"><strong>{{ d.label }}</strong> {{ d.text }}</span>
+                <span class="bar-src">{{ d.source }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -80,23 +85,11 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
             <p>Ventas, clientes y mercado, sin métricas.</p>
           </div>
         </div>
-        <div class="meter-card">
-          <div class="meter-head">
-            <span class="meter-label">Licencias de software contratadas</span>
-            <span class="meter-value">≈50% usadas</span>
-          </div>
-          <div class="meter-bar" role="img" aria-label="La mitad de las licencias se usa y la otra mitad no">
-            <span class="meter-seg meter-seg--used"></span>
-            <span class="meter-seg"></span>
-          </div>
-          <div class="meter-legend"><span>En uso</span><span>Pagadas y sin usar</span></div>
-          <p class="small-note">Fuente: Zylo, 2024</p>
-        </div>
       </section>
 
       <!-- 3b. IA -->
       <section class="ia-section">
-        <h2>La IA rinde cuando se integra en lo que ya funciona</h2>
+        <h2><span class="h2-line">¿La IA es la solución? Depende.</span>&ngsp;<span class="h2-line">Rinde cuando se integra en lo que ya funciona</span></h2>
         <p class="ia-text">Por eso empezamos por ordenar lo que ya tiene y después decidimos dónde automatizar o aplicar IA suma de verdad.</p>
         <div class="stat-cards">
           <div class="stat-card">
@@ -151,65 +144,6 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
           </div>
         </div>
       </section>
-
-      <!-- 5. QUE PASA DESPUES -->
-      <section class="process-section">
-        <h2>Si decide seguir, así continúa el proceso</h2>
-        <div class="process-steps">
-          <div class="process-step">
-            <div class="process-step-bar process-step-bar--red"></div>
-            <div class="process-step-body">
-              <span class="process-step-number process-step-number--red">01</span>
-              <h4>Auditoría</h4>
-              <p>Ya cubierta por el Diagnóstico Express.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="process-step-bar process-step-bar--navy"></div>
-            <div class="process-step-body">
-              <span class="process-step-number process-step-number--navy">02</span>
-              <h4>Plan Estratégico a Medida (PEM)</h4>
-              <p>Hoja de ruta priorizada, con o sin IA según lo que su empresa realmente necesite.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="process-step-bar process-step-bar--gold"></div>
-            <div class="process-step-body">
-              <span class="process-step-number process-step-number--gold">03</span>
-              <h4>Implantación</h4>
-              <p>Acompañamiento en la puesta en marcha, con garantía de resultados.</p>
-            </div>
-          </div>
-        </div>
-        <p class="process-reinforcement">
-          El coste del Diagnóstico Express (95€) se descuenta íntegramente si contrata el Plan Estratégico. No paga dos veces.
-        </p>
-      </section>
-
-      <!-- 6. POR QUE B2BITMASTER -->
-      <section class="why-section">
-        <div class="section-inner">
-          <h2>Por qué b2bitmaster</h2>
-          <div class="card-grid">
-            <div class="info-card info-card--red">
-              <h4>Neutralidad total</h4>
-              <p>No vendemos herramientas de ningún proveedor.</p>
-            </div>
-            <div class="info-card info-card--navy">
-              <h4>Partimos de lo que ya tiene</h4>
-              <p>Integramos y aprovechamos sus sistemas antes de proponer nada nuevo.</p>
-            </div>
-            <div class="info-card info-card--gold">
-              <h4>Sin promesas infladas</h4>
-              <p>Nunca prometemos cifras de ROI exageradas.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="inline-cta">
-        <a href="#formulario" class="btn-primary" (click)="scrollToForm($event)">Solicitar Diagnóstico Express</a>
-      </div>
 
       <!-- 7. CTA FINAL + FORM -->
       <section id="formulario" class="final-cta-section">
@@ -285,6 +219,65 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
         </div>
       </section>
 
+      <!-- 5. QUE PASA DESPUES -->
+      <section class="process-section">
+        <h2>Si decide seguir, así continúa el proceso</h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-step-bar process-step-bar--red"></div>
+            <div class="process-step-body">
+              <span class="process-step-number process-step-number--red">01</span>
+              <h4>Auditoría</h4>
+              <p>Ya cubierta por el Diagnóstico Express.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="process-step-bar process-step-bar--navy"></div>
+            <div class="process-step-body">
+              <span class="process-step-number process-step-number--navy">02</span>
+              <h4>Plan Estratégico a Medida (PEM)</h4>
+              <p>Hoja de ruta priorizada, con o sin IA según lo que su empresa realmente necesite.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="process-step-bar process-step-bar--gold"></div>
+            <div class="process-step-body">
+              <span class="process-step-number process-step-number--gold">03</span>
+              <h4>Implantación</h4>
+              <p>Acompañamiento en la puesta en marcha, con garantía de resultados.</p>
+            </div>
+          </div>
+        </div>
+        <p class="process-reinforcement">
+          El coste del Diagnóstico Express (95€) se descuenta íntegramente si contrata el Plan Estratégico. No paga dos veces.
+        </p>
+      </section>
+
+      <!-- 6. POR QUE B2BITMASTER -->
+      <section class="why-section">
+        <div class="section-inner">
+          <h2>Por qué b2bitmaster</h2>
+          <div class="card-grid">
+            <div class="info-card info-card--red">
+              <h4>Neutralidad total</h4>
+              <p>No vendemos herramientas de ningún proveedor.</p>
+            </div>
+            <div class="info-card info-card--navy">
+              <h4>Partimos de lo que ya tiene</h4>
+              <p>Integramos y aprovechamos sus sistemas antes de proponer nada nuevo.</p>
+            </div>
+            <div class="info-card info-card--gold">
+              <h4>Sin promesas infladas</h4>
+              <p>Nunca prometemos cifras de ROI exageradas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="inline-cta">
+        <a href="#formulario" class="btn-primary" (click)="scrollToForm($event)">Solicitar Diagnóstico Express</a>
+      </div>
+
       <!-- 8. FAQ -->
       <section class="faq-section">
         <h2>Preguntas frecuentes</h2>
@@ -337,6 +330,12 @@ export class OptimizaProcesosComponent implements OnInit, AfterViewInit, OnDestr
   private unmountCalendly?: () => void;
 
   squares = Array.from({ length: 100 }, (_, i) => i);
+
+  heroBars = [
+    { pct: 80, label: '+80%', color: '#14314D', numColor: '#14314D', text: 'de las pymes dedica de 2 a 5 días al mes a tareas de gestión', source: 'Qonto, 2025' },
+    { pct: 55, label: '55%', color: '#f1a805', numColor: '#BA7517', text: 'de las pymes ahorra 10 h o más a la semana automatizando', source: 'Qonto y Appinio, 2025' },
+    { pct: 50, label: '≈50%', color: 'var(--color-tas-accent)', numColor: 'var(--color-tas-accent)', text: 'de las licencias de software se paga sin usar', source: 'Zylo, 2024 (estudio global)' }
+  ];
 
   numeroEmpleadosOptions = ['1-5', '5-20', '20-50', 'más de 50'];
   motivoContactoOptions = [
