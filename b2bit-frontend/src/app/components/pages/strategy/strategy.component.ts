@@ -136,16 +136,16 @@ import { IconComponent } from '../../shared/icon/icon.component';
 
             <div class="tab-copy-full">
               <p>
-                Los datos muestran una <strong>adopción acelerada de la IA</strong> —casi el doble en solo dos años—, aunque la mayoría la usa en fase experimental y sin haber adaptado su estructura para sostenerla, lo que deriva en <strong>una inversión con poco retorno</strong>.
+                Los datos muestran una <strong>adopción extendida de la IA</strong> —una de cada tres empresas ya la usa—, aunque la mayoría la usa en fase experimental y sin haber adaptado su estructura para sostenerla, lo que deriva en <strong>una inversión con poco retorno</strong>.
               </p>
             </div>
 
             <div class="data-panel">
               <div class="data-card">
                 <span class="data-card-label">Adopción de IA en España</span>
-                <span class="data-kpi-value">21,1%</span>
-                <span class="data-kpi-subtitle">empresas usando IA, frente al 12,4% en 2023</span>
-                <span class="data-card-footnote">casi se duplica en dos años · INE</span>
+                <span class="data-kpi-value">33,6%</span>
+                <span class="data-kpi-subtitle">empresas de 10 o más empleados usando IA</span>
+                <span class="data-card-footnote">T1 2026 · INE</span>
               </div>
 
               <div class="data-card">
