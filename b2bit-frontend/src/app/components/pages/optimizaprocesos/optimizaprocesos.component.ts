@@ -187,7 +187,7 @@ const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
             </div>
 
             <div class="form-group">
-              <label for="motivoContacto">¿Qué le trae por aquí?</label>
+              <label for="motivoContacto">¿Qué le preocupa o qué necesita mejorar?</label>
               <select id="motivoContacto" formControlName="motivoContacto" class="form-input">
                 <option *ngFor="let opcion of motivoContactoOptions" [value]="opcion">{{ opcion }}</option>
               </select>
