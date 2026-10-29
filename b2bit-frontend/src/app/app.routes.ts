@@ -4,6 +4,7 @@ import { IntelligenceComponent } from './components/pages/intelligence/intellige
 import { StrategyComponent } from './components/pages/strategy/strategy.component';
 import { ContactoComponent } from './components/pages/contacto/contacto.component';
 import { DiagnosticoIaComponent } from './components/pages/diagnostico-ia/diagnostico-ia.component';
+import { OptimizaProcesosComponent } from './components/pages/optimizaprocesos/optimizaprocesos.component';
 
 /**
  * Configuración de rutas de la aplicación.
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'strategy', component: StrategyComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'diagnostico-ia', component: DiagnosticoIaComponent },
+  { path: 'optimizaprocesos', component: OptimizaProcesosComponent },
   { path: '**', redirectTo: '' }
 ];
