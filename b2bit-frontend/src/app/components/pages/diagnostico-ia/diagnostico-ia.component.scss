@@ -518,8 +518,13 @@ h2 {
   align-items: start;
   margin-top: 24px;
 
+  // minmax(0, 1fr) evita que el ancho intrínseco del select ensanche la columna en móvil
   @media (max-width: 900px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+
+    > * {
+      min-width: 0;
+    }
   }
 }
 
@@ -651,11 +656,21 @@ textarea.form-input {
       height: 700px;
       border-radius: 8px;
       overflow: hidden;
+
+      @media (max-width: 900px) {
+        min-width: min(280px, 100%);
+      }
     }
   }
 }
 
 @media (max-width: 900px) {
+  // Las bandas de 100vw miden más que el área visible cuando hay barra de scroll clásica
+  :host {
+    display: block;
+    overflow-x: clip;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
   }
