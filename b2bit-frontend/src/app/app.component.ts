@@ -4,6 +4,7 @@ import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { WhatsappButtonComponent } from './components/whatsapp-button/whatsapp-button.component';
 import { CookieConsentService } from './services/cookie-consent.service';
 
 /**
@@ -13,7 +14,7 @@ import { CookieConsentService } from './services/cookie-consent.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, WhatsappButtonComponent],
   template: `
     <div class="app-container">
       <app-header [minimal]="minimalHeader()"></app-header>
@@ -21,6 +22,7 @@ import { CookieConsentService } from './services/cookie-consent.service';
         <router-outlet></router-outlet>
       </main>
       <app-footer></app-footer>
+      <app-whatsapp-button></app-whatsapp-button>
     </div>
   `,
   styleUrls: ['./app.component.scss']
