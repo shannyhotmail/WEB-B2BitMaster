@@ -6,6 +6,9 @@ import { SeoService } from '../../../services/seo.service';
 import { CookieConsentService } from '../../../services/cookie-consent.service';
 import { CalendlyEmbedService } from '../../../services/calendly-embed.service';
 import { AutonomosCarouselComponent } from '../../autonomos-carousel/autonomos-carousel.component';
+import { AutonomosTarjetasComponent } from '../../autonomos-soluciones/autonomos-tarjetas.component';
+import { AutonomosSolucionesComponent } from '../../autonomos-soluciones/autonomos-soluciones.component';
+import { AutonomosSolucionesState } from '../../autonomos-soluciones/autonomos-soluciones.state';
 import { environment } from '../../../../environments/environment';
 
 const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
@@ -50,13 +53,15 @@ const TEXTOS = {
 @Component({
   selector: 'app-autonomosypymes',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, AutonomosCarouselComponent],
+  imports: [CommonModule, ReactiveFormsModule, AutonomosCarouselComponent, AutonomosTarjetasComponent, AutonomosSolucionesComponent],
+  providers: [AutonomosSolucionesState],
   template: `
     <div class="diagnostico-ia">
       <!-- 1. CARRUSEL -->
       <app-autonomos-carousel (ctaClick)="scrollToForm($event)"></app-autonomos-carousel>
 
-      <!-- SECCIONES INTERMEDIAS: pendientes -->
+      <!-- 2. TARJETAS GRANDES -->
+      <app-autonomos-tarjetas></app-autonomos-tarjetas>
 
       <!-- FORMULARIO + CALENDLY -->
       <section id="formulario" class="final-cta-section">
@@ -131,6 +136,9 @@ const TEXTOS = {
           </div>
         </div>
       </section>
+
+      <!-- 3. ZONA DE SOLUCIONES -->
+      <app-autonomos-soluciones></app-autonomos-soluciones>
     </div>
   `,
   styleUrls: ['./autonomosypymes.component.scss']
