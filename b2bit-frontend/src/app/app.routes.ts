@@ -5,6 +5,7 @@ import { StrategyComponent } from './components/pages/strategy/strategy.componen
 import { ContactoComponent } from './components/pages/contacto/contacto.component';
 import { DiagnosticoIaComponent } from './components/pages/diagnostico-ia/diagnostico-ia.component';
 import { OptimizaProcesosComponent } from './components/pages/optimizaprocesos/optimizaprocesos.component';
+import { AutonomosYPymesComponent } from './components/pages/autonomosypymes/autonomosypymes.component';
 
 /**
  * Configuración de rutas de la aplicación.
@@ -20,5 +21,6 @@ export const routes: Routes = [
   { path: 'contacto', component: ContactoComponent },
   { path: 'diagnostico-ia', component: DiagnosticoIaComponent },
   { path: 'optimizaprocesos', component: OptimizaProcesosComponent },
+  { path: 'autonomosypymes', component: AutonomosYPymesComponent },
   { path: '**', redirectTo: '' }
 ];

@@ -30,7 +30,7 @@ import { CookieConsentService } from './services/cookie-consent.service';
 export class AppComponent {
   title = 'b2bit-frontend';
 
-  // Header simplificado (solo logo) en landings de campaña como /diagnostico-ia y /optimizaprocesos
+  // Header simplificado (solo logo) en landings de campaña como /diagnostico-ia, /optimizaprocesos y /autonomosypymes
   minimalHeader = signal(false);
 
   constructor(private router: Router, private cookieConsent: CookieConsentService) {
@@ -46,6 +46,6 @@ export class AppComponent {
   }
 
   private isMinimalHeaderRoute(url: string): boolean {
-    return url.startsWith('/diagnostico-ia') || url.startsWith('/optimizaprocesos');
+    return url.startsWith('/diagnostico-ia') || url.startsWith('/optimizaprocesos') || url.startsWith('/autonomosypymes');
   }
 }
