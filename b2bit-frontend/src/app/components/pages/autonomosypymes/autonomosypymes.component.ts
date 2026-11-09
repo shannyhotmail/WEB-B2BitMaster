@@ -58,6 +58,13 @@ const TEXTOS = {
   providers: [AutonomosSolucionesState],
   template: `
     <div class="diagnostico-ia">
+      <!-- 0. PRESENTACIÓN (único h1 de la página) -->
+      <section class="intro" aria-labelledby="intro-h">
+        <p class="eyebrow">Para autónomos y pymes</p>
+        <h1 id="intro-h">Menos gestión, <em>más operación</em></h1>
+        <p class="sub">Automatiza lo repetitivo y dedica tu tiempo a lo que hace crecer tu negocio.</p>
+      </section>
+
       <!-- 1. CARRUSEL -->
       <app-autonomos-carousel (ctaClick)="scrollToForm($event)"></app-autonomos-carousel>
 
