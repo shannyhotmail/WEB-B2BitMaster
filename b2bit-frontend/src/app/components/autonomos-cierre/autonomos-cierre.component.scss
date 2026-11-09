@@ -1,0 +1,254 @@
+:host {
+  display: block;
+  overflow-x: clip;
+  --navy: #14314d;
+  --gold: #f1a805;
+  --gold-ink: #8a5d00;
+  --rust: #b0392a;
+  --red: #e63232;
+  --card: #f8f8f6;
+  --line: #e0dccf;
+  --muted: #6e6b62;
+  color: #1d2a37;
+}
+
+.cierre {
+  padding: 40px max(16px, env(safe-area-inset-right, 0px)) 56px max(16px, env(safe-area-inset-left, 0px));
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.diag {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+
+  > * {
+    min-width: 0;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 5vw, 3.3rem);
+    line-height: 1.08;
+    margin-bottom: 18px;
+  }
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+
+.lead {
+  font-size: 1.1rem;
+  margin: 0;
+  max-width: 34rem;
+}
+
+.chart {
+  margin: 0;
+  max-width: 400px;
+  justify-self: end;
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--red);
+  border-radius: 16px;
+  padding: 20px 20px 6px;
+  box-shadow: 0 18px 40px -28px rgba(20, 49, 77, 0.45);
+  min-width: 0;
+
+  h3 {
+    font-family: var(--font-heading);
+    font-size: 0.76rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 16px;
+  }
+}
+
+.bars {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  // --area es el alto del 100 %; la cifra (1.3rem + hueco de 6px) se reserva aparte para que las barras no se encojan
+  --area: 140px;
+  height: calc(var(--area) + 1.3rem + 6px);
+  border-bottom: 1px solid var(--line);
+  padding: 0 8px;
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  width: 28%;
+  height: 100%;
+
+  b {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    line-height: 1;
+    white-space: nowrap;
+    flex: none;
+  }
+
+  i {
+    display: block;
+    flex: none;
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+  }
+}
+
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: grid;
+    grid-template-columns: 12px 1fr auto;
+    gap: 12px;
+    align-items: start;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.82rem;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.sw {
+  width: 11px;
+  height: 11px;
+  margin-top: 5px;
+  border-radius: 2px;
+}
+
+.src {
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-align: right;
+  max-width: 9.5rem;
+}
+
+.costes {
+  margin-top: clamp(96px, 12vw, 140px);
+
+  h2 {
+    font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+    line-height: 1.15;
+    margin-bottom: 22px;
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 16px;
+}
+
+.c {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--red);
+  border-radius: 14px;
+  padding: 22px 22px 24px;
+  min-width: 0;
+
+  &:nth-child(2) {
+    border-top-color: var(--navy);
+  }
+
+  &:nth-child(3) {
+    border-top-color: var(--gold);
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    line-height: 1.25;
+    color: var(--navy);
+    margin: 0 0 8px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+}
+
+.end {
+  margin: 28px 0 0;
+}
+
+.btn {
+  font: inherit;
+  font-weight: 700;
+  font-size: 1.02rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 99px;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 13px 26px;
+
+  &:hover {
+    filter: brightness(0.95);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--navy);
+    outline-offset: 3px;
+  }
+}
+
+@media (max-width: 820px) {
+  .diag {
+    grid-template-columns: 1fr;
+  }
+
+  .chart {
+    justify-self: stretch;
+    max-width: none;
+  }
+
+  .src {
+    max-width: 7rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .legend li {
+    grid-template-columns: 12px 1fr;
+  }
+
+  .src {
+    grid-column: 2;
+    text-align: left;
+    max-width: none;
+  }
+}

@@ -9,6 +9,7 @@ import { AutonomosCarouselComponent } from '../../autonomos-carousel/autonomos-c
 import { AutonomosTarjetasComponent } from '../../autonomos-soluciones/autonomos-tarjetas.component';
 import { AutonomosSolucionesComponent } from '../../autonomos-soluciones/autonomos-soluciones.component';
 import { AutonomosSolucionesState } from '../../autonomos-soluciones/autonomos-soluciones.state';
+import { AutonomosCierreComponent } from '../../autonomos-cierre/autonomos-cierre.component';
 import { environment } from '../../../../environments/environment';
 
 const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
@@ -53,7 +54,7 @@ const TEXTOS = {
 @Component({
   selector: 'app-autonomosypymes',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, AutonomosCarouselComponent, AutonomosTarjetasComponent, AutonomosSolucionesComponent],
+  imports: [CommonModule, ReactiveFormsModule, AutonomosCarouselComponent, AutonomosTarjetasComponent, AutonomosSolucionesComponent, AutonomosCierreComponent],
   providers: [AutonomosSolucionesState],
   template: `
     <div class="diagnostico-ia">
@@ -139,6 +140,9 @@ const TEXTOS = {
 
       <!-- 3. ZONA DE SOLUCIONES -->
       <app-autonomos-soluciones></app-autonomos-soluciones>
+
+      <!-- 4. CIERRE -->
+      <app-autonomos-cierre></app-autonomos-cierre>
     </div>
   `,
   styleUrls: ['./autonomosypymes.component.scss']
