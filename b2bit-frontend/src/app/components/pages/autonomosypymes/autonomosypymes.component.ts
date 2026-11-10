@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Meta } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ContactService } from '../../../services/contact.service';
 import { SeoService } from '../../../services/seo.service';
@@ -159,6 +160,7 @@ export class AutonomosYPymesComponent implements OnInit, AfterViewInit, OnDestro
   private fb = inject(FormBuilder);
   private contactService = inject(ContactService);
   private seoService = inject(SeoService);
+  private meta = inject(Meta);
   private cookieConsent = inject(CookieConsentService);
   private calendlyEmbed = inject(CalendlyEmbedService);
 
@@ -195,6 +197,8 @@ export class AutonomosYPymesComponent implements OnInit, AfterViewInit, OnDestro
       description: 'Automatiza respuestas, citas, facturas y avisos y gana tiempo para lo importante. Cuéntanos cómo trabajas y te decimos por dónde empezar.',
       path: '/autonomosypymes'
     });
+    // Por ahora no se indexa; se retira al salir para no afectar a otras rutas.
+    this.meta.updateTag({ name: 'robots', content: 'noindex, follow' });
   }
 
   // El widget solo se monta con consentimiento de Marketing; sin él (o si no
@@ -213,6 +217,7 @@ export class AutonomosYPymesComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngOnDestroy(): void {
+    this.meta.removeTag("name='robots'");
     this.stopConsentWatch?.();
     this.destroyCalendly();
   }
