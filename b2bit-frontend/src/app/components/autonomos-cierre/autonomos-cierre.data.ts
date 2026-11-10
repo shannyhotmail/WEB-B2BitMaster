@@ -24,7 +24,7 @@ export interface DatoGrafico {
 export const PREGUNTA = {
   eyebrow: 'La pregunta correcta sería…',
   titulo: '¿Cuánto te cuesta seguir trabajando como hasta ahora?',
-  texto: 'Tareas manuales, herramientas a medias, información en pocas manos. En una sesión te mostramos dónde se pierde tiempo y dinero, y por dónde empezar a recuperarlo, con o sin IA.'
+  texto: 'Tareas manuales, herramientas a medias, información en pocas manos. En una llamada te mostramos dónde se pierde tiempo y dinero, y por dónde empezar a recuperarlo, con o sin IA.'
 };
 
 export const GRAFICO_TITULO = 'Dónde se pierde el tiempo y el dinero';
@@ -33,7 +33,7 @@ export const GRAFICO_ARIA = 'Tres barras: más del 80 %, 55 % y aproximadamente 
 export const DATOS: DatoGrafico[] = [
   { etiqueta: '+80%', alto: 100, texto: 'de las pymes dedica de 2 a 5 días al mes a tareas de gestión', fuente: 'Qonto, 2025', color: 'var(--navy)', colorNumero: 'var(--navy)' },
   { etiqueta: '55%', alto: 68.75, texto: 'de las pymes ahorra 10 h o más a la semana automatizando', fuente: 'Qonto y Appinio, 2025', color: 'var(--gold)', colorNumero: 'var(--gold-ink)' },
-  { etiqueta: '≈50%', alto: 62.5, texto: 'de las licencias de software se paga sin usar', fuente: 'Zylo, 2024 (estudio global)', color: 'var(--rust)', colorNumero: 'var(--rust)' }
+  { etiqueta: '≈50%', alto: 62.5, texto: 'de las licencias de software se paga sin usar', fuente: 'Zylo, 2024 (clientes de Zylo)', color: 'var(--rust)', colorNumero: 'var(--rust)' }
 ];
 
 export const COSTES_TITULO = 'Los costes que no ves son los que más pesan';

@@ -14,35 +14,36 @@ import { environment } from '../../../../environments/environment';
 
 const CALENDLY_URL = 'https://calendly.com/b2bitmaster-info/15min';
 
-// TEXTOS PROVISIONALES: idénticos a /optimizaprocesos hasta que se definan los de esta landing.
+// Textos propios de esta landing (el recorrido es llamada → propuesta → implantación).
 // Los textos del carrusel están en autonomos-carousel.component.ts.
 const TEXTOS = {
-  formTitulo: 'Empecemos por entender su situación real',
-  labelNombre: 'Nombre completo *',
-  errorNombre: 'El nombre es requerido',
-  labelEmpresa: 'Empresa *',
-  errorEmpresa: 'La empresa es requerida',
-  labelEmail: 'Correo electrónico *',
-  errorEmail: 'Ingresa un correo válido',
-  labelTelefono: 'Teléfono',
-  labelEmpleados: 'Número aproximado de empleados',
-  labelMotivo: '¿Qué le preocupa o qué necesita mejorar?',
-  labelComentario: '¿Algo más que quiera contarnos? (opcional)',
-  botonEnviar: 'Solicitar Diagnóstico Express',
+  formTitulo: 'Empecemos por conocer tu negocio',
+  labelNombre: 'Tu nombre *',
+  errorNombre: 'Dinos tu nombre',
+  labelEmpresa: 'Tu negocio o empresa *',
+  errorEmpresa: 'Dinos cómo se llama tu negocio',
+  labelEmail: 'Tu correo electrónico *',
+  errorEmail: 'Escribe un correo válido',
+  labelTelefono: 'Teléfono (opcional)',
+  labelEmpleados: '¿Cuántas personas trabajáis en el negocio?',
+  labelMotivo: '¿Qué te gustaría mejorar?',
+  labelComentario: '¿Algo más que quieras contarnos? (opcional)',
+  botonEnviar: 'Solicitar mi llamada',
   botonEnviando: 'Enviando...',
-  sla: 'Le contactamos en menos de 24h laborables.',
-  panelTitulo: '¿Prefiere hablar antes de decidir?',
-  panelTexto: 'Agende una llamada breve, sin compromiso, antes de solicitar el diagnóstico.',
+  sla: 'Te contactamos en menos de 24 h laborables.',
+  panelTitulo: '¿Prefieres elegir tú el día y la hora?',
+  panelTexto: 'Agenda directamente una llamada breve, sin compromiso.',
   calendlyAgendar: 'Agendar llamada de 15 minutos, sin compromiso',
   calendlyAbrirPestana: 'Prefiero abrirlo en una pestaña nueva',
-  mensajeExito: '¡Solicitud enviada! Le contactamos en menos de 24h laborables.',
-  mensajeError: 'Ocurrió un error al enviar tu solicitud. Intenta de nuevo.',
-  numeroEmpleadosOptions: ['1-5', '5-20', '20-50', 'más de 50'],
+  mensajeExito: '¡Solicitud enviada! Te contactamos en menos de 24 h laborables.',
+  mensajeError: 'No hemos podido enviar tu solicitud. Inténtalo de nuevo.',
+  numeroEmpleadosOptions: ['Solo yo', '2-5', '6-20', 'Más de 20'],
   motivoContactoOptions: [
-    'Quiero reducir costes operativos',
-    'Quiero aprovechar mejor las herramientas que ya tengo',
-    'Sé que algo no funciona pero no sé qué',
-    'Quiero explorar automatización o IA',
+    'Contestar antes a mis clientes',
+    'Citas y avisos automáticos',
+    'Facturas y presupuestos sin papeleo',
+    'Vender más con mis datos',
+    'No sé por dónde empezar',
     'Otro'
   ]
 };
@@ -189,10 +190,9 @@ export class AutonomosYPymesComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngOnInit(): void {
-    // Título y descripción provisionales
     this.seoService.apply({
-      title: 'Automatiza tu negocio: diagnóstico para autónomos y pymes | b2bitmaster',
-      description: 'Sesión de diagnóstico para autónomos y pymes que quieren ahorrar tiempo en tareas y papeleo y automatizar su negocio. Solicítela o agende una llamada.',
+      title: 'Menos gestión, más operación | Autónomos y pymes | b2bitmaster',
+      description: 'Automatiza respuestas, citas, facturas y avisos y gana tiempo para lo importante. Cuéntanos cómo trabajas y te decimos por dónde empezar.',
       path: '/autonomosypymes'
     });
   }
@@ -256,8 +256,8 @@ export class AutonomosYPymesComponent implements OnInit, AfterViewInit, OnDestro
     const formValue = this.diagnosticForm.value;
     const comentario = (formValue.comentario || '').trim();
     const message = comentario
-      ? `Solicitud de Diagnóstico Express desde /autonomosypymes.\n\nComentario del usuario: ${comentario}`
-      : 'Solicitud de Diagnóstico Express desde /autonomosypymes.';
+      ? `Solicitud de llamada desde /autonomosypymes.\n\nComentario del usuario: ${comentario}`
+      : 'Solicitud de llamada desde /autonomosypymes.';
 
     this.contactService.sendContactMessage({
       name: formValue.name,
@@ -280,7 +280,7 @@ export class AutonomosYPymesComponent implements OnInit, AfterViewInit, OnDestro
         setTimeout(() => this.successMessage.set(''), 5000);
       },
       error: (err) => {
-        console.error('Error al enviar solicitud de diagnóstico:', err);
+        console.error('Error al enviar la solicitud de llamada:', err);
         this.errorMessage.set(TEXTOS.mensajeError);
         this.isSubmitting.set(false);
         setTimeout(() => this.errorMessage.set(''), 5000);
