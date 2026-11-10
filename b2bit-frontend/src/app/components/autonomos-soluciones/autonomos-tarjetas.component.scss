@@ -1,0 +1,136 @@
+:host {
+  display: block;
+  overflow-x: clip;
+  --navy: #14314d;
+  --gold: #f1a805;
+  --gold-ink: #8a5d00;
+  --line: #e0dccf;
+  --soft-gold: #fcf1d3;
+  color: #1d2a37;
+}
+
+.tarjetas {
+  padding: 40px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.sec-h {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--navy);
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+
+.big {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 16px;
+}
+
+.bigcard {
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  padding: 20px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  border-top: 6px solid var(--navy);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &[data-fam='C'] {
+    border-top-color: var(--gold);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -18px rgba(20, 49, 77, 0.6);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  &.sel {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px var(--soft-gold);
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    line-height: 1.2;
+    color: var(--navy);
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.97rem;
+  }
+
+  .go {
+    margin-top: auto;
+    padding-top: 6px;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 0.9rem;
+  }
+
+  &.more {
+    background: transparent;
+    border: 2px dashed var(--navy);
+    justify-content: center;
+
+    &.sel {
+      background: var(--soft-gold);
+    }
+  }
+
+  .plus {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--gold-ink);
+    font-weight: 700;
+  }
+}
+
+// El SVG se inyecta con innerHTML: necesita ::ng-deep para recibir estilo
+.bigcard ::ng-deep svg {
+  width: 42px;
+  height: 42px;
+  stroke: var(--navy);
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bigcard[data-fam='C'] ::ng-deep svg {
+  stroke: var(--gold-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bigcard {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

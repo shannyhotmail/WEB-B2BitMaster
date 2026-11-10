@@ -1,0 +1,267 @@
+// Carrusel de /autonomosypymes. Colores del sitio: navy #14314D y dorado #f1a805.
+:host {
+  display: block;
+}
+
+.carousel {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #14314D;
+  box-shadow: 0 1px 0 #e0dccf, 0 18px 40px -24px rgba(20, 49, 77, 0.45);
+
+  &:focus-visible {
+    outline: 3px solid #f1a805;
+    outline-offset: 3px;
+  }
+}
+
+.viewport {
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+// Pista horizontal: los hijos se estiran a la altura de la escena más alta
+.track {
+  display: flex;
+  transition: transform 0.75s cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: transform;
+
+  &.no-anim {
+    transition: none;
+  }
+}
+
+.slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  background: #0d2237;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.badge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  border-radius: 50%;
+  background: rgba(20, 49, 77, 0.7);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  z-index: 2;
+
+  svg {
+    width: 30px;
+    height: 30px;
+    fill: #ffffff;
+  }
+}
+
+.is-paused .badge {
+  opacity: 1;
+  transform: none;
+}
+
+.dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.dot {
+  padding: 9px 6px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+
+  > span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: width 0.3s ease, background 0.3s ease;
+  }
+
+  &[aria-current='true'] > span {
+    width: 26px;
+    background: #f1a805;
+  }
+
+  &:hover > span {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  &[aria-current='true']:hover > span {
+    background: #f1a805;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #f1a805;
+    outline-offset: 0;
+    border-radius: 10px;
+  }
+}
+
+// Flechas: solo en escritorio
+.ctl {
+  display: none;
+  position: absolute;
+  z-index: 4;
+  top: 40%;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  place-items: center;
+  background: rgba(20, 49, 77, 0.62);
+  color: #ffffff;
+  backdrop-filter: blur(4px);
+
+  &:hover {
+    background: rgba(20, 49, 77, 0.85);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #f1a805;
+    outline-offset: 2px;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.prev { left: 14px; }
+.next { right: 14px; }
+
+.caption {
+  text-align: center;
+
+  p {
+    margin: 0 auto;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: #ffffff;
+    font-size: clamp(1.35rem, 2.5vw, 2.3rem);
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  em {
+    font-style: normal;
+    color: #f1a805;
+  }
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  background: #f1a805;
+  color: #14314D;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+
+  &:hover {
+    background: #ffb81f;
+  }
+
+  &:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+  }
+}
+
+// Escritorio: mensaje centrado a todo el ancho del vídeo, sobre la imagen
+@media (min-width: 900px) {
+  .ctl {
+    display: grid;
+  }
+
+  .caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    padding: 130px 7% 48px;
+    background: linear-gradient(to top, rgba(14, 36, 58, 0.95) 0%, rgba(14, 36, 58, 0.78) 50%, rgba(14, 36, 58, 0) 100%);
+
+    p {
+      max-width: 1000px;
+    }
+  }
+}
+
+// Móvil: mensaje centrado en un panel azul debajo de la imagen; todas las escenas
+// tienen la altura de la más alta (el panel crece hasta llenar la escena)
+@media (max-width: 899px) {
+  .caption {
+    flex: 1;
+    background: #14314D;
+    padding: 22px 18px 44px;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .cta {
+    padding: 13px 18px;
+    font-size: 0.98rem;
+  }
+
+  .badge {
+    width: 60px;
+    height: 60px;
+    margin: -30px 0 0 -30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .badge,
+  .dot > span {
+    transition: none;
+  }
+}
