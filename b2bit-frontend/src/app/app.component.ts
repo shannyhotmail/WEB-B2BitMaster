@@ -17,12 +17,12 @@ import { CookieConsentService } from './services/cookie-consent.service';
   imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, WhatsappButtonComponent],
   template: `
     <div class="app-container">
-      <app-header [minimal]="minimalHeader()"></app-header>
-      <main class="main-content">
+      <app-header *ngIf="!guiaPrivada()" [minimal]="minimalHeader()"></app-header>
+      <main class="main-content" [class.sin-cabecera]="guiaPrivada()">
         <router-outlet></router-outlet>
       </main>
-      <app-footer></app-footer>
-      <app-whatsapp-button></app-whatsapp-button>
+      <app-footer *ngIf="!guiaPrivada()"></app-footer>
+      <app-whatsapp-button *ngIf="!guiaPrivada()"></app-whatsapp-button>
     </div>
   `,
   styleUrls: ['./app.component.scss']
@@ -33,16 +33,30 @@ export class AppComponent {
   // Header simplificado (solo logo) en landings de campaña como /diagnostico-ia, /optimizaprocesos y /autonomosypymes
   minimalHeader = signal(false);
 
+  // Páginas privadas de guías (/g/<slug>): pantalla propia, sin header/footer/WhatsApp
+  guiaPrivada = signal(false);
+
   constructor(private router: Router, private cookieConsent: CookieConsentService) {
     this.minimalHeader.set(this.isMinimalHeaderRoute(this.router.url));
+    this.guiaPrivada.set(this.isGuiaRoute(this.router.url));
 
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event) => {
       window.scrollTo(0, 0);
       this.minimalHeader.set(this.isMinimalHeaderRoute((event as NavigationEnd).urlAfterRedirects));
-      this.cookieConsent.trackPageView((event as NavigationEnd).urlAfterRedirects);
+      const url = (event as NavigationEnd).urlAfterRedirects;
+      this.guiaPrivada.set(this.isGuiaRoute(url));
+      // No se envía page_view en /g/<slug>: el slug es secreto y no debe llegar a analítica
+      // (la página emite guia_vista con la palabra clave).
+      if (!this.isGuiaRoute(url)) {
+        this.cookieConsent.trackPageView(url);
+      }
     });
+  }
+
+  private isGuiaRoute(url: string): boolean {
+    return url.startsWith('/g/');
   }
 
   private isMinimalHeaderRoute(url: string): boolean {

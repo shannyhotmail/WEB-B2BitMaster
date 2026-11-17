@@ -75,6 +75,16 @@ export class CookieConsentService {
     return () => COOKIEBOT_CONSENT_EVENTS.forEach(name => window.removeEventListener(name, check));
   }
 
+  // Guías privadas (/g/<slug>). "guia" es siempre la palabra clave interna, nunca el slug.
+  // Sin gate propio, igual que page_view: GTM aplica Consent Mode a las etiquetas.
+  trackGuiaVista(guia: string): void {
+    this.push({ event: 'guia_vista', guia });
+  }
+
+  trackGuiaDescarga(guia: string): void {
+    this.push({ event: 'guia_descarga', guia });
+  }
+
   private push(data: Record<string, unknown>): void {
     const win = window as unknown as DataLayerWindow;
     win.dataLayer = win.dataLayer || [];

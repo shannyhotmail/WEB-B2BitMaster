@@ -11,6 +11,22 @@
     ]
   },
   "mimeTypes": {
-    ".mp4": "video/mp4"
-  }
+    ".mp4": "video/mp4",
+    ".pdf": "application/pdf"
+  },
+  "routes": [
+    {
+      "route": "/assets/guias/*",
+      "headers": {
+        "X-Robots-Tag": "noindex, nofollow",
+        "Content-Type": "application/pdf"
+      }
+    },
+    {
+      "route": "/g/*",
+      "headers": {
+        "X-Robots-Tag": "noindex, nofollow"
+      }
+    }
+  ]
 }
