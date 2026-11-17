@@ -19,7 +19,8 @@
       "route": "/assets/guias/*",
       "headers": {
         "X-Robots-Tag": "noindex, nofollow",
-        "Content-Type": "application/pdf"
+        "Content-Type": "application/pdf",
+        "Cache-Control": "no-cache"
       }
     },
     {
