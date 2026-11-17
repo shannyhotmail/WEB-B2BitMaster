@@ -21,3 +21,8 @@
     padding-top: 69px;
   }
 }
+
+// /g/<slug>: pantalla propia sin header fijo, no hace falta reservar su altura
+.main-content.sin-cabecera {
+  padding-top: 0;
+}

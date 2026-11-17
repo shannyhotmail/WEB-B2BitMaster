@@ -22,5 +22,6 @@ export const routes: Routes = [
   { path: 'diagnostico-ia', component: DiagnosticoIaComponent },
   { path: 'optimizaprocesos', component: OptimizaProcesosComponent },
   { path: 'autonomosypymes', component: AutonomosYPymesComponent },
+  { path: 'g/:slug', loadComponent: () => import('./pages/guias/guia.component').then(m => m.GuiaComponent) },
   { path: '**', redirectTo: '' }
 ];
