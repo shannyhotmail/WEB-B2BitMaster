@@ -66,7 +66,7 @@ type Estado = 'cargando' | 'invalida' | 'preparacion' | 'visor' | 'error';
             <a class="btn-descargar" [href]="pdfUrl" [attr.download]="guia.archivo" (click)="onDescarga($event)">
               Descargar guía (PDF)
             </a>
-            <p class="ayuda-ios" *ngIf="esIos">En iPhone: toca ⬆ y elige «Guardar en Archivos».</p>
+            <p class="ayuda-ios" *ngIf="esIos">En iPhone: pulsa «Descargar» y elige «Guardar en Archivos».</p>
           </div>
         </ng-container>
       </ng-container>
