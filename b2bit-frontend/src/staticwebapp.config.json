@@ -20,7 +20,8 @@
       "headers": {
         "X-Robots-Tag": "noindex, nofollow",
         "Content-Type": "application/pdf",
-        "Cache-Control": "no-cache"
+        "Cache-Control": "no-cache",
+        "Content-Disposition": "attachment"
       }
     },
     {
