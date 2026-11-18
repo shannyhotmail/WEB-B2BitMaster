@@ -63,9 +63,10 @@ type Estado = 'cargando' | 'invalida' | 'preparacion' | 'visor' | 'error';
           </div>
 
           <div class="barra">
-            <a class="btn-descargar" [href]="pdfUrl" [attr.download]="guia.archivo" (click)="onDescarga()">
+            <a class="btn-descargar" [href]="pdfUrl" [attr.download]="guia.archivo" (click)="onDescarga($event)">
               Descargar guía (PDF)
             </a>
+            <p class="ayuda-ios" *ngIf="esIos">En iPhone: toca ⬆ y elige «Guardar en Archivos».</p>
           </div>
         </ng-container>
       </ng-container>
@@ -124,6 +125,7 @@ type Estado = 'cargando' | 'invalida' | 'preparacion' | 'visor' | 'error';
       min-height: 52px; border-radius: 8px; background: #ff3131; color: #fff;
       font-weight: 700; font-size: 1rem; text-decoration: none;
     }
+    .ayuda-ios { margin: 8px 0 0; text-align: center; font-size: 0.75rem; color: #4a5c68; }
     .btn-descargar:active { background: #d62828; }
     .btn-descargar:focus-visible, .enlace:focus-visible { outline: 3px solid #f1a805; outline-offset: 2px; }
     @media (min-width: 768px) {
@@ -146,6 +148,9 @@ export class GuiaComponent implements OnInit, AfterViewInit, OnDestroy {
   pdfUrl = '';
   estado = signal<Estado>('cargando');
   avisoInstagram = signal(false);
+  // iOS: el PDF se precarga como File para poder llamar a navigator.share() justo tras el toque
+  esIos = false;
+  private archivoPdf?: File;
 
   private observer?: IntersectionObserver;
   private pdfDoc?: { destroy: () => Promise<void> };
@@ -156,6 +161,8 @@ export class GuiaComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const ua = navigator.userAgent;
     this.avisoInstagram.set(/Instagram/i.test(ua) && /FBAN|FBAV/.test(ua));
+    // iPadOS se identifica como Macintosh, pero con pantalla táctil
+    this.esIos = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
 
     const slug = this.route.snapshot.paramMap.get('slug') ?? '';
     this.guia = GUIAS.find(g => g.slug === slug);
@@ -167,6 +174,8 @@ export class GuiaComponent implements OnInit, AfterViewInit, OnDestroy {
     this.consent.trackGuiaVista(this.guia.palabraClave);
     if (this.guia.estado !== 'lista') {
       this.estado.set('preparacion');
+    } else if (this.esIos) {
+      void this.precargarArchivo();
     }
   }
 
@@ -183,9 +192,30 @@ export class GuiaComponent implements OnInit, AfterViewInit, OnDestroy {
     void this.pdfDoc?.destroy();
   }
 
-  onDescarga(): void {
+  onDescarga(event: Event): void {
     if (this.guia) {
       this.consent.trackGuiaDescarga(this.guia.palabraClave);
+    }
+    if (!this.esIos || !this.archivoPdf || !this.guia) { return; }
+    const nav = navigator as Navigator & { canShare?: (d: ShareData) => boolean };
+    const datos: ShareData = { files: [this.archivoPdf], title: this.guia.titulo };
+    if (typeof nav.canShare !== 'function' || !nav.canShare(datos) || typeof nav.share !== 'function') { return; }
+    // navigator.share() debe llamarse de inmediato tras el gesto: sin await antes.
+    event.preventDefault();
+    nav.share(datos).catch((err: unknown) => {
+      if ((err as { name?: string })?.name === 'AbortError') { return; } // el usuario canceló
+      window.location.href = this.pdfUrl; // fallo real: enlace normal (visor nativo)
+    });
+  }
+
+  private async precargarArchivo(): Promise<void> {
+    try {
+      const res = await fetch(this.pdfUrl);
+      if (!res.ok || this.destruido || !this.guia) { return; }
+      const blob = await res.blob();
+      this.archivoPdf = new File([blob], this.guia.archivo, { type: 'application/pdf' });
+    } catch {
+      // sin File listo, el botón actúa como enlace normal
     }
   }
 
