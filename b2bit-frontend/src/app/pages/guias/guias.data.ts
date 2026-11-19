@@ -28,5 +28,8 @@ export const GUIAS: Guia[] = [
   { slug: 'uz4o7b9xdw30', palabraClave: 'GEMINI', publicacion: 'Clase 2 "Gemini, sin miedo" (lun 30 nov)', titulo: 'Gemini y Nano Banana, sin miedo', archivo: '2026-11-30_GUIA_Gemini-y-Nano-Banana-sin-miedo.pdf', estado: 'lista' },
   { slug: 'rs3kusj3pjc6', palabraClave: 'CHATGPT', publicacion: 'Clase 3 "ChatGPT, sin miedo" (lun 7 dic)', titulo: 'ChatGPT, sin miedo', archivo: '2026-12-07_GUIA_ChatGPT-sin-miedo.pdf', estado: 'lista' },
   { slug: '68c967jwm8jf', palabraClave: 'CLAUDE', publicacion: 'Clase 4 "Claude, sin miedo" (lun 14 dic)', titulo: 'Claude, sin miedo', archivo: '2026-12-14_GUIA_Claude-sin-miedo.pdf', estado: 'lista' },
-  { slug: 'oz7fxbdspov1', palabraClave: 'PREGUNTA', publicacion: 'Carrusel y Reel "Pregunta bien" (mediados de dic)', titulo: 'Pregunta bien, responde bien', archivo: '2026-11-30_GUIA_Pregunta-bien-responde-bien.pdf', estado: 'lista' }
+  { slug: 'oz7fxbdspov1', palabraClave: 'PREGUNTA', publicacion: 'Carrusel y Reel "Pregunta bien" (mediados de dic)', titulo: 'Pregunta bien, responde bien', archivo: '2026-11-30_GUIA_Pregunta-bien-responde-bien.pdf', estado: 'lista' },
+  { slug: 'iwpzgrefgcrm', palabraClave: 'CATALOGO', publicacion: 'Humor Ep.2 (Gemini: catálogo con logo, fotos y precios), vie 27 nov', titulo: 'Catálogo con Gemini', archivo: '2026-11-27_GUIA_Catalogo-con-Gemini.pdf', estado: 'lista' },
+  { slug: 'qlxlgyyi7acb', palabraClave: 'PROVEEDORES', publicacion: 'Humor Ep.3 (ChatGPT: búsqueda de proveedores y telas), vie 4 dic', titulo: 'Proveedores con ChatGPT', archivo: '2026-12-04_GUIA_Proveedores-con-ChatGPT.pdf', estado: 'lista' },
+  { slug: '88ef15dx255h', palabraClave: 'CORREOS', publicacion: 'Humor Ep.4 (Claude: Gmail, clasificar y responder pedidos), vie 11 dic', titulo: 'Correos con Claude', archivo: '2026-12-11_GUIA_Correos-con-Claude.pdf', estado: 'lista' }
 ];
